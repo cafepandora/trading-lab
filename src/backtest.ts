@@ -39,6 +39,8 @@ export interface OperacionCerrada {
   pnl: number;
   /** Resultado en "R": cuántas veces lo arriesgado se ganó (+) o se perdió (−). */
   r: number;
+  /** Distancia de la entrada al stop inicial, como fracción del precio (para armar carteras). */
+  riesgoPct: number;
   salidaPor: MotivoSalida;
 }
 
@@ -62,7 +64,7 @@ export function probar(ctx: Contexto, est: Estrategia, aj: Ajustes): Resultado {
     const p = pos!;
     const c = cerrar(p, precio, aj);
     caja += c.aCaja;
-    ops.push({ lado: p.lado, tEntrada: p.tEntrada, tSalida: vs[i].t, entrada: p.entrada, salida: precio, pnl: c.pnl, r: c.r, salidaPor: por });
+    ops.push({ lado: p.lado, tEntrada: p.tEntrada, tSalida: vs[i].t, entrada: p.entrada, salida: precio, pnl: c.pnl, r: c.r, riesgoPct: p.arriesgado / (p.tam * p.entrada), salidaPor: por });
     pos = null;
   };
 

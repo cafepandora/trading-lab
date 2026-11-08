@@ -5,3 +5,4 @@ export * from './estrategias';
 export * from './backtest';
 export * from './posicion';
 export * as binance from './binance';
+export * from './variantes';

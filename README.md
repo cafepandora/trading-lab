@@ -50,6 +50,47 @@ unas semanas de historia).
 Antes se había probado con datos de Hyperliquid (desde 2021):
 `resultados/hyperliquid-*.json`. Las conclusiones son las mismas.
 
+## El sistema: elegir estrategias y medirlo a ciegas (`npm run sistema`)
+
+35 estrategias (las 12 de arriba más 23 variantes: tres soldados con otros
+filtros y objetivos, tendencia con otros canales y solo compras, cruce de
+medias, reversión con RSI y bandas de Bollinger — `src/variantes.ts`), en las
+14 monedas: **85.972 predicciones** (operaciones simuladas, cada una con
+dirección, stop y objetivo).
+
+Reglas fijadas **antes** de ver resultados:
+
+1. Cada 6 meses, desde enero de 2021, mira solo las operaciones que ya
+   habían cerrado.
+2. Elige hasta 3 estrategias: las de mejor t (ganancia promedio ÷ su
+   error), con al menos 50 operaciones y t ≥ 2.
+3. Las opera los 6 meses siguientes, que no vio.
+4. "Funciona" solo si, en esa parte a ciegas, gana en promedio, t ≥ 2, le
+   gana al azar (probabilidad < 5%) y una cuenta de 500 USD arriesgando 0,5%
+   por operación (tope 2x, órdenes ≥ 10 USD) no cae más de 25%.
+
+Resultado a ciegas, enero 2021 → noviembre 2026 (`resultados/sistema.json`):
+
+| | |
+|---|---|
+| Predicciones a ciegas | 12.298 |
+| Aciertos | 33,6% (gana pocas, pero más grandes) |
+| Por cada $1 arriesgado | +0,11 (t 6,4; el azar no llega ahí) |
+| Cuenta de 500 USD, 0,5% por operación | +29,8% al año, pero **cae hasta 54%** |
+| Por año | 2021 +386% · 2022 +1% · 2023 −26% · 2024 +168% · 2025 +11% · 2026 −44% |
+| Frente a escoger 3 estrategias al azar | mejor que el 87% (no alcanza el 95%) |
+| **¿Funciona según las reglas?** | **No**: la caída pasa de 25% |
+
+- Casi siempre eligió **seguir la tendencia** (Donchian 20/10 y cruce de
+  medias 20/50). Por operación tiene una ventaja real, pero como cuenta es
+  demasiado brusca: llega a tener decenas de posiciones abiertas en monedas
+  que caen todas juntas. Con menos riesgo por operación (0,25%) la caída
+  sigue en 44%.
+- La ventaja se apagó: 2025 casi plano y 2026 en pérdida.
+- Cambiar las reglas ahora para que el pasado salga bien ya no sería una
+  prueba a ciegas. La única prueba a ciegas que queda es el futuro: la
+  simulación en vivo.
+
 ## La simulación en vivo
 
 Cuatro cuentas de 500 USD virtuales, cada una con una estrategia, operando
@@ -113,6 +154,7 @@ npm install
 npm run laboratorio           # prueba todo (BTC, ETH, SOL) con Binance
 LAB_MONEDAS=BTC,ETH,XRP npm run laboratorio   # con otras monedas
 LAB_FUENTE=hyperliquid npm run laboratorio    # con precios de Hyperliquid
+npm run sistema               # 35 estrategias + prueba a ciegas (resultados/sistema.json)
 npm run referencia            # pasa resultados/binance-15-monedas.json al panel
 npm run pruebas               # que nada mire el futuro y que vivo = laboratorio
 npm run en-vivo -- 30         # repite los últimos 30 días con el ciclo en vivo real

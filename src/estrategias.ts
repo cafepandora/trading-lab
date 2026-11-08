@@ -13,6 +13,8 @@ export interface Contexto {
   pivotes: Pivote[];
   /** Cuántos pivotes están confirmados al cierre de cada vela. */
   confirmadosHasta: number[];
+  /** Indicadores extra que piden las variantes (se calculan una vez por serie). */
+  cache?: Map<string, number[]>;
 }
 
 export interface Senal {
@@ -31,7 +33,7 @@ export interface Senal {
 export interface Estrategia {
   id: string;
   nombre: string;
-  grupo: 'Fibonacci' | 'Figuras' | 'Elliott' | 'Velas' | 'Combinada' | 'Comparación';
+  grupo: 'Fibonacci' | 'Figuras' | 'Elliott' | 'Velas' | 'Combinada' | 'Comparación' | 'Tendencia' | 'Reversión';
   explicacion: string;
   senal(ctx: Contexto, i: number, memoria: Set<string>): Senal | null;
   /** Para salidas que acompañan al precio (seguir la tendencia). */
@@ -45,7 +47,7 @@ export function armarContexto(velas: Vela[], atr: number[], ema200: number[], pi
     while (k < pivotes.length && pivotes[k].confirmado <= i) k++;
     confirmadosHasta.push(k);
   }
-  return { velas, atr, ema200, pivotes, confirmadosHasta };
+  return { velas, atr, ema200, pivotes, confirmadosHasta, cache: new Map() };
 }
 
 /** Los últimos n pivotes que ya se conocían al cierre de la vela i. */

@@ -3,7 +3,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { AJUSTES, ESTRATEGIAS, armarContexto, atr, ema, estrategiaAzar, probar, zigzag } from '../.compilado/lab.mjs';
+import { AJUSTES, TODAS, armarContexto, atr, ema, estrategiaAzar, probar, zigzag } from '../.compilado/lab.mjs';
 
 const contexto = (vs) => { const r = atr(vs); return armarContexto(vs, r, ema(vs.map((v) => v.c), 200), zigzag(vs, r, 2.5)); };
 
@@ -14,7 +14,7 @@ for (const archivo of ['datos/binance/BTC-4h.json', 'datos/binance/SOL-1d.json']
     const completo = contexto(vs);
     for (const corte of [Math.floor(vs.length * 0.55), Math.floor(vs.length * 0.8)]) {
       const cortado = contexto(vs.slice(0, corte));
-      for (const est of [...ESTRATEGIAS, estrategiaAzar(42)]) {
+      for (const est of [...TODAS, estrategiaAzar(42)]) {
         const senales = (ctx) => {
           const mem = new Set(), out = [];
           const e = est.id === 'azar' ? estrategiaAzar(42) : est;
