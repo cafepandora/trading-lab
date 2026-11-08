@@ -10,7 +10,7 @@ const REGLAS = Object.fromEntries(MONEDAS_BOT.map((m) => [`${m}USDT`, { paso: m 
 
 /** Una estrategia de mentira que obedece a las pruebas. */
 function estrategiaPrueba() {
-  const control = { comprar: false, stop: 47500, salir: false };
+  const control = { comprar: false, stop: 48000, salir: false };
   return {
     control,
     estrategia: {
@@ -82,14 +82,14 @@ test('con una señal compra y deja puesto el stop en Binance, redondeado a sus r
   await s.siguienteVela();
   const compras = pedidos(s.falso, { side: 'BUY', type: 'MARKET' });
   assert.equal(compras.length, 1);
-  // Arriesga 1% de 50 (0,50) con el stop 5% abajo → 10 USDT.
-  assert.equal(compras[0].quoteOrderQty, '10.00');
+  // Arriesga 0,5% de 50 (0,25) con el stop 4% abajo → 6,25 USDT.
+  assert.equal(compras[0].quoteOrderQty, '6.25');
   const stops = pedidos(s.falso, { type: 'STOP_LOSS_LIMIT' });
   assert.equal(stops.length, 1);
-  assert.equal(stops[0].stopPrice, '47500.00');
-  assert.equal(stops[0].price, '47025.00');
+  assert.equal(stops[0].stopPrice, '48000.00');
+  assert.equal(stops[0].price, '47520.00');
   assert.match(stops[0].quantity, /^0\.\d{5}$/); // paso de 0,00001 BTC
-  assert.ok(Math.abs(s.e.caja - 40) < 1e-9);
+  assert.ok(Math.abs(s.e.caja - 43.75) < 1e-9);
   assert.ok(s.e.posiciones.BTC.ordenStop);
   await s.falso.cerrar();
 });
@@ -100,14 +100,14 @@ test('si Binance ejecuta el stop, el bot lo registra y la plata vuelve a su caja
   s.control.comprar = true;
   await s.siguienteVela();
   s.control.comprar = false;
-  s.falso.fijarPrecio('BTCUSDT', 47000); // pasa el stop: se vende a 47.025
+  s.falso.fijarPrecio('BTCUSDT', 47000); // pasa el stop: se vende a 47.520
   const r = await s.siguienteVela();
   assert.equal(s.e.posiciones.BTC, undefined);
   assert.equal(r.operaciones.length, 1);
   assert.equal(r.operaciones[0].por, 'stop');
   assert.ok(r.operaciones[0].resultado < 0);
-  // Vendió 0,00019 BTC a 47.025 (menos comisión); el sobrante del redondeo queda como polvo.
-  assert.ok(Math.abs(s.e.caja - (40 + 0.00019 * 47025 * 0.999)) < 1e-6, String(s.e.caja));
+  // Vendió 0,00012 BTC a 47.520 (menos comisión); el sobrante del redondeo queda como polvo.
+  assert.ok(Math.abs(s.e.caja - (43.75 + 0.00012 * 47520 * 0.999)) < 1e-6, String(s.e.caja));
   assert.ok(s.e.polvo.BTC > 0 && s.e.polvo.BTC < 0.00001);
   await s.falso.cerrar();
 });
@@ -144,16 +144,16 @@ test('nunca vende más de lo que compró él mismo (no toca tus otras monedas)',
   await s.falso.cerrar();
 });
 
-test('si lo que vale baja del piso de 40 USD, vende todo y se apaga', async () => {
+test('si lo que vale baja del piso de 20 USD (perder 60%), vende todo y se apaga', async () => {
   const s = await escenario();
   await activar(s.e, s.deps());
   s.control.comprar = true;
   await s.siguienteVela();
   s.control.comprar = false;
-  s.e.caja = 25; // como si ya hubiera perdido en otras operaciones
+  s.e.caja = 10; // como si ya hubiera perdido en otras operaciones (más los ~6 en BTC: menos de 20)
   const r = await s.siguienteVela();
   assert.equal(s.e.activo, false);
-  assert.match(s.e.motivo, /bajó de 40 USD/);
+  assert.match(s.e.motivo, /bajó de 20 USD/);
   assert.equal(s.e.posiciones.BTC, undefined);
   assert.equal(r.operaciones[0].por, 'piso');
   // Apagado no vuelve a operar aunque haya señal.

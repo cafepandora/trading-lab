@@ -55,15 +55,20 @@ export const BOT_REAL = {
   estrategia: 'cruce-20-50-compras',
   temporalidad: '4h',
   capital: 50,
-  riesgo: 0.01,
+  /**
+   * 0,5% de lo que vale por operación. Con los precios de 2018 a 2026, arriesgar
+   * más NO hizo crecer más la cuenta: las monedas caen juntas y las posiciones
+   * grandes abren huecos que tardan años en llenarse (resultados/probabilidades.json).
+   */
+  riesgo: 0.005,
   /** En spot no hay apalancamiento: nunca más de lo que hay en la cuenta. */
   apalancamientoMax: 1,
   /** Binance pide órdenes de al menos 5 USDT en spot. */
   ordenMinima: 5,
   /** Comisión de Binance spot por orden (0,075% pagando con BNB). */
   comision: 0.001,
-  /** Si la cuenta baja de esto, vende todo y se apaga. */
-  pisoUsd: 40,
+  /** Si la cuenta baja de esto (perder 60% de los 50), vende todo y se apaga. */
+  pisoUsd: 20,
 };
 
 /**

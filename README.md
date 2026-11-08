@@ -219,15 +219,50 @@ Reglas (`BOT_REAL` en `src/vivo/config.ts`):
   perder.**
 - **Plata**: usa solo 50 USD, llevados en su propia caja. Nunca vende monedas
   que no compró él (lo que ya tengas en la cuenta no lo toca).
-- **Riesgo**: 1% de lo que vale (unos 0,50 USD) por operación; entre todo lo
-  abierto, nunca más de lo que tiene.
+- **Riesgo**: 0,5% de lo que vale (unos 0,25 USD) por operación; entre todo lo
+  abierto, nunca más de lo que tiene. Con 50 USD, Binance no deja órdenes de
+  menos de 5 USD, así que al principio solo toma las señales con el stop
+  cerca (a menos de ~4,6%); a medida que la cuenta crece, toma más. Por qué
+  0,5% y no más: ver "¿Qué tan seguido gana el bot?".
 - **Stop en Binance**: cada compra deja puesta una orden de stop en Binance,
   así protege aunque el bot se caiga. Sale cuando toca el stop o cuando la
   señal se da vuelta.
-- **Piso**: si lo que vale baja de 40 USD, vende todo y se apaga solo.
+- **Freno**: si lo que vale baja de 20 USD (perder el 60% de los 50), vende
+  todo y se apaga solo.
 - **Detener**: el botón del panel vende todo y lo apaga en el momento.
 - Cada compra lleva un número único: si se cae justo después de comprar, al
   volver encuentra la orden y no compra dos veces.
+
+### ¿Qué tan seguido gana el bot? (`npm run probabilidades`)
+
+Repite las reglas exactas del bot (incluida la orden mínima de Binance y el
+freno) prendiéndolo con 50 USD **cada semana** desde 2018, y mira cómo
+termina. Lo hace con varios tamaños de riesgo por operación
+(`resultados/probabilidades.json`). Arrancando cualquier semana desde 2021:
+
+| Riesgo por operación | Gana a 12 meses | Típico a 12 meses | Gana a 24 meses | Típico a 24 meses | Peor caída de una cuenta desde 2021 |
+|---|---|---|---|---|---|
+| **0,5% (el del bot)** | **76%** | **+13,5%** | **98%** | **+71,8%** | **50%** |
+| 0,75% | 56% | +21,9% | 88% | +36,8% | 64% |
+| 1% | 53% | +4,9% | 56% | +6,5% | 69% |
+| 2% | 32% | −24,4% | 34% | −29,5% | 87% |
+| 3% | 27% | −23,0% | 33% | −36,9% | 90% |
+
+**Arriesgar más no multiplica más**: las 14 monedas suben y bajan juntas, y
+con posiciones grandes una mala racha abre un hueco que tarda años en
+llenarse. Desde 2021, 0,5% fue el que más creció en 2 años y casi nunca
+terminó en rojo, y su peor caída (52% desde 2018) cabe en el freno de 60%.
+0,75% gana más en los años muy buenos (2020–2021), pero cae hasta 64%. Con
+0,25% casi no opera: con 50 USD sus órdenes quedan bajo el mínimo de Binance.
+
+Con 0,5%, año por año (cuenta nueva cada 1 de enero): 2018 −5% · 2019 +18% ·
+2020 +172% · 2021 −3% · 2022 +2% · 2023 +43% · 2024 +116% · 2025 −1% ·
+2026 +11%. Al principio casi siempre se ve plano o un poco en rojo: a 3
+meses gana menos de la mitad de las veces.
+
+Ojo: la estrategia y el tamaño se eligieron mirando estos mismos datos, así
+que lo que venga probablemente sea peor. La prueba limpia es la simulación
+"Igual que el bot real" del panel.
 
 ### Cómo activarlo
 
@@ -273,6 +308,7 @@ LAB_TOPE=0.5 npm run sistema  # lo mismo con otro tope de exposición total (sol
 npm run corto-plazo           # velas de 5 min a 4 h y bot de grilla (resultados/corto-plazo.json)
 npm run referencia            # pasa resultados/binance-15-monedas.json al panel
 npm run traders               # busca traders que lleven años ganando (src/vivo/traders.json)
+npm run probabilidades        # qué tan seguido gana el bot y con qué riesgo (resultados/probabilidades.json)
 npm run pruebas               # que nada mire el futuro, vivo = laboratorio, copias y bot real
 npm run en-vivo -- 30         # repite los últimos 30 días con el ciclo en vivo real
 npm run tipos                 # revisa los tipos
@@ -298,5 +334,5 @@ Desde un computador detrás de un proxy, Node necesita `NODE_USE_ENV_PROXY=1`.
 - El bot real se prueba contra un Binance falso (`pruebas/binance-falso.mjs`)
   que verifica las firmas, ejecuta las órdenes y dispara los stops: compra y
   stop redondeados a las reglas de Binance, stop ejecutado, salida por señal,
-  que no venda lo tuyo, el piso de 40 USD, recuperarse si se cae a mitad de
+  que no venda lo tuyo, el freno de 20 USD, recuperarse si se cae a mitad de
   una compra, "detener" y una llave mala.

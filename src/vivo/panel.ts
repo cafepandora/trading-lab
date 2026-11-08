@@ -129,7 +129,7 @@ function pintarReal() {
   let h = '';
   const reglas = '<ul class="meta" style="margin:8px 0 0;padding-left:20px">' +
     '<li>Binance <b>spot, solo compras</b>: sin apalancamiento ni ventas en corto. Lo máximo que se puede perder es su presupuesto.</li>' +
-    '<li>Estrategia: cruce de medias 20/50 en velas de 4 horas, en ' + (estado ? estado.monedas.length : 14) + ' monedas. Arriesga ' + (r.riesgo * 100) + '% por operación.</li>' +
+    '<li>Estrategia: cruce de medias 20/50 en velas de 4 horas, en ' + (estado ? estado.monedas.length : 14) + ' monedas. Arriesga ' + String(r.riesgo * 100).replace('.', ',') + '% de lo que vale por operación.</li>' +
     '<li>Cada compra deja puesta en Binance una orden de stop. Si lo que vale baja de ' + usd(r.pisoUsd) + ', vende todo y se apaga.</li>' +
     '<li>Solo usa su presupuesto (' + usd(r.capital) + ') y solo vende lo que él mismo compró: no toca el resto de tu cuenta.</li></ul>';
   if (!real.llaves) {
@@ -316,7 +316,7 @@ function pintar() {
     conPos.map((f) => '<option value="' + esc(f.id) + '"' + (f.id === verPosiciones ? ' selected' : '') + '>' + esc(f.nombre) + ' (' + f.posiciones.length + ')</option>').join('') + '</select></p>' : '') + '<div id="vivo-pos"></div>';
   h += '<h2>Precios en vivo</h2><div class="tarjeta" id="vivo-px"></div>';
   h += '<h2>Cómo leer esto</h2><div class="tarjeta">' +
-    '<p>Cada simulación tiene su propia cuenta virtual: ' + usd(e.ajustes.capital) + ' las estrategias y las copias, y ' + usd(50) + ' la que imita al bot real (spot, comisión de 0,1%, sin apalancamiento). Arriesgan el ' + (e.ajustes.riesgo * 100) + '% de lo que valen por operación.</p>' +
+    '<p>Cada simulación tiene su propia cuenta virtual: ' + usd(e.ajustes.capital) + ' las estrategias y las copias, y ' + usd(50) + ' la que imita al bot real (spot, comisión de 0,1%, sin apalancamiento, y el mismo riesgo por operación que él). Las demás arriesgan el ' + String(e.ajustes.riesgo * 100).replace('.', ',') + '% de lo que valen por operación.</p>' +
     '<p><b>"Por cada $1 arriesgado"</b> es el número que importa: +0,26 quiere decir que, en promedio, cada operación ganó 26 centavos por cada dólar que puso en riesgo. Si es negativo, la estrategia pierde plata.</p>' +
     '<p><b>Stop (SL) y objetivo (TP):</b> se revisan con el máximo y el mínimo de cada vela cuando cierra; si el precio en vivo ya los tocó antes, la tarjeta lo avisa. "Va ganando / perdiendo" no cuenta las comisiones.</p>' +
     '<p><b>Copias de traders:</b> cada 30 segundos miran las posiciones de un trader de Hyperliquid con años ganando y hacen lo mismo en proporción, con tope de 2x y frenos (−5% en un día → pausa hasta mañana; −30% → se detiene). Son solo una guía: que haya ganado antes no asegura nada.</p></div>';
