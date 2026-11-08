@@ -3,8 +3,11 @@
 
 import { AJUSTES } from '../backtest';
 
-/** Las mismas 15 monedas de la prueba con datos pasados (resultados/15-monedas.json). */
-export const MONEDAS = ['BTC', 'ETH', 'SOL', 'XRP', 'DOGE', 'BNB', 'AVAX', 'LINK', 'LTC', 'ADA', 'SUI', 'AAVE', 'DOT', 'NEAR', 'HYPE'];
+/**
+ * Las monedas de la prueba con datos pasados de Binance (resultados/binance-15-monedas.json).
+ * HYPE quedó fuera: en Binance solo tiene unas semanas de historia.
+ */
+export const MONEDAS = ['BTC', 'ETH', 'SOL', 'XRP', 'DOGE', 'BNB', 'AVAX', 'LINK', 'LTC', 'ADA', 'SUI', 'AAVE', 'DOT', 'NEAR'];
 
 export const TEMPORALIDADES: Record<string, number> = { '4h': 4, '1d': 24 };
 

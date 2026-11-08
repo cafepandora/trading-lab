@@ -8,7 +8,7 @@ import { AJUSTES, ESTRATEGIAS, armarContexto, atr, ema, estrategiaAzar, probar, 
 const contexto = (vs) => { const r = atr(vs); return armarContexto(vs, r, ema(vs.map((v) => v.c), 200), zigzag(vs, r, 2.5)); };
 
 // Si una estrategia usara datos del futuro, sus señales cambiarían al cortar la serie.
-for (const archivo of ['datos/BTC-4h.json', 'datos/SOL-1d.json']) {
+for (const archivo of ['datos/binance/BTC-4h.json', 'datos/binance/SOL-1d.json']) {
   test(`ninguna estrategia mira el futuro (${archivo})`, { skip: !fs.existsSync(archivo) }, () => {
     const vs = JSON.parse(fs.readFileSync(archivo, 'utf8'));
     const completo = contexto(vs);

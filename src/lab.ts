@@ -4,3 +4,4 @@ export * from './velas';
 export * from './estrategias';
 export * from './backtest';
 export * from './posicion';
+export * as binance from './binance';

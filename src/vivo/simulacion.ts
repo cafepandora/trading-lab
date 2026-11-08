@@ -2,18 +2,21 @@
 // estado que ve el panel. No sabe dónde se guardan los datos: recibe un
 // `Almacen` (Durable Object en Cloudflare, memoria en las pruebas).
 
+import * as binance from '../binance';
 import { ESTRATEGIAS, armarContexto } from '../estrategias';
 import { atr, ema, zigzag } from '../indicadores';
-import { marcar, nuevaCuenta, procesarSerie, type Cuenta, type Evento, type OperacionVivo } from './cartera';
-import { ESTRATEGIAS_VIVO, SERIES, VIVO, ultimaCerrada } from './config';
-import * as hl from './hyperliquid';
+import { marcar, nuevaCuenta, procesarSerie, vigilar, type Cuenta, type Evento, type OperacionVivo } from './cartera';
+import { ESTRATEGIAS_VIVO, MONEDAS, SERIES, VIVO, ultimaCerrada } from './config';
 import referencia from './referencia.json';
 
 const HORA = 3_600_000;
 const DIA = 24 * HORA;
 
+/** Sube si cambia algo que obliga a empezar de cero (v3: precios de Binance). */
+export const VERSION = 3;
+
 export interface Config {
-  version: 2;
+  version: typeof VERSION;
   iniciada: number;
   /** Última vela cerrada ya procesada, por serie. */
   ultimaVela: Record<string, number>;
@@ -47,9 +50,16 @@ export interface Almacen {
 const estrategia = (id: string) => ESTRATEGIAS.find((e) => e.id === id)!;
 
 function explicarError(e: unknown): string {
-  if (e instanceof hl.ErrorApi && e.status === 429) return 'Hyperliquid pidió esperar';
-  if (e instanceof hl.ErrorApi && e.status >= 500) return 'Hyperliquid no respondió';
+  if (e instanceof binance.ErrorBinance && (e.status === 429 || e.status === 418)) return 'Binance pidió esperar';
+  if (e instanceof binance.ErrorBinance && e.status === 451) return 'Binance no responde desde este lugar';
+  if (e instanceof binance.ErrorBinance && e.status >= 500) return 'Binance no respondió';
   return (e as Error)?.message ?? 'error';
+}
+
+/** Precio actual de cada moneda, solo el número. */
+async function preciosAhora(): Promise<Record<string, number>> {
+  const p = await binance.precios(MONEDAS);
+  return Object.fromEntries(Object.entries(p).map(([m, x]) => [m, x.precio]));
 }
 
 export async function iniciar(a: Almacen, ahora = Date.now()) {
@@ -61,10 +71,10 @@ export async function iniciar(a: Almacen, ahora = Date.now()) {
   await a.guardarCuentas(cuentas);
   // Se empieza desde la próxima vela: nada del pasado se opera en vivo.
   const ultimaVela = Object.fromEntries(SERIES.map((s) => [s.serie, ultimaCerrada(s.horas, ahora)]));
-  await a.guardarConfig({ version: 2, iniciada: ahora, ultimaVela, btc: null, ultimaHoraCurva: -1, ultimoCiclo: null, ciclos: 0 });
+  await a.guardarConfig({ version: VERSION, iniciada: ahora, ultimaVela, btc: null, ultimaHoraCurva: -1, ultimoCiclo: null, ciclos: 0 });
   await a.agregarEventos([{
     t: ahora, cuenta: '—',
-    texto: `Empezó la simulación: ${ESTRATEGIAS_VIVO.length} estrategias, ${VIVO.capital} USD virtuales cada una, ${SERIES.length / 2} monedas en velas de 4 horas y diarias.`,
+    texto: `Empezó la simulación con precios de Binance: ${ESTRATEGIAS_VIVO.length} estrategias, ${VIVO.capital} USD virtuales cada una, ${MONEDAS.length} monedas en velas de 4 horas y diarias.`,
   }]);
 }
 
@@ -76,7 +86,7 @@ export async function correrCiclo(a: Almacen, ahora = Date.now()) {
 
   let precios: Record<string, number>;
   try {
-    precios = await hl.precios();
+    precios = await preciosAhora();
   } catch (e) {
     config.ultimoCiclo = { t: ahora, ms: Date.now() - inicio, series: [], errores: [`los precios (${explicarError(e)})`] };
     await a.guardarConfig(config);
@@ -107,7 +117,7 @@ export async function correrCiclo(a: Almacen, ahora = Date.now()) {
   const hechas: string[] = [];
   for (const s of pendientes) {
     try {
-      const vs = await hl.velas(s.moneda, s.horas, VIVO.velasHistoria, ahora);
+      const vs = await binance.velas(s.moneda, s.horas, VIVO.velasHistoria);
       if (vs.length < 250) throw new Error(`solo ${vs.length} velas`);
       const rangos = atr(vs);
       const ctx = armarContexto(vs, rangos, ema(vs.map((v) => v.c), 200), zigzag(vs, rangos, 2.5));
@@ -132,6 +142,7 @@ export async function correrCiclo(a: Almacen, ahora = Date.now()) {
         c.caidaMax = Math.max(c.caidaMax, (c.pico - c.valor) / c.pico);
       }
     } else {
+      eventos.push(...vigilar(c, precios, ahora));
       marcar(c, precios);
     }
   }
@@ -174,8 +185,9 @@ export async function armarEstado(a: Almacen, ahora = Date.now()) {
     pasado: ref[c.id] ?? null,
     explicacion: c.tipo === 'estrategia' ? estrategia(c.id).explicacion : 'Compra Bitcoin el primer día y no hace nada más: la vara para medir.',
     posiciones: Object.values(c.posiciones).map((p) => ({
-      serie: p.serie, lado: p.lado, entrada: p.entrada, stop: p.stop, objetivo: Number.isFinite(p.objetivo) ? p.objetivo : null,
-      arriesgado: p.arriesgado, tEntrada: p.tEntrada, motivo: p.motivo,
+      serie: p.serie, moneda: p.moneda, lado: p.lado, entrada: p.entrada, tam: p.tam, stop: p.stop,
+      objetivo: Number.isFinite(p.objetivo) ? p.objetivo : null,
+      arriesgado: p.arriesgado, tEntrada: p.tEntrada, motivo: p.motivo, tocado: p.tocado ?? null,
     })),
   }));
 
@@ -191,7 +203,7 @@ export async function armarEstado(a: Almacen, ahora = Date.now()) {
     iniciadaEl: config.iniciada,
     dias: (ahora - config.iniciada) / DIA,
     ajustes: { capital: VIVO.capital, riesgo: VIVO.riesgo, apalancamientoMax: VIVO.apalancamientoMax, comision: VIVO.comision, operacionesParaDecidir: VIVO.operacionesParaDecidir },
-    monedas: [...new Set(SERIES.map((s) => s.moneda))],
+    monedas: MONEDAS,
     ultimoCiclo: config.ultimoCiclo,
     ciclos: config.ciclos,
     filas,

@@ -1,18 +1,20 @@
 // Worker de Cloudflare: el panel (con clave) y un Durable Object que corre
-// la simulación cada minuto con una alarma. El cron cada 10 minutos solo
-// revisa que la alarma siga puesta.
+// la simulación cada 30 segundos con una alarma. El cron cada 10 minutos
+// solo revisa que la alarma siga puesta.
 
 import { DurableObject } from 'cloudflare:workers';
+import * as binance from '../binance';
 import { AlmacenDO } from './almacen';
+import { MONEDAS } from './config';
 import { paginaEntrar, paginaFaltaClave, paginaPanel } from './panel';
-import { armarEstado, correrCiclo, iniciar } from './simulacion';
+import { VERSION, armarEstado, correrCiclo, iniciar } from './simulacion';
 
 export interface Env {
   SIMULADOR: DurableObjectNamespace<Simulador>;
   CLAVE_PANEL?: string;
 }
 
-const MINUTO = 60_000;
+const INTERVALO = 30_000;
 
 export class Simulador extends DurableObject<Env> {
   private almacen: AlmacenDO;
@@ -24,14 +26,18 @@ export class Simulador extends DurableObject<Env> {
     ctx.blockConcurrencyWhile(async () => this.almacen.crearTablas());
   }
 
-  /** Arranca la simulación la primera vez y deja la alarma puesta. */
+  /**
+   * Arranca la simulación la primera vez (o de cero si cambió algo de fondo,
+   * como la fuente de precios) y deja la alarma puesta.
+   */
   async asegurar() {
-    if (!(await this.almacen.leerConfig())) {
+    const config = await this.almacen.leerConfig();
+    if (!config || config.version !== VERSION) {
       await iniciar(this.almacen);
       await this.ciclo();
     }
     if ((await this.ctx.storage.getAlarm()) == null) {
-      await this.ctx.storage.setAlarm(Date.now() + MINUTO);
+      await this.ctx.storage.setAlarm(Date.now() + INTERVALO);
     }
   }
 
@@ -39,7 +45,7 @@ export class Simulador extends DurableObject<Env> {
     try {
       await this.ciclo();
     } finally {
-      await this.ctx.storage.setAlarm(Date.now() + MINUTO);
+      await this.ctx.storage.setAlarm(Date.now() + INTERVALO);
     }
   }
 
@@ -65,7 +71,7 @@ export class Simulador extends DurableObject<Env> {
   async reiniciar() {
     await iniciar(this.almacen);
     await this.ciclo();
-    await this.ctx.storage.setAlarm(Date.now() + MINUTO);
+    await this.ctx.storage.setAlarm(Date.now() + INTERVALO);
   }
 }
 
@@ -140,6 +146,15 @@ export default {
     const sim = simulador(env);
     if (url.pathname === '/') return html(paginaPanel());
     if (url.pathname === '/api/estado') return json(await sim.estado());
+    if (url.pathname === '/api/precios') {
+      // Directo de Binance, sin pasar por la simulación: es lo que el panel
+      // muestra cada 30 segundos.
+      try {
+        return json(JSON.stringify({ t: Date.now(), precios: await binance.precios(MONEDAS) }));
+      } catch (e) {
+        return json(JSON.stringify({ error: (e as Error).message }), 502);
+      }
+    }
     if (url.pathname === '/api/operaciones') return json(await sim.operacionesDe((url.searchParams.get('cuenta') ?? '').slice(0, 20)));
     if (url.pathname === '/api/reiniciar' && req.method === 'POST') {
       await sim.reiniciar();

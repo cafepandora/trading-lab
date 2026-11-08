@@ -7,7 +7,7 @@ import { nuevaCuenta, nocionalAbierto, procesarSerie, valorCuenta } from '../.co
 
 const contexto = (vs) => { const r = atr(vs); return armarContexto(vs, r, ema(vs.map((v) => v.c), 200), zigzag(vs, r, 2.5)); };
 
-for (const [archivo, horas] of [['datos/SOL-4h.json', 4], ['datos/ETH-1d.json', 24]]) {
+for (const [archivo, horas] of [['datos/binance/SOL-4h.json', 4], ['datos/binance/ETH-1d.json', 24]]) {
   test(`en vivo, de a pocas velas, da las mismas operaciones que la prueba (${archivo})`, { skip: !fs.existsSync(archivo) }, () => {
     const vs = JSON.parse(fs.readFileSync(archivo, 'utf8'));
     const ctx = contexto(vs);

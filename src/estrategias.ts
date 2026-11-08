@@ -114,7 +114,7 @@ function senalFib(ctx: Contexto, i: number, mem: Set<string>, o: OpcionesFib): S
       stop: ancla.precio - lado * 0.1 * a,
       objetivo: ext + lado * 0.272 * R,
       maxVelas: 60,
-      motivo: `retroceso a ${Math.round(o.desde * 1000) / 10}–${Math.round(o.hasta * 1000) / 10}%`,
+      motivo: `retroceso a ${String(Math.round(o.desde * 1000) / 10).replace('.', ',')}–${String(Math.round(o.hasta * 1000) / 10).replace('.', ',')}%`,
     };
   }
   return null;

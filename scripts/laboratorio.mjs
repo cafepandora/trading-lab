@@ -1,22 +1,31 @@
-// Prueba todas las estrategias con precios reales de Hyperliquid.
+// Prueba todas las estrategias con precios reales (Binance por defecto).
 // Uso: npm run laboratorio
-// Guarda los precios en datos/ (para no volver a bajarlos) y el resultado en
-// RESULTADOS.md y resultados.json.
+//   LAB_MONEDAS=BTC,ETH,XRP   otras monedas (por defecto BTC, ETH, SOL)
+//   LAB_FUENTE=hyperliquid    precios de Hyperliquid en vez de Binance
+//   LAB_SALIDA=archivo.json   dónde guardar el resultado (por defecto resultados.json)
+// Guarda los precios en datos/<fuente>/ para no volver a bajarlos.
 
 import fs from 'node:fs';
 import {
-  AJUSTES, ESTRATEGIAS, armarContexto, atr, comprarYGuardar, ema, estrategiaAzar, probar, zigzag,
+  AJUSTES, ESTRATEGIAS, armarContexto, atr, binance, comprarYGuardar, ema, estrategiaAzar, probar, zigzag,
 } from '../.compilado/lab.mjs';
 
 // Monedas: por defecto las 3 grandes; con LAB_MONEDAS se puede probar otra lista.
 const MONEDAS = (process.env.LAB_MONEDAS || 'BTC,ETH,SOL').split(',').map((m) => m.trim()).filter(Boolean);
+const FUENTE = process.env.LAB_FUENTE === 'hyperliquid' ? 'hyperliquid' : 'binance';
 const TEMPORALIDADES = { '4h': 4, '1d': 24 };
 const SEMILLAS = 200;
 const PARTE_NUEVA = 0.3; // el último 30% del tiempo se mira aparte
 
 async function velas(moneda, iv) {
-  const archivo = `datos/${moneda}-${iv}.json`;
+  const archivo = `datos/${FUENTE}/${moneda}-${iv}.json`;
   if (fs.existsSync(archivo)) return JSON.parse(fs.readFileSync(archivo, 'utf8'));
+  fs.mkdirSync(`datos/${FUENTE}`, { recursive: true });
+  if (FUENTE === 'binance') {
+    const vs = await binance.historia(moneda, TEMPORALIDADES[iv]);
+    fs.writeFileSync(archivo, JSON.stringify(vs));
+    return vs;
+  }
   const ms = TEMPORALIDADES[iv] * 3600_000, ahora = Date.now();
   const r = await fetch('https://api.hyperliquid.xyz/info', {
     method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -66,7 +75,7 @@ for (const moneda of MONEDAS) {
     const ctx = armarContexto(vs, rangos, ema(vs.map((v) => v.c), 200), zigzag(vs, rangos, 2.5));
     const t0 = vs[AJUSTES.inicio].t, t1 = vs[vs.length - 1].t;
     contextos.push({ serie: `${moneda} ${iv}`, ctx, aj: { ...AJUSTES, horasPorVela: horas }, corte: t1 - PARTE_NUEVA * (t1 - t0), desde: t0, hasta: t1 });
-    console.log(`${moneda} ${iv}: ${vs.length} velas, ${new Date(t0).toISOString().slice(0, 10)} → ${new Date(t1).toISOString().slice(0, 10)}`);
+    console.log(`${FUENTE} ${moneda} ${iv}: ${vs.length} velas, ${new Date(t0).toISOString().slice(0, 10)} → ${new Date(t1).toISOString().slice(0, 10)}`);
   }
 }
 

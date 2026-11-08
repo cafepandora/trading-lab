@@ -1,74 +1,74 @@
 {
  "fib-50-618": {
-  "operaciones": 1665,
-  "rPromedio": -0.0839,
-  "aciertos": 0.4198,
-  "suerte": 0.8395
+  "operaciones": 4237,
+  "rPromedio": -0.0606,
+  "aciertos": 0.435,
+  "suerte": 0.6195
  },
  "fib-618-786": {
-  "operaciones": 1529,
-  "rPromedio": -0.1103,
-  "aciertos": 0.3388,
-  "suerte": 0.963
+  "operaciones": 3875,
+  "rPromedio": -0.0726,
+  "aciertos": 0.3587,
+  "suerte": 0.8143
  },
  "triple": {
-  "operaciones": 81,
-  "rPromedio": 0.0945,
-  "aciertos": 0.642,
-  "suerte": 0.1502
+  "operaciones": 195,
+  "rPromedio": 0.0962,
+  "aciertos": 0.6513,
+  "suerte": 0.0645
  },
  "hch": {
-  "operaciones": 274,
-  "rPromedio": -0.0352,
-  "aciertos": 0.4818,
-  "suerte": 0.435
+  "operaciones": 661,
+  "rPromedio": 0.0008,
+  "aciertos": 0.4675,
+  "suerte": 0.145
  },
  "onda3": {
-  "operaciones": 921,
-  "rPromedio": -0.0549,
-  "aciertos": 0.4549,
-  "suerte": 0.541
+  "operaciones": 2389,
+  "rPromedio": 0.0151,
+  "aciertos": 0.4864,
+  "suerte": 0.0053
  },
  "onda5": {
-  "operaciones": 251,
-  "rPromedio": 0.0262,
-  "aciertos": 0.5697,
-  "suerte": 0.1875
+  "operaciones": 730,
+  "rPromedio": -0.0548,
+  "aciertos": 0.5342,
+  "suerte": 0.5128
  },
  "envolvente": {
-  "operaciones": 4763,
-  "rPromedio": -0.0618,
-  "aciertos": 0.3481,
-  "suerte": 0.7228
+  "operaciones": 13396,
+  "rPromedio": -0.0631,
+  "aciertos": 0.3514,
+  "suerte": 0.7798
  },
  "martillo": {
-  "operaciones": 1515,
-  "rPromedio": -0.1537,
-  "aciertos": 0.3149,
-  "suerte": 0.999
+  "operaciones": 4022,
+  "rPromedio": -0.1358,
+  "aciertos": 0.325,
+  "suerte": 1
  },
  "estrella": {
-  "operaciones": 1029,
-  "rPromedio": -0.0486,
-  "aciertos": 0.3528,
-  "suerte": 0.4908
+  "operaciones": 2458,
+  "rPromedio": -0.0111,
+  "aciertos": 0.3723,
+  "suerte": 0.0628
  },
  "soldados": {
-  "operaciones": 83,
-  "rPromedio": 0.2577,
-  "aciertos": 0.5783,
-  "suerte": 0.0195
+  "operaciones": 248,
+  "rPromedio": 0.2578,
+  "aciertos": 0.5766,
+  "suerte": 0
  },
  "confluencia": {
-  "operaciones": 874,
-  "rPromedio": -0.1284,
-  "aciertos": 0.3913,
-  "suerte": 0.962
+  "operaciones": 2176,
+  "rPromedio": -0.0666,
+  "aciertos": 0.4191,
+  "suerte": 0.657
  },
  "tendencia": {
-  "operaciones": 1492,
-  "rPromedio": 0.0666,
-  "aciertos": 0.3592,
-  "suerte": 0.0008
+  "operaciones": 3639,
+  "rPromedio": 0.2478,
+  "aciertos": 0.3795,
+  "suerte": 0
  }
 }

@@ -23,7 +23,7 @@ export const AJUSTES: Omit<Ajustes, 'horasPorVela'> = {
   riesgo: 0.01,
   apalancamientoMax: 2,
   ordenMinima: 10,
-  comision: 0.00045,
+  comision: 0.0005, // Binance futuros, orden a mercado (nivel base)
   desliz: 0.0005,
   deslizStop: 0.001,
   fundingHora: 0.0000125,
