@@ -195,6 +195,25 @@ Desde 2010 el apalancado gana muchísimo, pero quien lo compró en 2000 lo vio
 caer 86% a 100%: un 3x del Nasdaq comprado en 2000 hoy valdría 0,3 veces lo
 que se puso, 26 años después.
 
+## Tres estrategias nuevas para el día a día (`npm run nuevas`)
+
+Inventadas para este laboratorio, con las reglas y el criterio de "funciona"
+escritos **antes** de ver ningún resultado (están al inicio de
+`scripts/nuevas.mjs`). Diseño: antes de 2024. A ciegas: 2024 → hoy. Con
+costos reales y comparadas con entrar al azar (`resultados/nuevas.json`).
+
+| Estrategia | Idea | A ciegas: operaciones | Por cada $1 arriesgado | El azar da igual o mejor | ¿Funciona? |
+|---|---|---|---|---|---|
+| Pánico aislado (cripto, diario) | una moneda se desploma sola con el mercado sano: comprar el miedo, vender a los 3 días | 10 | −0,43 | 92% | No |
+| La noche después del susto (QQQ) | día rojo, amplio y cerrando en el mínimo: comprar al cierre, vender a la apertura | 40 | +0,09 | 13% | No |
+| La noche después del susto (SPY) | lo mismo en el S&P 500 | 37 | +0,06 | 11,5% | No |
+| Compresión que revienta (cripto, 1 hora) | tras el día más quieto de la semana, comprar la ruptura y vender al final del día | 224 | −0,09 | 22% | No |
+
+"Pánico aislado" ganaba en la parte de diseño (+0,57 por cada $1, 77% de
+aciertos), pero con solo 13 operaciones, y a ciegas perdió: el patrón típico
+de algo que se vio bueno por suerte. Las otras dos no se distinguen de entrar
+al azar.
+
 ## Las simulaciones en vivo
 
 38 cuentas virtuales, cada una con su propia plata, operando a la vez:
@@ -374,6 +393,7 @@ npm run traders               # busca traders que lleven años ganando (src/vivo
 npm run probabilidades        # qué tan seguido gana el bot y con qué riesgo (resultados/probabilidades.json)
 npm run estilos               # scalping, day trading, swing y la fórmula que elige entre ellos (resultados/estilos.json)
 npm run indices               # las estrategias en el Nasdaq 100 y el S&P 500, y apalancados 2x/3x (resultados/indices.json)
+npm run nuevas                # tres estrategias nuevas, con reglas fijadas antes y medidas a ciegas (resultados/nuevas.json)
 npm run pruebas               # que nada mire el futuro, vivo = laboratorio, copias y bot real
 npm run en-vivo -- 30         # repite los últimos 30 días con el ciclo en vivo real
 npm run tipos                 # revisa los tipos

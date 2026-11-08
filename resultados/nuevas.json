@@ -1,0 +1,134 @@
+{
+ "generado": "2026-11-08T16:01:07.222Z",
+ "corte": "2024-01-01",
+ "costos": {
+  "cripto": {
+   "comision": 0.001,
+   "desliz": 0.0005,
+   "deslizStop": 0.001
+  },
+  "etf": 0.0005
+ },
+ "resultados": [
+  {
+   "nombre": "1. Pánico aislado (cripto, diario)",
+   "partes": {
+    "diseño": {
+     "operaciones": 13,
+     "porMes": 0.35297725245316686,
+     "aciertos": 0.7692307692307693,
+     "rPromedio": 0.5691754243320607,
+     "t": 1.6061833224069737,
+     "retornoPromedio": 0.05670645626861291,
+     "azar": 0.0715,
+     "cuentaFinal": 50.04849350159405,
+     "cuentaAnual": 0.0003159047976002416,
+     "caidaMax": 0.006008789684446292
+    },
+    "ciego": {
+     "operaciones": 10,
+     "porMes": 0.5349297012302284,
+     "aciertos": 0.4,
+     "rPromedio": -0.42639285961887163,
+     "t": -2.1184654628563893,
+     "retornoPromedio": -0.03426113987498357,
+     "azar": 0.92,
+     "cuentaFinal": 50.128078105117815,
+     "cuentaAnual": 0.0016435535287115943,
+     "caidaMax": 0
+    }
+   },
+   "funciona": false
+  },
+  {
+   "nombre": "2. La noche después del susto (QQQ)",
+   "partes": {
+    "diseño": {
+     "operaciones": 321,
+     "porMes": 1.083587489949261,
+     "aciertos": 0.5077881619937694,
+     "rPromedio": -0.019415497065502062,
+     "t": -0.5308475262148242,
+     "retornoPromedio": 0.0001856663229321774,
+     "azar": 0.293,
+     "cuentaFinal": 52.02862745255252,
+     "cuentaAnual": 0.0016123434827666205,
+     "caidaMax": 0.18881565058808802
+    },
+    "ciego": {
+     "operaciones": 40,
+     "porMes": 1.2516598843435425,
+     "aciertos": 0.575,
+     "rPromedio": 0.08958194395007064,
+     "t": 0.7315577733052193,
+     "retornoPromedio": 0.0008837605242550367,
+     "azar": 0.13,
+     "cuentaFinal": 51.68695553051289,
+     "cuentaAnual": 0.012537884649443942,
+     "caidaMax": 0.05788285141362681
+    }
+   },
+   "funciona": false
+  },
+  {
+   "nombre": "2. La noche después del susto (SPY)",
+   "partes": {
+    "diseño": {
+     "operaciones": 407,
+     "porMes": 1.1041340943949078,
+     "aciertos": 0.515970515970516,
+     "rPromedio": -0.03136148954537156,
+     "t": -0.9688425478066164,
+     "retornoPromedio": -0.00011867848419716731,
+     "azar": 0.097,
+     "cuentaFinal": 46.90507122417628,
+     "cuentaAnual": -0.0020779683044572783,
+     "caidaMax": 0.21952209320729
+    },
+    "ciego": {
+     "operaciones": 37,
+     "porMes": 1.1153592208971237,
+     "aciertos": 0.5675675675675675,
+     "rPromedio": 0.06382870197296445,
+     "t": 0.5159630328161029,
+     "retornoPromedio": -0.00005195370153914007,
+     "azar": 0.115,
+     "cuentaFinal": 49.84510202988906,
+     "cuentaAnual": -0.0011217598417407881,
+     "caidaMax": 0.06069614038687399
+    }
+   },
+   "funciona": false
+  },
+  {
+   "nombre": "3. Compresión que revienta (cripto, 1 hora)",
+   "partes": {
+    "diseño": {
+     "operaciones": 84,
+     "porMes": 6.661817392248398,
+     "aciertos": 0.40476190476190477,
+     "rPromedio": -0.13526163045721334,
+     "t": -1.2065143429571104,
+     "retornoPromedio": -0.004357707785678695,
+     "azar": 0.5575,
+     "cuentaFinal": 48.11054722634567,
+     "cuentaAnual": -0.03599666864482454,
+     "caidaMax": 0.0506969882397742
+    },
+    "ciego": {
+     "operaciones": 224,
+     "porMes": 6.767805442964679,
+     "aciertos": 0.44642857142857145,
+     "rPromedio": -0.09128501689025662,
+     "t": -1.691775047833828,
+     "retornoPromedio": -0.002377829572084473,
+     "azar": 0.2235,
+     "cuentaFinal": 44.985250444781734,
+     "cuentaAnual": -0.03759360536136125,
+     "caidaMax": 0.11032871105721131
+    }
+   },
+   "funciona": false
+  }
+ ]
+}
