@@ -1,0 +1,981 @@
+{
+ "fecha": "2026-11-08T01:02:23.951Z",
+ "ajustes": {
+  "capital": 500,
+  "riesgo": 0.01,
+  "apalancamientoMax": 2,
+  "ordenMinima": 10,
+  "comision": 0.00045,
+  "desliz": 0.0005,
+  "deslizStop": 0.001,
+  "fundingHora": 0.0000125,
+  "inicio": 200
+ },
+ "series": [
+  {
+   "serie": "BTC 4h",
+   "desde": 1724860800000,
+   "hasta": 1793966400000,
+   "corte": 1773234720000
+  },
+  {
+   "serie": "BTC 1d",
+   "desde": 1615075200000,
+   "hasta": 1793836800000,
+   "corte": 1740208320000
+  },
+  {
+   "serie": "ETH 4h",
+   "desde": 1724860800000,
+   "hasta": 1793966400000,
+   "corte": 1773234720000
+  },
+  {
+   "serie": "ETH 1d",
+   "desde": 1615075200000,
+   "hasta": 1793836800000,
+   "corte": 1740208320000
+  },
+  {
+   "serie": "SOL 4h",
+   "desde": 1724860800000,
+   "hasta": 1793966400000,
+   "corte": 1773234720000
+  },
+  {
+   "serie": "SOL 1d",
+   "desde": 1617321600000,
+   "hasta": 1793836800000,
+   "corte": 1740882240000
+  }
+ ],
+ "estrategias": [
+  {
+   "id": "fib-50-618",
+   "nombre": "Fibonacci 50–61,8%",
+   "grupo": "Fibonacci",
+   "explicacion": "Tras un impulso de 4+ ATR, entra cuando el precio retrocede a la zona 50–61,8% y la vela cierra a favor. Stop bajo el inicio del impulso, objetivo en la extensión 127,2%.",
+   "operaciones": 330,
+   "rPromedio": -0.08320105791522452,
+   "t": -1.4152030428749778,
+   "aciertos": 0.4090909090909091,
+   "factorGanancia": 0.8449025648303601,
+   "anualPromedio": -0.02282247266871838,
+   "caidaPromedio": 0.10562336753850791,
+   "seriesEnGanancia": 2,
+   "rParteVieja": -0.10608897094133019,
+   "opsVieja": 237,
+   "rParteNueva": -0.024873795687407062,
+   "opsNueva": 93,
+   "porSerie": [
+    {
+     "serie": "BTC 4h",
+     "retorno": -0.08468955749992879,
+     "anual": -0.039604925239579813,
+     "caidaMax": 0.1640100953814488,
+     "operaciones": 71,
+     "rPromedio": -0.11873340728632117
+    },
+    {
+     "serie": "BTC 1d",
+     "retorno": -0.07631734014967195,
+     "anual": -0.013916751481592216,
+     "caidaMax": 0.08421354302445984,
+     "operaciones": 30,
+     "rPromedio": -0.25937838801227125
+    },
+    {
+     "serie": "ETH 4h",
+     "retorno": -0.17969647612011286,
+     "anual": -0.0864846827943132,
+     "caidaMax": 0.2029809935774358,
+     "operaciones": 81,
+     "rPromedio": -0.23927674479218228
+    },
+    {
+     "serie": "ETH 1d",
+     "retorno": 0.059957898165480694,
+     "anual": 0.010332479253097215,
+     "caidaMax": 0.045045367309439165,
+     "operaciones": 33,
+     "rPromedio": 0.18315687268181416
+    },
+    {
+     "serie": "SOL 4h",
+     "retorno": -0.035300644079763965,
+     "anual": -0.016277777331994536,
+     "caidaMax": 0.09505432843188515,
+     "operaciones": 79,
+     "rPromedio": -0.039766760253639594
+    },
+    {
+     "serie": "SOL 1d",
+     "retorno": 0.0514907602644985,
+     "anual": 0.009016821582072287,
+     "caidaMax": 0.04243587750637863,
+     "operaciones": 36,
+     "rPromedio": 0.14538577876047987
+    }
+   ],
+   "probabilidadAzar": 0.58,
+   "leGanaAlAzar": false,
+   "leGanaAGuardar": false,
+   "confiable": false
+  },
+  {
+   "id": "fib-618-786",
+   "nombre": "Fibonacci 61,8–78,6% (retroceso profundo)",
+   "grupo": "Fibonacci",
+   "explicacion": "Igual, pero esperando un retroceso más hondo, a la zona 61,8–78,6%.",
+   "operaciones": 306,
+   "rPromedio": -0.1592771148228091,
+   "t": -2.1611651448302687,
+   "aciertos": 0.3431372549019608,
+   "factorGanancia": 0.7597149771750958,
+   "anualPromedio": -0.041422466035965944,
+   "caidaPromedio": 0.1372088312786017,
+   "seriesEnGanancia": 2,
+   "rParteVieja": -0.1631639533313443,
+   "opsVieja": 217,
+   "rParteNueva": -0.14980021643682992,
+   "opsNueva": 89,
+   "porSerie": [
+    {
+     "serie": "BTC 4h",
+     "retorno": -0.1548338440287611,
+     "anual": -0.07394335801662355,
+     "caidaMax": 0.1785552342628024,
+     "operaciones": 72,
+     "rPromedio": -0.22557634687868314
+    },
+    {
+     "serie": "BTC 1d",
+     "retorno": 0.030301895090852238,
+     "anual": 0.005283795406448855,
+     "caidaMax": 0.08080331684679631,
+     "operaciones": 27,
+     "rPromedio": 0.11844360335739292
+    },
+    {
+     "serie": "ETH 4h",
+     "retorno": -0.14978833578366246,
+     "anual": -0.071422848557121,
+     "caidaMax": 0.17018008877108978,
+     "operaciones": 75,
+     "rPromedio": -0.20771320502230725
+    },
+    {
+     "serie": "ETH 1d",
+     "retorno": 0.12089465404768118,
+     "anual": 0.020351717101991573,
+     "caidaMax": 0.052143141105104686,
+     "operaciones": 28,
+     "rPromedio": 0.4181659924370042
+    },
+    {
+     "serie": "SOL 4h",
+     "retorno": -0.245871502416814,
+     "anual": -0.12090768336043212,
+     "caidaMax": 0.25805826492456835,
+     "operaciones": 76,
+     "rPromedio": -0.363897176045141
+    },
+    {
+     "serie": "SOL 1d",
+     "retorno": -0.04337457284784796,
+     "anual": -0.007896418790059423,
+     "caidaMax": 0.08351294176124871,
+     "operaciones": 28,
+     "rPromedio": -0.148901767260585
+    }
+   ],
+   "probabilidadAzar": 0.887,
+   "leGanaAlAzar": false,
+   "leGanaAGuardar": false,
+   "confiable": false
+  },
+  {
+   "id": "triple",
+   "nombre": "Triple techo / triple suelo",
+   "grupo": "Figuras",
+   "explicacion": "Tres picos (o valles) a la misma altura; entra al romper la línea entre ellos. Objetivo: la altura de la figura.",
+   "operaciones": 16,
+   "rPromedio": -0.015742244602751365,
+   "t": -0.08499752889035712,
+   "aciertos": 0.5625,
+   "factorGanancia": 0.9553740084379369,
+   "anualPromedio": -0.0003098327847306607,
+   "caidaPromedio": 0.011778379207441585,
+   "seriesEnGanancia": 3,
+   "rParteVieja": 0.10873146244140659,
+   "opsVieja": 12,
+   "rParteNueva": -0.3891633657352252,
+   "opsNueva": 4,
+   "porSerie": [
+    {
+     "serie": "BTC 4h",
+     "retorno": -0.04011489106658417,
+     "anual": -0.01852263854871994,
+     "caidaMax": 0.04224559666054956,
+     "operaciones": 7,
+     "rPromedio": -0.5815135930558127
+    },
+    {
+     "serie": "BTC 1d",
+     "retorno": 0,
+     "anual": 0,
+     "caidaMax": 0,
+     "operaciones": 0,
+     "rPromedio": 0
+    },
+    {
+     "serie": "ETH 4h",
+     "retorno": 0.030309378505508855,
+     "anual": 0.013728783291360624,
+     "caidaMax": 0.008882816468971863,
+     "operaciones": 5,
+     "rPromedio": 0.5990321277371995
+    },
+    {
+     "serie": "ETH 1d",
+     "retorno": 0.013123220685143488,
+     "anual": 0.0023042831514747952,
+     "caidaMax": 0.0017558977654124062,
+     "operaciones": 2,
+     "rPromedio": 0.6541116741192552
+    },
+    {
+     "serie": "SOL 4h",
+     "retorno": 0.005428709177581759,
+     "anual": 0.0024754155018507085,
+     "caidaMax": 0.004779318770660246,
+     "operaciones": 1,
+     "rPromedio": 0.5428709177581774
+    },
+    {
+     "serie": "SOL 1d",
+     "retorno": -0.010275356669359748,
+     "anual": -0.0018448401043501539,
+     "caidaMax": 0.01300664557905543,
+     "operaciones": 1,
+     "rPromedio": -1.0275356669360183
+    }
+   ],
+   "probabilidadAzar": 0.42325,
+   "leGanaAlAzar": false,
+   "leGanaAGuardar": false,
+   "confiable": false
+  },
+  {
+   "id": "hch",
+   "nombre": "Hombro-cabeza-hombro",
+   "grupo": "Figuras",
+   "explicacion": "Tres picos con el del medio más alto; entra al romper la línea del cuello. Objetivo: la altura de la cabeza.",
+   "operaciones": 44,
+   "rPromedio": 0.08193207113712485,
+   "t": 0.5327816575997232,
+   "aciertos": 0.5227272727272727,
+   "factorGanancia": 1.1980067133441552,
+   "anualPromedio": 0.001102750311479735,
+   "caidaPromedio": 0.024250860816160708,
+   "seriesEnGanancia": 4,
+   "rParteVieja": 0.03050215505915514,
+   "opsVieja": 28,
+   "rParteNueva": 0.17193442427357186,
+   "opsNueva": 16,
+   "porSerie": [
+    {
+     "serie": "BTC 4h",
+     "retorno": 0.02541885943017186,
+     "anual": 0.011528589923831989,
+     "caidaMax": 0.017921936973178832,
+     "operaciones": 7,
+     "rPromedio": 0.3631423069542374
+    },
+    {
+     "serie": "BTC 1d",
+     "retorno": 0.014614208296025888,
+     "anual": 0.002564525569867193,
+     "caidaMax": 0.015872930669332527,
+     "operaciones": 3,
+     "rPromedio": 0.49161038886374997
+    },
+    {
+     "serie": "ETH 4h",
+     "retorno": -0.03013862695156122,
+     "anual": -0.013877504514318018,
+     "caidaMax": 0.05805392800313201,
+     "operaciones": 14,
+     "rPromedio": -0.214374349247342
+    },
+    {
+     "serie": "ETH 1d",
+     "retorno": -0.00033933621620108045,
+     "anual": -0.000059912940201023446,
+     "caidaMax": 0.006718557878270335,
+     "operaciones": 2,
+     "rPromedio": -0.016055719281645536
+    },
+    {
+     "serie": "SOL 4h",
+     "retorno": 0.007098689585251838,
+     "anual": 0.003235441946940698,
+     "caidaMax": 0.03036950473782315,
+     "operaciones": 15,
+     "rPromedio": 0.052869939122572304
+    },
+    {
+     "serie": "SOL 1d",
+     "retorno": 0.01817499231209596,
+     "anual": 0.0032253618827575714,
+     "caidaMax": 0.016568306635227417,
+     "operaciones": 3,
+     "rPromedio": 0.6094956853166923
+    }
+   ],
+   "probabilidadAzar": 0.2365,
+   "leGanaAlAzar": false,
+   "leGanaAGuardar": false,
+   "confiable": false
+  },
+  {
+   "id": "onda3",
+   "nombre": "Elliott: entrar en la onda 3",
+   "grupo": "Elliott",
+   "explicacion": "Onda 1 y onda 2 (retroceso 38,2–78,6%); entra al superar el final de la onda 1. Objetivo: 161,8% de la onda 1.",
+   "operaciones": 184,
+   "rPromedio": -0.1479865661762029,
+   "t": -2.147447675325817,
+   "aciertos": 0.42391304347826086,
+   "factorGanancia": 0.706529077371346,
+   "anualPromedio": -0.023558389796258832,
+   "caidaPromedio": 0.07868417444491327,
+   "seriesEnGanancia": 3,
+   "rParteVieja": -0.07322310533093086,
+   "opsVieja": 124,
+   "rParteNueva": -0.3024977185897652,
+   "opsNueva": 60,
+   "porSerie": [
+    {
+     "serie": "BTC 4h",
+     "retorno": -0.11432319814070135,
+     "anual": -0.05393091926612492,
+     "caidaMax": 0.13759781736502272,
+     "operaciones": 36,
+     "rPromedio": -0.33385662154023066
+    },
+    {
+     "serie": "BTC 1d",
+     "retorno": 0.013798168806250732,
+     "anual": 0.002422130102004205,
+     "caidaMax": 0.03256383523147504,
+     "operaciones": 19,
+     "rPromedio": 0.07718566773678495
+    },
+    {
+     "serie": "ETH 4h",
+     "retorno": -0.1470643246336809,
+     "anual": -0.07006543249921349,
+     "caidaMax": 0.14973074726200264,
+     "operaciones": 45,
+     "rPromedio": -0.3488300815843095
+    },
+    {
+     "serie": "ETH 1d",
+     "retorno": 0.014286392755137989,
+     "anual": 0.002507334470192246,
+     "caidaMax": 0.026512775399915908,
+     "operaciones": 19,
+     "rPromedio": 0.07916267551271455
+    },
+    {
+     "serie": "SOL 4h",
+     "retorno": -0.061803634239143146,
+     "anual": -0.02871266091748237,
+     "caidaMax": 0.09155102211153843,
+     "operaciones": 50,
+     "rPromedio": -0.12340407163731582
+    },
+    {
+     "serie": "SOL 1d",
+     "retorno": 0.036496440365640925,
+     "anual": 0.00642920933307134,
+     "caidaMax": 0.03414884929952488,
+     "operaciones": 15,
+     "rPromedio": 0.2457499286964134
+    }
+   ],
+   "probabilidadAzar": 0.7925,
+   "leGanaAlAzar": false,
+   "leGanaAGuardar": false,
+   "confiable": false
+  },
+  {
+   "id": "onda5",
+   "nombre": "Elliott: corrección tras 5 ondas",
+   "grupo": "Elliott",
+   "explicacion": "Impulso completo de 5 ondas que cumple las reglas; opera la corrección hasta el final de la onda 4.",
+   "operaciones": 54,
+   "rPromedio": -0.17394646911701042,
+   "t": -1.4707963834310434,
+   "aciertos": 0.5,
+   "factorGanancia": 0.6472602327777935,
+   "anualPromedio": -0.006429162986148022,
+   "caidaPromedio": 0.035119011763042086,
+   "seriesEnGanancia": 1,
+   "rParteVieja": -0.10294584234407789,
+   "opsVieja": 37,
+   "rParteNueva": -0.32847724503456943,
+   "opsNueva": 17,
+   "porSerie": [
+    {
+     "serie": "BTC 4h",
+     "retorno": -0.04387906822207155,
+     "anual": -0.020282121967219235,
+     "caidaMax": 0.04387906822207151,
+     "operaciones": 10,
+     "rPromedio": -0.4449016908879786
+    },
+    {
+     "serie": "BTC 1d",
+     "retorno": -0.007565829757436249,
+     "anual": -0.0013398102682808943,
+     "caidaMax": 0.030317658903971298,
+     "operaciones": 7,
+     "rPromedio": -0.10515973649650337
+    },
+    {
+     "serie": "ETH 4h",
+     "retorno": -0.012149560664856063,
+     "anual": -0.005566617845850219,
+     "caidaMax": 0.04210081118983744,
+     "operaciones": 16,
+     "rPromedio": -0.07201418088387809
+    },
+    {
+     "serie": "ETH 1d",
+     "retorno": 0.011646822773370369,
+     "anual": 0.0020462763198294542,
+     "caidaMax": 0.015337373885866248,
+     "operaciones": 4,
+     "rPromedio": 0.29295343340738855
+    },
+    {
+     "serie": "SOL 4h",
+     "retorno": -0.02068402161564864,
+     "anual": -0.009499165497168893,
+     "caidaMax": 0.04964514702011811,
+     "operaciones": 13,
+     "rPromedio": -0.15699449874010146
+    },
+    {
+     "serie": "SOL 1d",
+     "retorno": -0.021804133434572992,
+     "anual": -0.003933538658198343,
+     "caidaMax": 0.02943401135638789,
+     "operaciones": 4,
+     "rPromedio": -0.5466581559573594
+    }
+   ],
+   "probabilidadAzar": 0.71475,
+   "leGanaAlAzar": false,
+   "leGanaAGuardar": false,
+   "confiable": false
+  },
+  {
+   "id": "envolvente",
+   "nombre": "Velas: envolvente",
+   "grupo": "Velas",
+   "explicacion": "Envolvente a favor de la tendencia (media de 200 velas). Stop en el extremo del patrón, objetivo 2 veces lo arriesgado.",
+   "operaciones": 1059,
+   "rPromedio": -0.07966320501785903,
+   "t": -1.8781862516781056,
+   "aciertos": 0.35127478753541075,
+   "factorGanancia": 0.885105774279766,
+   "anualPromedio": -0.059990281324181806,
+   "caidaPromedio": 0.23235194096929299,
+   "seriesEnGanancia": 2,
+   "rParteVieja": -0.0574567219075376,
+   "opsVieja": 731,
+   "rParteNueva": -0.129153873169216,
+   "opsNueva": 328,
+   "porSerie": [
+    {
+     "serie": "BTC 4h",
+     "retorno": -0.436947414953637,
+     "anual": -0.23071675070732023,
+     "caidaMax": 0.4560694551684968,
+     "operaciones": 265,
+     "rPromedio": -0.20435344560162652
+    },
+    {
+     "serie": "BTC 1d",
+     "retorno": -0.22287425207031908,
+     "anual": -0.043537538629717765,
+     "caidaMax": 0.22762746707701068,
+     "operaciones": 102,
+     "rPromedio": -0.2387466703293326
+    },
+    {
+     "serie": "ETH 4h",
+     "retorno": -0.02409657321152614,
+     "anual": -0.011076826298193065,
+     "caidaMax": 0.19723540668088926,
+     "operaciones": 250,
+     "rPromedio": -0.0022833370739088724
+    },
+    {
+     "serie": "ETH 1d",
+     "retorno": 0.011455258014755554,
+     "anual": 0.00201277683951373,
+     "caidaMax": 0.12344558561964808,
+     "operaciones": 106,
+     "rPromedio": 0.020239015779750756
+    },
+    {
+     "serie": "SOL 4h",
+     "retorno": -0.20279067724959599,
+     "anual": -0.09832034517936572,
+     "caidaMax": 0.2817914314289078,
+     "operaciones": 240,
+     "rPromedio": -0.08498903251893968
+    },
+    {
+     "serie": "SOL 1d",
+     "retorno": 0.12756762585081782,
+     "anual": 0.0216969960299922,
+     "caidaMax": 0.10794229984080522,
+     "operaciones": 96,
+     "rPromedio": 0.1350557890049934
+    }
+   ],
+   "probabilidadAzar": 0.6265,
+   "leGanaAlAzar": false,
+   "leGanaAGuardar": false,
+   "confiable": false
+  },
+  {
+   "id": "martillo",
+   "nombre": "Velas: martillo / estrella fugaz",
+   "grupo": "Velas",
+   "explicacion": "Martillo o estrella fugaz en un extremo de 5 velas, a favor de la tendencia.",
+   "operaciones": 317,
+   "rPromedio": -0.25308509561224846,
+   "t": -3.362070184298125,
+   "aciertos": 0.29337539432176657,
+   "factorGanancia": 0.6751989247397012,
+   "anualPromedio": -0.045073658631251755,
+   "caidaPromedio": 0.1725536993840349,
+   "seriesEnGanancia": 0,
+   "rParteVieja": -0.17916607802569454,
+   "opsVieja": 224,
+   "rParteNueva": -0.4311266003368521,
+   "opsNueva": 93,
+   "porSerie": [
+    {
+     "serie": "BTC 4h",
+     "retorno": -0.22174577951913377,
+     "anual": -0.10817468805651909,
+     "caidaMax": 0.31469174763545854,
+     "operaciones": 75,
+     "rPromedio": -0.32843977557663306
+    },
+    {
+     "serie": "BTC 1d",
+     "retorno": -0.1169650023683223,
+     "anual": -0.021719863735270906,
+     "caidaMax": 0.16221634410278604,
+     "operaciones": 37,
+     "rPromedio": -0.32747680050108474
+    },
+    {
+     "serie": "ETH 4h",
+     "retorno": -0.10255797292693603,
+     "anual": -0.04821245947679975,
+     "caidaMax": 0.14080185224090938,
+     "operaciones": 72,
+     "rPromedio": -0.14083492730025904
+    },
+    {
+     "serie": "ETH 1d",
+     "retorno": -0.10825298944599282,
+     "anual": -0.02002288519482054,
+     "caidaMax": 0.13632324220262132,
+     "operaciones": 35,
+     "rPromedio": -0.3190483737432321
+    },
+    {
+     "serie": "SOL 4h",
+     "retorno": -0.11088615697413262,
+     "anual": -0.05225610811074455,
+     "caidaMax": 0.15398864707461976,
+     "operaciones": 60,
+     "rPromedio": -0.18602510397510125
+    },
+    {
+     "serie": "SOL 1d",
+     "retorno": -0.10713666000540689,
+     "anual": -0.020055947213355685,
+     "caidaMax": 0.12730036304781442,
+     "operaciones": 38,
+     "rPromedio": -0.2897378009778246
+    }
+   ],
+   "probabilidadAzar": 0.993,
+   "leGanaAlAzar": false,
+   "leGanaAGuardar": false,
+   "confiable": false
+  },
+  {
+   "id": "estrella",
+   "nombre": "Velas: estrella de la mañana / tarde",
+   "grupo": "Velas",
+   "explicacion": "Patrón de 3 velas de giro, a favor de la tendencia.",
+   "operaciones": 235,
+   "rPromedio": -0.05536846654147335,
+   "t": -0.6260282527089507,
+   "aciertos": 0.3574468085106383,
+   "factorGanancia": 0.9162405001781126,
+   "anualPromedio": -0.01035545750419122,
+   "caidaPromedio": 0.09456541118348356,
+   "seriesEnGanancia": 3,
+   "rParteVieja": -0.0691156771090921,
+   "opsVieja": 165,
+   "rParteNueva": -0.02296432734637209,
+   "opsNueva": 70,
+   "porSerie": [
+    {
+     "serie": "BTC 4h",
+     "retorno": -0.10584774399453023,
+     "anual": -0.04980732149760503,
+     "caidaMax": 0.10584774399453022,
+     "operaciones": 49,
+     "rPromedio": -0.2199644206338794
+    },
+    {
+     "serie": "BTC 1d",
+     "retorno": -0.06742255663582308,
+     "anual": -0.012247043138684854,
+     "caidaMax": 0.0960585202857923,
+     "operaciones": 29,
+     "rPromedio": -0.23245645733081505
+    },
+    {
+     "serie": "ETH 4h",
+     "retorno": -0.07963685951003996,
+     "anual": -0.03718754133088431,
+     "caidaMax": 0.12633635966623832,
+     "operaciones": 55,
+     "rPromedio": -0.14205884317557763
+    },
+    {
+     "serie": "ETH 1d",
+     "retorno": 0.01768189095831274,
+     "anual": 0.003098981098893061,
+     "caidaMax": 0.08256067029183455,
+     "operaciones": 29,
+     "rPromedio": 0.07022249308589548
+    },
+    {
+     "serie": "SOL 4h",
+     "retorno": 0.06134057962462869,
+     "anual": 0.02755902489314277,
+     "caidaMax": 0.09050205491354463,
+     "operaciones": 51,
+     "rPromedio": 0.12699050340296955
+    },
+    {
+     "serie": "SOL 1d",
+     "retorno": 0.036622865163540075,
+     "anual": 0.006451154949991045,
+     "caidaMax": 0.06608711794896142,
+     "operaciones": 22,
+     "rPromedio": 0.17309875627372018
+    }
+   ],
+   "probabilidadAzar": 0.43775,
+   "leGanaAlAzar": false,
+   "leGanaAGuardar": false,
+   "confiable": false
+  },
+  {
+   "id": "soldados",
+   "nombre": "Velas: tres soldados / tres cuervos",
+   "grupo": "Velas",
+   "explicacion": "Tres velas fuertes seguidas en el mismo sentido, a favor de la tendencia.",
+   "operaciones": 26,
+   "rPromedio": 0.3287084810100146,
+   "t": 1.4742120698744345,
+   "aciertos": 0.5769230769230769,
+   "factorGanancia": 1.9136172791957278,
+   "anualPromedio": 0.003778708707872928,
+   "caidaPromedio": 0.02012504114638609,
+   "seriesEnGanancia": 4,
+   "rParteVieja": 0.243519026823897,
+   "opsVieja": 20,
+   "rParteNueva": 0.6126733282970729,
+   "opsNueva": 6,
+   "porSerie": [
+    {
+     "serie": "BTC 4h",
+     "retorno": -0.027780159951928174,
+     "anual": -0.012783157432106784,
+     "caidaMax": 0.04632879809586278,
+     "operaciones": 6,
+     "rPromedio": -0.4660886344939434
+    },
+    {
+     "serie": "BTC 1d",
+     "retorno": 0.011106041349721485,
+     "anual": 0.0019516948712015036,
+     "caidaMax": 0.018255374861919676,
+     "operaciones": 3,
+     "rPromedio": 0.37606940776761616
+    },
+    {
+     "serie": "ETH 4h",
+     "retorno": 0.0063627645505142105,
+     "anual": 0.00290059882863436,
+     "caidaMax": 0.02214017626506153,
+     "operaciones": 3,
+     "rPromedio": 0.21950710584667518
+    },
+    {
+     "serie": "ETH 1d",
+     "retorno": 0.04849598780468356,
+     "anual": 0.008395145230431833,
+     "caidaMax": 0.010161040322964708,
+     "operaciones": 5,
+     "rPromedio": 0.9575867663334522
+    },
+    {
+     "serie": "SOL 4h",
+     "retorno": 0.04993565771870201,
+     "anual": 0.022501848736969476,
+     "caidaMax": 0.008609783877232028,
+     "operaciones": 5,
+     "rPromedio": 0.9826714743726092
+    },
+    {
+     "serie": "SOL 1d",
+     "retorno": -0.0016426766173736063,
+     "anual": -0.00029387798789282105,
+     "caidaMax": 0.015255073455275804,
+     "operaciones": 4,
+     "rPromedio": -0.03626710778728573
+    }
+   ],
+   "probabilidadAzar": 0.0725,
+   "leGanaAlAzar": false,
+   "leGanaAGuardar": false,
+   "confiable": false
+  },
+  {
+   "id": "confluencia",
+   "nombre": "Todo junto: Fibonacci + vela + tendencia",
+   "grupo": "Combinada",
+   "explicacion": "Retroceso a la zona 50–78,6% de Fibonacci, con un patrón de vela de giro y a favor de la media de 200 velas.",
+   "operaciones": 192,
+   "rPromedio": -0.1781623091344826,
+   "t": -2.268006111012911,
+   "aciertos": 0.3854166666666667,
+   "factorGanancia": 0.6989716594920593,
+   "anualPromedio": -0.021605802068969115,
+   "caidaPromedio": 0.0925550562191368,
+   "seriesEnGanancia": 0,
+   "rParteVieja": -0.17385629706507186,
+   "opsVieja": 130,
+   "rParteNueva": -0.18719104411873053,
+   "opsNueva": 62,
+   "porSerie": [
+    {
+     "serie": "BTC 4h",
+     "retorno": -0.10821695402067077,
+     "anual": -0.05095787660968554,
+     "caidaMax": 0.14233141683182296,
+     "operaciones": 47,
+     "rPromedio": -0.23751990990187782
+    },
+    {
+     "serie": "BTC 1d",
+     "retorno": -0.06785967665623405,
+     "anual": -0.012328791243501946,
+     "caidaMax": 0.0739611848604461,
+     "operaciones": 16,
+     "rPromedio": -0.4351769153163374
+    },
+    {
+     "serie": "ETH 4h",
+     "retorno": -0.0658804190051192,
+     "anual": -0.03064229971244059,
+     "caidaMax": 0.1296396049665884,
+     "operaciones": 49,
+     "rPromedio": -0.1320715781154892
+    },
+    {
+     "serie": "ETH 1d",
+     "retorno": -0.02278574534944522,
+     "anual": -0.004060740050974676,
+     "caidaMax": 0.04734972604348334,
+     "operaciones": 15,
+     "rPromedio": -0.14799638705499493
+    },
+    {
+     "serie": "SOL 4h",
+     "retorno": -0.06338857700344225,
+     "anual": -0.029462309520629226,
+     "caidaMax": 0.10398012535332873,
+     "operaciones": 47,
+     "rPromedio": -0.13378996613169608
+    },
+    {
+     "serie": "SOL 1d",
+     "retorno": -0.012148262132272603,
+     "anual": -0.0021827952765827163,
+     "caidaMax": 0.0580682792591513,
+     "operaciones": 18,
+     "rPromedio": -0.061184188983186956
+    }
+   ],
+   "probabilidadAzar": 0.87125,
+   "leGanaAlAzar": false,
+   "leGanaAGuardar": false,
+   "confiable": false
+  },
+  {
+   "id": "tendencia",
+   "nombre": "Seguir la tendencia (Donchian 55/20)",
+   "grupo": "Comparación",
+   "explicacion": "La estrategia de tendencia más clásica: compra al superar el máximo de 55 velas y sale al perder el mínimo de 20 (y al revés).",
+   "operaciones": 311,
+   "rPromedio": 0.023901756364032092,
+   "t": 0.3824348631217115,
+   "aciertos": 0.36977491961414793,
+   "factorGanancia": 1.0765212490336435,
+   "anualPromedio": -0.005356534681041821,
+   "caidaPromedio": 0.08370029473499814,
+   "seriesEnGanancia": 3,
+   "rParteVieja": 0.03923794934846952,
+   "opsVieja": 220,
+   "rParteNueva": -0.013174754147794515,
+   "opsNueva": 91,
+   "porSerie": [
+    {
+     "serie": "BTC 4h",
+     "retorno": -0.11605972700354816,
+     "anual": -0.054778442893064994,
+     "caidaMax": 0.1350674937613074,
+     "operaciones": 75,
+     "rPromedio": -0.1615586605012004
+    },
+    {
+     "serie": "BTC 1d",
+     "retorno": 0.0029982173557605574,
+     "anual": 0.0005286367748824627,
+     "caidaMax": 0.032987850754472484,
+     "operaciones": 33,
+     "rPromedio": 0.01205377359752373
+    },
+    {
+     "serie": "ETH 4h",
+     "retorno": -0.03335821173220421,
+     "anual": -0.015373753796850687,
+     "caidaMax": 0.07010938060364089,
+     "operaciones": 74,
+     "rPromedio": -0.04048175224043708
+    },
+    {
+     "serie": "ETH 1d",
+     "retorno": 0.05149111206018975,
+     "anual": 0.00890306877005087,
+     "caidaMax": 0.04214116412233611,
+     "operaciones": 27,
+     "rPromedio": 0.18820292134614364
+    },
+    {
+     "serie": "SOL 4h",
+     "retorno": -0.0016369997053362617,
+     "anual": -0.0007478811514404216,
+     "caidaMax": 0.10785223667451033,
+     "operaciones": 74,
+     "rPromedio": 0.003155772741639438
+    },
+    {
+     "serie": "SOL 1d",
+     "retorno": 0.17549683498675783,
+     "anual": 0.029329164210171843,
+     "caidaMax": 0.11404364249372168,
+     "operaciones": 28,
+     "rPromedio": 0.6011862444518179
+    }
+   ],
+   "probabilidadAzar": 0.12075,
+   "leGanaAlAzar": false,
+   "leGanaAGuardar": false,
+   "confiable": false
+  }
+ ],
+ "azar": {
+  "rMediana": -0.06370121750048396,
+  "r95": 0.013395017295115741,
+  "anualMediana": -0.034981240944156555,
+  "anual95": 0.0031361211269031832,
+  "operacionesMediana": 668
+ },
+ "comprarYGuardar": [
+  {
+   "serie": "BTC 4h",
+   "final": 641.7377815061619,
+   "retorno": 0.2834755630123238,
+   "anual": 0.12071717419160644,
+   "caidaMax": 0.535023067177677,
+   "exposicion": 1,
+   "operaciones": []
+  },
+  {
+   "serie": "BTC 1d",
+   "final": 776.6750711136576,
+   "retorno": 0.5533501422273153,
+   "anual": 0.08085056060592688,
+   "caidaMax": 0.7666957563565903,
+   "exposicion": 1,
+   "operaciones": []
+  },
+  {
+   "serie": "ETH 4h",
+   "final": 446.19189377638025,
+   "retorno": -0.10761621244723951,
+   "anual": -0.050665982567450585,
+   "caidaMax": 0.6807063250832248,
+   "exposicion": 1,
+   "operaciones": []
+  },
+  {
+   "serie": "ETH 1d",
+   "final": 676.1819958755867,
+   "retorno": 0.3523639917511734,
+   "anual": 0.05473303942866803,
+   "caidaMax": 0.7935130756288556,
+   "exposicion": 1,
+   "operaciones": []
+  },
+  {
+   "serie": "SOL 4h",
+   "final": 314.1714779698743,
+   "retorno": -0.37165704406025146,
+   "anual": -0.19119280674562522,
+   "caidaMax": 0.7845852566792558,
+   "exposicion": 1,
+   "operaciones": []
+  },
+  {
+   "serie": "SOL 1d",
+   "final": 2340.3537364067433,
+   "retorno": 3.680707472813487,
+   "anual": 0.3177684247100572,
+   "caidaMax": 0.9627849002849003,
+   "exposicion": 1,
+   "operaciones": []
+  }
+ ]
+}

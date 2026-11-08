@@ -1,0 +1,3645 @@
+{
+ "fecha": "2026-11-08T01:02:26.402Z",
+ "ajustes": {
+  "capital": 500,
+  "riesgo": 0.01,
+  "apalancamientoMax": 2,
+  "ordenMinima": 10,
+  "comision": 0.00045,
+  "desliz": 0.0005,
+  "deslizStop": 0.001,
+  "fundingHora": 0.0000125,
+  "inicio": 200
+ },
+ "series": [
+  {
+   "serie": "BTC 4h",
+   "desde": 1724860800000,
+   "hasta": 1793966400000,
+   "corte": 1773234720000
+  },
+  {
+   "serie": "BTC 1d",
+   "desde": 1615075200000,
+   "hasta": 1793836800000,
+   "corte": 1740208320000
+  },
+  {
+   "serie": "ETH 4h",
+   "desde": 1724860800000,
+   "hasta": 1793966400000,
+   "corte": 1773234720000
+  },
+  {
+   "serie": "ETH 1d",
+   "desde": 1615075200000,
+   "hasta": 1793836800000,
+   "corte": 1740208320000
+  },
+  {
+   "serie": "SOL 4h",
+   "desde": 1724860800000,
+   "hasta": 1793966400000,
+   "corte": 1773234720000
+  },
+  {
+   "serie": "SOL 1d",
+   "desde": 1617321600000,
+   "hasta": 1793836800000,
+   "corte": 1740882240000
+  },
+  {
+   "serie": "XRP 4h",
+   "desde": 1724976000000,
+   "hasta": 1794081600000,
+   "corte": 1773349920000
+  },
+  {
+   "serie": "XRP 1d",
+   "desde": 1617926400000,
+   "hasta": 1794009600000,
+   "corte": 1741184640000
+  },
+  {
+   "serie": "DOGE 4h",
+   "desde": 1724976000000,
+   "hasta": 1794081600000,
+   "corte": 1773349920000
+  },
+  {
+   "serie": "DOGE 1d",
+   "desde": 1615075200000,
+   "hasta": 1794009600000,
+   "corte": 1740329280000
+  },
+  {
+   "serie": "BNB 4h",
+   "desde": 1724990400000,
+   "hasta": 1794081600000,
+   "corte": 1773354240000
+  },
+  {
+   "serie": "BNB 1d",
+   "desde": 1615075200000,
+   "hasta": 1794009600000,
+   "corte": 1740329280000
+  },
+  {
+   "serie": "AVAX 4h",
+   "desde": 1724990400000,
+   "hasta": 1794081600000,
+   "corte": 1773354240000
+  },
+  {
+   "serie": "AVAX 1d",
+   "desde": 1618099200000,
+   "hasta": 1794009600000,
+   "corte": 1741236480000
+  },
+  {
+   "serie": "LINK 4h",
+   "desde": 1724976000000,
+   "hasta": 1794081600000,
+   "corte": 1773349920000
+  },
+  {
+   "serie": "LINK 1d",
+   "desde": 1615334400000,
+   "hasta": 1794009600000,
+   "corte": 1740407040000
+  },
+  {
+   "serie": "LTC 4h",
+   "desde": 1724976000000,
+   "hasta": 1794081600000,
+   "corte": 1773349920000
+  },
+  {
+   "serie": "LTC 1d",
+   "desde": 1615075200000,
+   "hasta": 1794009600000,
+   "corte": 1740329280000
+  },
+  {
+   "serie": "ADA 4h",
+   "desde": 1724976000000,
+   "hasta": 1794081600000,
+   "corte": 1773349920000
+  },
+  {
+   "serie": "ADA 1d",
+   "desde": 1628899200000,
+   "hasta": 1794009600000,
+   "corte": 1744476480000
+  },
+  {
+   "serie": "SUI 4h",
+   "desde": 1724976000000,
+   "hasta": 1794081600000,
+   "corte": 1773349920000
+  },
+  {
+   "serie": "SUI 1d",
+   "desde": 1700352000000,
+   "hasta": 1794009600000,
+   "corte": 1765912320000
+  },
+  {
+   "serie": "AAVE 4h",
+   "desde": 1724976000000,
+   "hasta": 1794081600000,
+   "corte": 1773349920000
+  },
+  {
+   "serie": "AAVE 1d",
+   "desde": 1620518400000,
+   "hasta": 1794009600000,
+   "corte": 1741962240000
+  },
+  {
+   "serie": "DOT 4h",
+   "desde": 1724976000000,
+   "hasta": 1794081600000,
+   "corte": 1773349920000
+  },
+  {
+   "serie": "DOT 1d",
+   "desde": 1625443200000,
+   "hasta": 1794009600000,
+   "corte": 1743439680000
+  },
+  {
+   "serie": "NEAR 4h",
+   "desde": 1724976000000,
+   "hasta": 1794081600000,
+   "corte": 1773349920000
+  },
+  {
+   "serie": "NEAR 1d",
+   "desde": 1630454400000,
+   "hasta": 1794009600000,
+   "corte": 1744943040000
+  },
+  {
+   "serie": "HYPE 4h",
+   "desde": 1736265600000,
+   "hasta": 1794081600000,
+   "corte": 1776736800000
+  },
+  {
+   "serie": "HYPE 1d",
+   "desde": 1750636800000,
+   "hasta": 1794009600000,
+   "corte": 1780997760000
+  }
+ ],
+ "estrategias": [
+  {
+   "id": "fib-50-618",
+   "nombre": "Fibonacci 50–61,8%",
+   "grupo": "Fibonacci",
+   "explicacion": "Tras un impulso de 4+ ATR, entra cuando el precio retrocede a la zona 50–61,8% y la vela cierra a favor. Stop bajo el inicio del impulso, objetivo en la extensión 127,2%.",
+   "operaciones": 1665,
+   "rPromedio": -0.0838767231109,
+   "t": -3.2785050657032326,
+   "aciertos": 0.4198198198198198,
+   "factorGanancia": 0.84047831017112,
+   "anualPromedio": -0.0169511541173911,
+   "caidaPromedio": 0.10304771384383529,
+   "seriesEnGanancia": 5,
+   "rParteVieja": -0.10758054270687599,
+   "opsVieja": 1188,
+   "rParteNueva": -0.02484079506054455,
+   "opsNueva": 477,
+   "porSerie": [
+    {
+     "serie": "BTC 4h",
+     "retorno": -0.08468955749992879,
+     "anual": -0.039604925239579813,
+     "caidaMax": 0.1640100953814488,
+     "operaciones": 71,
+     "rPromedio": -0.11873340728632117
+    },
+    {
+     "serie": "BTC 1d",
+     "retorno": -0.07631734014967195,
+     "anual": -0.013916751481592216,
+     "caidaMax": 0.08421354302445984,
+     "operaciones": 30,
+     "rPromedio": -0.25937838801227125
+    },
+    {
+     "serie": "ETH 4h",
+     "retorno": -0.17969647612011286,
+     "anual": -0.0864846827943132,
+     "caidaMax": 0.2029809935774358,
+     "operaciones": 81,
+     "rPromedio": -0.23927674479218228
+    },
+    {
+     "serie": "ETH 1d",
+     "retorno": 0.059957898165480694,
+     "anual": 0.010332479253097215,
+     "caidaMax": 0.045045367309439165,
+     "operaciones": 33,
+     "rPromedio": 0.18315687268181416
+    },
+    {
+     "serie": "SOL 4h",
+     "retorno": -0.035300644079763965,
+     "anual": -0.016277777331994536,
+     "caidaMax": 0.09505432843188515,
+     "operaciones": 79,
+     "rPromedio": -0.039766760253639594
+    },
+    {
+     "serie": "SOL 1d",
+     "retorno": 0.0514907602644985,
+     "anual": 0.009016821582072287,
+     "caidaMax": 0.04243587750637863,
+     "operaciones": 36,
+     "rPromedio": 0.14538577876047987
+    },
+    {
+     "serie": "XRP 4h",
+     "retorno": -0.09993792279193803,
+     "anual": -0.04694454527991543,
+     "caidaMax": 0.15840102946158208,
+     "operaciones": 92,
+     "rPromedio": -0.1090042259205811
+    },
+    {
+     "serie": "XRP 1d",
+     "retorno": -0.03302539001729299,
+     "anual": -0.006000670188942014,
+     "caidaMax": 0.0612734474044274,
+     "operaciones": 38,
+     "rPromedio": -0.08358820047842515
+    },
+    {
+     "serie": "DOGE 4h",
+     "retorno": 0.06553965685317364,
+     "anual": 0.029413540521301407,
+     "caidaMax": 0.07054633815866888,
+     "operaciones": 77,
+     "rPromedio": 0.08912306433228076
+    },
+    {
+     "serie": "DOGE 1d",
+     "retorno": -0.04128371801280817,
+     "anual": -0.007407951145497305,
+     "caidaMax": 0.10089705511274756,
+     "operaciones": 37,
+     "rPromedio": -0.10858141196328502
+    },
+    {
+     "serie": "BNB 4h",
+     "retorno": -0.15936864933747452,
+     "anual": -0.07623099211750362,
+     "caidaMax": 0.1759017081645781,
+     "operaciones": 93,
+     "rPromedio": -0.18145683969831986
+    },
+    {
+     "serie": "BNB 1d",
+     "retorno": -0.1044587008646749,
+     "anual": -0.019269629385749276,
+     "caidaMax": 0.10984401710393615,
+     "operaciones": 33,
+     "rPromedio": -0.32941898677034726
+    },
+    {
+     "serie": "AVAX 4h",
+     "retorno": -0.0369426413724907,
+     "anual": -0.017046269292342986,
+     "caidaMax": 0.07484941810089159,
+     "operaciones": 78,
+     "rPromedio": -0.04260332330448888
+    },
+    {
+     "serie": "AVAX 1d",
+     "retorno": -0.09130212972598017,
+     "anual": -0.01702916661718712,
+     "caidaMax": 0.11497627819705519,
+     "operaciones": 36,
+     "rPromedio": -0.2610633513235887
+    },
+    {
+     "serie": "LINK 4h",
+     "retorno": -0.11382866004881587,
+     "anual": -0.05368972210735845,
+     "caidaMax": 0.16874914535708535,
+     "operaciones": 84,
+     "rPromedio": -0.13813358110210577
+    },
+    {
+     "serie": "LINK 1d",
+     "retorno": -0.03046700673379088,
+     "anual": -0.005449852427577007,
+     "caidaMax": 0.07674932705016496,
+     "operaciones": 39,
+     "rPromedio": -0.07377033968624074
+    },
+    {
+     "serie": "LTC 4h",
+     "retorno": -0.03138542466272953,
+     "anual": -0.01445661265972098,
+     "caidaMax": 0.09860443976044175,
+     "operaciones": 78,
+     "rPromedio": -0.03637466467718934
+    },
+    {
+     "serie": "LTC 1d",
+     "retorno": -0.06335794562617902,
+     "anual": -0.011477375250545707,
+     "caidaMax": 0.1169721281859669,
+     "operaciones": 39,
+     "rPromedio": -0.1625039268302268
+    },
+    {
+     "serie": "ADA 4h",
+     "retorno": -0.007788345391526508,
+     "anual": -0.003564163019805444,
+     "caidaMax": 0.07116835697597783,
+     "operaciones": 78,
+     "rPromedio": -0.004582093608785355
+    },
+    {
+     "serie": "ADA 1d",
+     "retorno": -0.012336748895096616,
+     "anual": -0.0023697794379641257,
+     "caidaMax": 0.10813967879457939,
+     "operaciones": 30,
+     "rPromedio": -0.03527818956428195
+    },
+    {
+     "serie": "SUI 4h",
+     "retorno": -0.004444153488392666,
+     "anual": -0.002031912509655065,
+     "caidaMax": 0.08390994269310509,
+     "operaciones": 74,
+     "rPromedio": -0.001065804247169581
+    },
+    {
+     "serie": "SUI 1d",
+     "retorno": -0.026414280903314435,
+     "anual": -0.008979300479189156,
+     "caidaMax": 0.06917430919987443,
+     "operaciones": 19,
+     "rPromedio": -0.1359470427650933
+    },
+    {
+     "serie": "AAVE 4h",
+     "retorno": 0.027596142410494462,
+     "anual": 0.012508829304288982,
+     "caidaMax": 0.09400599770478933,
+     "operaciones": 80,
+     "rPromedio": 0.03982271833519756
+    },
+    {
+     "serie": "AAVE 1d",
+     "retorno": -0.050782539202005705,
+     "anual": -0.009435219033080755,
+     "caidaMax": 0.08777848575602172,
+     "operaciones": 39,
+     "rPromedio": -0.12786866020496618
+    },
+    {
+     "serie": "DOT 4h",
+     "retorno": -0.20479902900659308,
+     "anual": -0.09935837044175744,
+     "caidaMax": 0.2216810699143362,
+     "operaciones": 80,
+     "rPromedio": -0.2812609557286397
+    },
+    {
+     "serie": "DOT 1d",
+     "retorno": -0.07605896902796605,
+     "anual": -0.01470063510761932,
+     "caidaMax": 0.08326276583538686,
+     "operaciones": 30,
+     "rPromedio": -0.25905852433850257
+    },
+    {
+     "serie": "NEAR 4h",
+     "retorno": -0.03432444221140285,
+     "anual": -0.015823321682114533,
+     "caidaMax": 0.12401427972985675,
+     "operaciones": 73,
+     "rPromedio": -0.04228679527488391
+    },
+    {
+     "serie": "NEAR 1d",
+     "retorno": -0.009974939147349815,
+     "anual": -0.0019324354307141967,
+     "caidaMax": 0.06765428184783304,
+     "operaciones": 33,
+     "rPromedio": -0.025802211697417116
+    },
+    {
+     "serie": "HYPE 4h",
+     "retorno": -0.026764274855641257,
+     "anual": -0.014698654213632034,
+     "caidaMax": 0.09961018896243605,
+     "operaciones": 66,
+     "rPromedio": -0.03527223351615415
+    },
+    {
+     "serie": "HYPE 1d",
+     "retorno": 0.04754610430891848,
+     "anual": 0.03437442049285888,
+     "caidaMax": 0.019527520612268277,
+     "operaciones": 9,
+     "rPromedio": 0.5224285149580301
+    }
+   ],
+   "probabilidadAzar": 0.8395,
+   "leGanaAlAzar": false,
+   "leGanaAGuardar": false,
+   "confiable": false
+  },
+  {
+   "id": "fib-618-786",
+   "nombre": "Fibonacci 61,8–78,6% (retroceso profundo)",
+   "grupo": "Fibonacci",
+   "explicacion": "Igual, pero esperando un retroceso más hondo, a la zona 61,8–78,6%.",
+   "operaciones": 1529,
+   "rPromedio": -0.11028954917024925,
+   "t": -3.239082666367742,
+   "aciertos": 0.33878351863963374,
+   "factorGanancia": 0.8290178205520727,
+   "anualPromedio": -0.02000857491065312,
+   "caidaPromedio": 0.12882977223251457,
+   "seriesEnGanancia": 9,
+   "rParteVieja": -0.12403706657784225,
+   "opsVieja": 1085,
+   "rParteNueva": -0.07669482757737009,
+   "opsNueva": 444,
+   "porSerie": [
+    {
+     "serie": "BTC 4h",
+     "retorno": -0.1548338440287611,
+     "anual": -0.07394335801662355,
+     "caidaMax": 0.1785552342628024,
+     "operaciones": 72,
+     "rPromedio": -0.22557634687868314
+    },
+    {
+     "serie": "BTC 1d",
+     "retorno": 0.030301895090852238,
+     "anual": 0.005283795406448855,
+     "caidaMax": 0.08080331684679631,
+     "operaciones": 27,
+     "rPromedio": 0.11844360335739292
+    },
+    {
+     "serie": "ETH 4h",
+     "retorno": -0.14978833578366246,
+     "anual": -0.071422848557121,
+     "caidaMax": 0.17018008877108978,
+     "operaciones": 75,
+     "rPromedio": -0.20771320502230725
+    },
+    {
+     "serie": "ETH 1d",
+     "retorno": 0.12089465404768118,
+     "anual": 0.020351717101991573,
+     "caidaMax": 0.052143141105104686,
+     "operaciones": 28,
+     "rPromedio": 0.4181659924370042
+    },
+    {
+     "serie": "SOL 4h",
+     "retorno": -0.245871502416814,
+     "anual": -0.12090768336043212,
+     "caidaMax": 0.25805826492456835,
+     "operaciones": 76,
+     "rPromedio": -0.363897176045141
+    },
+    {
+     "serie": "SOL 1d",
+     "retorno": -0.04337457284784796,
+     "anual": -0.007896418790059423,
+     "caidaMax": 0.08351294176124871,
+     "operaciones": 28,
+     "rPromedio": -0.148901767260585
+    },
+    {
+     "serie": "XRP 4h",
+     "retorno": 0.07190743721320914,
+     "anual": 0.032218299558782304,
+     "caidaMax": 0.07144226478755045,
+     "operaciones": 78,
+     "rPromedio": 0.09834062391431606
+    },
+    {
+     "serie": "XRP 1d",
+     "retorno": -0.13547737077195887,
+     "anual": -0.025753012862645863,
+     "caidaMax": 0.13951009045269752,
+     "operaciones": 38,
+     "rPromedio": -0.37586963757890607
+    },
+    {
+     "serie": "DOGE 4h",
+     "retorno": 0.39913665759449857,
+     "anual": 0.16575730277039202,
+     "caidaMax": 0.07967622418213383,
+     "operaciones": 76,
+     "rPromedio": 0.4553119602729747
+    },
+    {
+     "serie": "DOGE 1d",
+     "retorno": -0.04873299543920073,
+     "anual": -0.008772531139068951,
+     "caidaMax": 0.07505511214444253,
+     "operaciones": 31,
+     "rPromedio": -0.15218468279028083
+    },
+    {
+     "serie": "BNB 4h",
+     "retorno": -0.25550041044021476,
+     "anual": -0.12607586611234067,
+     "caidaMax": 0.2674856387737685,
+     "operaciones": 85,
+     "rPromedio": -0.33973369966389394
+    },
+    {
+     "serie": "BNB 1d",
+     "retorno": -0.09741454036432717,
+     "anual": -0.01791350039860362,
+     "caidaMax": 0.10597424079999478,
+     "operaciones": 27,
+     "rPromedio": -0.3729711313899592
+    },
+    {
+     "serie": "AVAX 4h",
+     "retorno": 0.06537775580373006,
+     "anual": 0.02934831522485215,
+     "caidaMax": 0.07044177050608252,
+     "operaciones": 69,
+     "rPromedio": 0.10109252951226083
+    },
+    {
+     "serie": "AVAX 1d",
+     "retorno": -0.033148520614138643,
+     "anual": -0.0060292545318159085,
+     "caidaMax": 0.10581195673685595,
+     "operaciones": 34,
+     "rPromedio": -0.08913455133881998
+    },
+    {
+     "serie": "LINK 4h",
+     "retorno": -0.11814173514013204,
+     "anual": -0.05579577322086593,
+     "caidaMax": 0.21672601807673889,
+     "operaciones": 84,
+     "rPromedio": -0.14019736799192453
+    },
+    {
+     "serie": "LINK 1d",
+     "retorno": -0.14732210257005562,
+     "anual": -0.027756041687812316,
+     "caidaMax": 0.16914492828072009,
+     "operaciones": 41,
+     "rPromedio": -0.3808885339701911
+    },
+    {
+     "serie": "LTC 4h",
+     "retorno": -0.094301526774769,
+     "anual": -0.044223718919277344,
+     "caidaMax": 0.18718596953326863,
+     "operaciones": 73,
+     "rPromedio": -0.12636351881194446
+    },
+    {
+     "serie": "LTC 1d",
+     "retorno": -0.11253827211072209,
+     "anual": -0.020835954516168043,
+     "caidaMax": 0.14980611116832573,
+     "operaciones": 42,
+     "rPromedio": -0.27547851511159205
+    },
+    {
+     "serie": "ADA 4h",
+     "retorno": -0.1320621404625033,
+     "anual": -0.06263147993821239,
+     "caidaMax": 0.1655323880996575,
+     "operaciones": 68,
+     "rPromedio": -0.20050004603426877
+    },
+    {
+     "serie": "ADA 1d",
+     "retorno": 0.08596641758627643,
+     "anual": 0.015887457308910058,
+     "caidaMax": 0.04361689470860809,
+     "operaciones": 28,
+     "rPromedio": 0.30759512527439087
+    },
+    {
+     "serie": "SUI 4h",
+     "retorno": -0.06423586455422825,
+     "anual": -0.029863343596013725,
+     "caidaMax": 0.15210253782023336,
+     "operaciones": 66,
+     "rPromedio": -0.09272134943245926
+    },
+    {
+     "serie": "SUI 1d",
+     "retorno": 0.02080977366745218,
+     "anual": 0.006963956465111387,
+     "caidaMax": 0.06387333997316551,
+     "operaciones": 18,
+     "rPromedio": 0.12494154162755776
+    },
+    {
+     "serie": "AAVE 4h",
+     "retorno": -0.10267307692064953,
+     "anual": -0.04826820755010708,
+     "caidaMax": 0.18410273978039673,
+     "operaciones": 70,
+     "rPromedio": -0.14698152981161988
+    },
+    {
+     "serie": "AAVE 1d",
+     "retorno": -0.030312694816756358,
+     "anual": -0.005583452184445004,
+     "caidaMax": 0.08739524474769689,
+     "operaciones": 33,
+     "rPromedio": -0.0829183574314383
+    },
+    {
+     "serie": "DOT 4h",
+     "retorno": -0.2242510076686609,
+     "anual": -0.10948681719640896,
+     "caidaMax": 0.26519615305213506,
+     "operaciones": 71,
+     "rPromedio": -0.34920807416078087
+    },
+    {
+     "serie": "DOT 1d",
+     "retorno": -0.11394236541798164,
+     "anual": -0.02239307975594651,
+     "caidaMax": 0.1262263498737101,
+     "operaciones": 32,
+     "rPromedio": -0.3712636338650068
+    },
+    {
+     "serie": "NEAR 4h",
+     "retorno": 0.09147442870828248,
+     "anual": 0.04078059165387171,
+     "caidaMax": 0.0782277525978858,
+     "operaciones": 64,
+     "rPromedio": 0.14706305017405627
+    },
+    {
+     "serie": "NEAR 1d",
+     "retorno": -0.07390395753836476,
+     "anual": -0.014704822199658296,
+     "caidaMax": 0.09309217334981454,
+     "operaciones": 27,
+     "rPromedio": -0.27629067438376675
+    },
+    {
+     "serie": "HYPE 4h",
+     "retorno": -0.05852933909048785,
+     "anual": -0.032384071049647245,
+     "caidaMax": 0.10122022226019373,
+     "operaciones": 60,
+     "rPromedio": -0.09344061697273762
+    },
+    {
+     "serie": "HYPE 1d",
+     "retorno": 0.02176926084758013,
+     "anual": 0.015792552773320256,
+     "caidaMax": 0.04279405759774977,
+     "operaciones": 8,
+     "rPromedio": 0.28355776571514996
+    }
+   ],
+   "probabilidadAzar": 0.963,
+   "leGanaAlAzar": false,
+   "leGanaAGuardar": false,
+   "confiable": false
+  },
+  {
+   "id": "triple",
+   "nombre": "Triple techo / triple suelo",
+   "grupo": "Figuras",
+   "explicacion": "Tres picos (o valles) a la misma altura; entra al romper la línea entre ellos. Objetivo: la altura de la figura.",
+   "operaciones": 81,
+   "rPromedio": 0.0945455859628073,
+   "t": 1.1679934666367928,
+   "aciertos": 0.6419753086419753,
+   "factorGanancia": 1.331328718377463,
+   "anualPromedio": 0.0009362207956938169,
+   "caidaPromedio": 0.009752533850510108,
+   "seriesEnGanancia": 14,
+   "rParteVieja": 0.07423348552830553,
+   "opsVieja": 57,
+   "rParteNueva": 0.14278682449474886,
+   "opsNueva": 24,
+   "porSerie": [
+    {
+     "serie": "BTC 4h",
+     "retorno": -0.04011489106658417,
+     "anual": -0.01852263854871994,
+     "caidaMax": 0.04224559666054956,
+     "operaciones": 7,
+     "rPromedio": -0.5815135930558127
+    },
+    {
+     "serie": "BTC 1d",
+     "retorno": 0,
+     "anual": 0,
+     "caidaMax": 0,
+     "operaciones": 0,
+     "rPromedio": 0
+    },
+    {
+     "serie": "ETH 4h",
+     "retorno": 0.030309378505508855,
+     "anual": 0.013728783291360624,
+     "caidaMax": 0.008882816468971863,
+     "operaciones": 5,
+     "rPromedio": 0.5990321277371995
+    },
+    {
+     "serie": "ETH 1d",
+     "retorno": 0.013123220685143488,
+     "anual": 0.0023042831514747952,
+     "caidaMax": 0.0017558977654124062,
+     "operaciones": 2,
+     "rPromedio": 0.6541116741192552
+    },
+    {
+     "serie": "SOL 4h",
+     "retorno": 0.005428709177581759,
+     "anual": 0.0024754155018507085,
+     "caidaMax": 0.004779318770660246,
+     "operaciones": 1,
+     "rPromedio": 0.5428709177581774
+    },
+    {
+     "serie": "SOL 1d",
+     "retorno": -0.010275356669359748,
+     "anual": -0.0018448401043501539,
+     "caidaMax": 0.01300664557905543,
+     "operaciones": 1,
+     "rPromedio": -1.0275356669360183
+    },
+    {
+     "serie": "XRP 4h",
+     "retorno": 0.004806798251537625,
+     "anual": 0.0021922017365252344,
+     "caidaMax": 0.005500529399001379,
+     "operaciones": 1,
+     "rPromedio": 0.480679825153804
+    },
+    {
+     "serie": "XRP 1d",
+     "retorno": 0.006023023469243549,
+     "anual": 0.0010767867536223275,
+     "caidaMax": 0.0006592723584924551,
+     "operaciones": 2,
+     "rPromedio": 0.30113126987584704
+    },
+    {
+     "serie": "DOGE 4h",
+     "retorno": 0.02298204438783258,
+     "anual": 0.01043016396624763,
+     "caidaMax": 0.01506356117611361,
+     "operaciones": 6,
+     "rPromedio": 0.38138391130576305
+    },
+    {
+     "serie": "DOGE 1d",
+     "retorno": -0.010231170279072277,
+     "anual": -0.0018120611814981258,
+     "caidaMax": 0.01023117027907233,
+     "operaciones": 1,
+     "rPromedio": -1.0231170279072583
+    },
+    {
+     "serie": "BNB 4h",
+     "retorno": -0.00260253846993197,
+     "anual": -0.0011895582124841209,
+     "caidaMax": 0.008603269700162543,
+     "operaciones": 1,
+     "rPromedio": -0.26025384699323334
+    },
+    {
+     "serie": "BNB 1d",
+     "retorno": 0.01934427982937592,
+     "anual": 0.003384773121323903,
+     "caidaMax": 0.00392589581280223,
+     "operaciones": 3,
+     "rPromedio": 0.6408883001811119
+    },
+    {
+     "serie": "AVAX 4h",
+     "retorno": 0.032376857916475155,
+     "anual": 0.014660291078634424,
+     "caidaMax": 0.015748235258550562,
+     "operaciones": 7,
+     "rPromedio": 0.45835905499816276
+    },
+    {
+     "serie": "AVAX 1d",
+     "retorno": 0,
+     "anual": 0,
+     "caidaMax": 0,
+     "operaciones": 0,
+     "rPromedio": 0
+    },
+    {
+     "serie": "LINK 4h",
+     "retorno": -0.0018962156932522678,
+     "anual": -0.0008663678903489958,
+     "caidaMax": 0.016784194169069185,
+     "operaciones": 4,
+     "rPromedio": -0.04284850238519433
+    },
+    {
+     "serie": "LINK 1d",
+     "retorno": -0.01009533865029455,
+     "anual": -0.0017904943020053965,
+     "caidaMax": 0.010914309160144383,
+     "operaciones": 1,
+     "rPromedio": -1.0095338650294488
+    },
+    {
+     "serie": "LTC 4h",
+     "retorno": -0.004456628059059886,
+     "anual": -0.0020376229399912127,
+     "caidaMax": 0.010448889175866049,
+     "operaciones": 2,
+     "rPromedio": -0.2199224240516926
+    },
+    {
+     "serie": "LTC 1d",
+     "retorno": 0.011687943961017355,
+     "anual": 0.0020514815187424595,
+     "caidaMax": 0.005899558656133443,
+     "operaciones": 2,
+     "rPromedio": 0.5833738849719793
+    },
+    {
+     "serie": "ADA 4h",
+     "retorno": -0.014923628234520314,
+     "anual": -0.00684283311132361,
+     "caidaMax": 0.022313277751566014,
+     "operaciones": 5,
+     "rPromedio": -0.2963707527627742
+    },
+    {
+     "serie": "ADA 1d",
+     "retorno": -0.005283611763344687,
+     "anual": -0.0010120231353375475,
+     "caidaMax": 0.012985706799356922,
+     "operaciones": 2,
+     "rPromedio": -0.2621209774718685
+    },
+    {
+     "serie": "SUI 4h",
+     "retorno": 0.003510355136770782,
+     "anual": 0.0016015044866475314,
+     "caidaMax": 0.00888297297532057,
+     "operaciones": 3,
+     "rPromedio": 0.11778978672888485
+    },
+    {
+     "serie": "SUI 1d",
+     "retorno": 0.007664424139284032,
+     "anual": 0.0025759665494118344,
+     "caidaMax": 0.0077506827035005044,
+     "operaciones": 1,
+     "rPromedio": 0.7664424139284096
+    },
+    {
+     "serie": "AAVE 4h",
+     "retorno": 0.030845407218527132,
+     "anual": 0.013969591636220358,
+     "caidaMax": 0.01657040616263964,
+     "operaciones": 8,
+     "rPromedio": 0.3822509722354301
+    },
+    {
+     "serie": "AAVE 1d",
+     "retorno": 0,
+     "anual": 0,
+     "caidaMax": 0,
+     "operaciones": 0,
+     "rPromedio": 0
+    },
+    {
+     "serie": "DOT 4h",
+     "retorno": -0.0033718346148214895,
+     "anual": -0.001541186959160612,
+     "caidaMax": 0.021728325185883,
+     "operaciones": 7,
+     "rPromedio": -0.04562593799787919
+    },
+    {
+     "serie": "DOT 1d",
+     "retorno": 0.006484953314052966,
+     "anual": 0.0012108719382271094,
+     "caidaMax": 0.0023510769377933,
+     "operaciones": 2,
+     "rPromedio": 0.3241587424746344
+    },
+    {
+     "serie": "NEAR 4h",
+     "retorno": -0.01479538181510387,
+     "anual": -0.006783790073694895,
+     "caidaMax": 0.01686560893885583,
+     "operaciones": 6,
+     "rPromedio": -0.24633714688897826
+    },
+    {
+     "serie": "NEAR 1d",
+     "retorno": 0,
+     "anual": 0,
+     "caidaMax": 0,
+     "operaciones": 0,
+     "rPromedio": 0
+    },
+    {
+     "serie": "HYPE 4h",
+     "retorno": 0.00122403215119804,
+     "anual": 0.0006679255994401778,
+     "caidaMax": 0.008678797670329747,
+     "operaciones": 1,
+     "rPromedio": 0.12240321511986019
+    },
+    {
+     "serie": "HYPE 1d",
+     "retorno": 0,
+     "anual": 0,
+     "caidaMax": 0,
+     "operaciones": 0,
+     "rPromedio": 0
+    }
+   ],
+   "probabilidadAzar": 0.15025,
+   "leGanaAlAzar": false,
+   "leGanaAGuardar": true,
+   "confiable": false
+  },
+  {
+   "id": "hch",
+   "nombre": "Hombro-cabeza-hombro",
+   "grupo": "Figuras",
+   "explicacion": "Tres picos con el del medio más alto; entra al romper la línea del cuello. Objetivo: la altura de la cabeza.",
+   "operaciones": 274,
+   "rPromedio": -0.03520082937740234,
+   "t": -0.5644972753268025,
+   "aciertos": 0.48175182481751827,
+   "factorGanancia": 0.9266358423312738,
+   "anualPromedio": -0.0014315281492421747,
+   "caidaPromedio": 0.03468845615320279,
+   "seriesEnGanancia": 13,
+   "rParteVieja": -0.04384758612467498,
+   "opsVieja": 174,
+   "rParteNueva": -0.020155472637147846,
+   "opsNueva": 100,
+   "porSerie": [
+    {
+     "serie": "BTC 4h",
+     "retorno": 0.02541885943017186,
+     "anual": 0.011528589923831989,
+     "caidaMax": 0.017921936973178832,
+     "operaciones": 7,
+     "rPromedio": 0.3631423069542374
+    },
+    {
+     "serie": "BTC 1d",
+     "retorno": 0.014614208296025888,
+     "anual": 0.002564525569867193,
+     "caidaMax": 0.015872930669332527,
+     "operaciones": 3,
+     "rPromedio": 0.49161038886374997
+    },
+    {
+     "serie": "ETH 4h",
+     "retorno": -0.03013862695156122,
+     "anual": -0.013877504514318018,
+     "caidaMax": 0.05805392800313201,
+     "operaciones": 14,
+     "rPromedio": -0.214374349247342
+    },
+    {
+     "serie": "ETH 1d",
+     "retorno": -0.00033933621620108045,
+     "anual": -0.000059912940201023446,
+     "caidaMax": 0.006718557878270335,
+     "operaciones": 2,
+     "rPromedio": -0.016055719281645536
+    },
+    {
+     "serie": "SOL 4h",
+     "retorno": 0.007098689585251838,
+     "anual": 0.003235441946940698,
+     "caidaMax": 0.03036950473782315,
+     "operaciones": 15,
+     "rPromedio": 0.052869939122572304
+    },
+    {
+     "serie": "SOL 1d",
+     "retorno": 0.01817499231209596,
+     "anual": 0.0032253618827575714,
+     "caidaMax": 0.016568306635227417,
+     "operaciones": 3,
+     "rPromedio": 0.6094956853166923
+    },
+    {
+     "serie": "XRP 4h",
+     "retorno": -0.007759065681930077,
+     "anual": -0.003550735400401406,
+     "caidaMax": 0.051738860935465085,
+     "operaciones": 15,
+     "rPromedio": -0.04823474889700092
+    },
+    {
+     "serie": "XRP 1d",
+     "retorno": -0.03021429746825366,
+     "anual": -0.005483403298425227,
+     "caidaMax": 0.03123818617294412,
+     "operaciones": 3,
+     "rPromedio": -1.0174566715901485
+    },
+    {
+     "serie": "DOGE 4h",
+     "retorno": -0.01152401727907193,
+     "anual": -0.0052791045294861005,
+     "caidaMax": 0.04804925800409323,
+     "operaciones": 15,
+     "rPromedio": -0.0717969601161871
+    },
+    {
+     "serie": "DOGE 1d",
+     "retorno": -0.008924826243207562,
+     "anual": -0.001579835466951951,
+     "caidaMax": 0.03626899274730054,
+     "operaciones": 6,
+     "rPromedio": -0.1392548164680264
+    },
+    {
+     "serie": "BNB 4h",
+     "retorno": -0.07766844186370758,
+     "anual": -0.036255151217956416,
+     "caidaMax": 0.09518250876948986,
+     "operaciones": 17,
+     "rPromedio": -0.4703588338961599
+    },
+    {
+     "serie": "BNB 1d",
+     "retorno": -0.028953851238458284,
+     "anual": -0.0051684007388118625,
+     "caidaMax": 0.04056005580751094,
+     "operaciones": 5,
+     "rPromedio": -0.5844215857027645
+    },
+    {
+     "serie": "AVAX 4h",
+     "retorno": -0.0630933259875548,
+     "anual": -0.02932862995676533,
+     "caidaMax": 0.06504975120623169,
+     "operaciones": 15,
+     "rPromedio": -0.4292030465794911
+    },
+    {
+     "serie": "AVAX 1d",
+     "retorno": 0.03120570322673677,
+     "anual": 0.005527824945423587,
+     "caidaMax": 0.015264853723360604,
+     "operaciones": 3,
+     "rPromedio": 1.030353138124246
+    },
+    {
+     "serie": "LINK 4h",
+     "retorno": 0.020770220988487242,
+     "anual": 0.009431924413017878,
+     "caidaMax": 0.027221238003532423,
+     "operaciones": 16,
+     "rPromedio": 0.1331643540969744
+    },
+    {
+     "serie": "LINK 1d",
+     "retorno": -0.01588580581065313,
+     "anual": -0.002824278657941437,
+     "caidaMax": 0.03278968662916479,
+     "operaciones": 5,
+     "rPromedio": -0.31540828979271274
+    },
+    {
+     "serie": "LTC 4h",
+     "retorno": -0.03229434999382097,
+     "anual": -0.014879042349807636,
+     "caidaMax": 0.06569103249060526,
+     "operaciones": 19,
+     "rPromedio": -0.1674128838869622
+    },
+    {
+     "serie": "LTC 1d",
+     "retorno": -0.030520206779091397,
+     "anual": -0.005451604396487508,
+     "caidaMax": 0.04157285292076353,
+     "operaciones": 5,
+     "rPromedio": -0.6147380463025442
+    },
+    {
+     "serie": "ADA 4h",
+     "retorno": -0.006556000139217977,
+     "anual": -0.0029991978622551096,
+     "caidaMax": 0.030224691273778036,
+     "operaciones": 14,
+     "rPromedio": -0.04165835357690691
+    },
+    {
+     "serie": "ADA 1d",
+     "retorno": 0.016665490733571264,
+     "anual": 0.0031640243317185845,
+     "caidaMax": 0.033334776605392906,
+     "operaciones": 7,
+     "rPromedio": 0.24489169794122642
+    },
+    {
+     "serie": "SUI 4h",
+     "retorno": 0.010250110684364433,
+     "anual": 0.004667825200908915,
+     "caidaMax": 0.0221238387297845,
+     "operaciones": 8,
+     "rPromedio": 0.13199096813891734
+    },
+    {
+     "serie": "SUI 1d",
+     "retorno": -0.009840034480979698,
+     "anual": -0.0033264406649508027,
+     "caidaMax": 0.012750920298575422,
+     "operaciones": 1,
+     "rPromedio": -0.9840034480979633
+    },
+    {
+     "serie": "AAVE 4h",
+     "retorno": 0.012824746676490584,
+     "anual": 0.00583624726974552,
+     "caidaMax": 0.03123901801213573,
+     "operaciones": 17,
+     "rPromedio": 0.0783771076926551
+    },
+    {
+     "serie": "AAVE 1d",
+     "retorno": 0.021753199894094077,
+     "anual": 0.003922099145064806,
+     "caidaMax": 0.026617895279956102,
+     "operaciones": 5,
+     "rPromedio": 0.4388345910630413
+    },
+    {
+     "serie": "DOT 4h",
+     "retorno": -0.006163204936033728,
+     "anual": -0.0028192020610627866,
+     "caidaMax": 0.046444200828199556,
+     "operaciones": 16,
+     "rPromedio": -0.03348978457071563
+    },
+    {
+     "serie": "DOT 1d",
+     "retorno": -0.03560254794715745,
+     "anual": -0.0067637778537701365,
+     "caidaMax": 0.04246305868968668,
+     "operaciones": 5,
+     "rPromedio": -0.7205208816547432
+    },
+    {
+     "serie": "NEAR 4h",
+     "retorno": 0.05620657251639005,
+     "anual": 0.02528617384131282,
+     "caidaMax": 0.030385398684501273,
+     "operaciones": 13,
+     "rPromedio": 0.4264097921915097
+    },
+    {
+     "serie": "NEAR 1d",
+     "retorno": 0.042566422958787875,
+     "anual": 0.008075532393488238,
+     "caidaMax": 0.031712803986922715,
+     "operaciones": 7,
+     "rPromedio": 0.6032335979623958
+    },
+    {
+     "serie": "HYPE 4h",
+     "retorno": 0.023451901291740462,
+     "anual": 0.012733300337220088,
+     "caidaMax": 0.02434863660486612,
+     "operaciones": 11,
+     "rPromedio": 0.21671485541193675
+    },
+    {
+     "serie": "HYPE 1d",
+     "retorno": -0.003432325617719001,
+     "anual": -0.002498493768970378,
+     "caidaMax": 0.012876003294858607,
+     "operaciones": 2,
+     "rPromedio": -0.1682202918941471
+    }
+   ],
+   "probabilidadAzar": 0.435,
+   "leGanaAlAzar": false,
+   "leGanaAGuardar": true,
+   "confiable": false
+  },
+  {
+   "id": "onda3",
+   "nombre": "Elliott: entrar en la onda 3",
+   "grupo": "Elliott",
+   "explicacion": "Onda 1 y onda 2 (retroceso 38,2–78,6%); entra al superar el final de la onda 1. Objetivo: 161,8% de la onda 1.",
+   "operaciones": 921,
+   "rPromedio": -0.05485620791200808,
+   "t": -1.6844568807479,
+   "aciertos": 0.4549402823018458,
+   "factorGanancia": 0.8842628306341186,
+   "anualPromedio": -0.005453550676628645,
+   "caidaPromedio": 0.07110149050394597,
+   "seriesEnGanancia": 14,
+   "rParteVieja": -0.0033751554075452427,
+   "opsVieja": 632,
+   "rParteNueva": -0.16743760992868825,
+   "opsNueva": 289,
+   "porSerie": [
+    {
+     "serie": "BTC 4h",
+     "retorno": -0.11432319814070135,
+     "anual": -0.05393091926612492,
+     "caidaMax": 0.13759781736502272,
+     "operaciones": 36,
+     "rPromedio": -0.33385662154023066
+    },
+    {
+     "serie": "BTC 1d",
+     "retorno": 0.013798168806250732,
+     "anual": 0.002422130102004205,
+     "caidaMax": 0.03256383523147504,
+     "operaciones": 19,
+     "rPromedio": 0.07718566773678495
+    },
+    {
+     "serie": "ETH 4h",
+     "retorno": -0.1470643246336809,
+     "anual": -0.07006543249921349,
+     "caidaMax": 0.14973074726200264,
+     "operaciones": 45,
+     "rPromedio": -0.3488300815843095
+    },
+    {
+     "serie": "ETH 1d",
+     "retorno": 0.014286392755137989,
+     "anual": 0.002507334470192246,
+     "caidaMax": 0.026512775399915908,
+     "operaciones": 19,
+     "rPromedio": 0.07916267551271455
+    },
+    {
+     "serie": "SOL 4h",
+     "retorno": -0.061803634239143146,
+     "anual": -0.02871266091748237,
+     "caidaMax": 0.09155102211153843,
+     "operaciones": 50,
+     "rPromedio": -0.12340407163731582
+    },
+    {
+     "serie": "SOL 1d",
+     "retorno": 0.036496440365640925,
+     "anual": 0.00642920933307134,
+     "caidaMax": 0.03414884929952488,
+     "operaciones": 15,
+     "rPromedio": 0.2457499286964134
+    },
+    {
+     "serie": "XRP 4h",
+     "retorno": -0.006503807503710379,
+     "anual": -0.002975278705187545,
+     "caidaMax": 0.0946746922563864,
+     "operaciones": 55,
+     "rPromedio": -0.007661547182697357
+    },
+    {
+     "serie": "XRP 1d",
+     "retorno": -0.04397057816052208,
+     "anual": -0.008026518479007927,
+     "caidaMax": 0.060724748289166755,
+     "operaciones": 17,
+     "rPromedio": -0.25971429362562487
+    },
+    {
+     "serie": "DOGE 4h",
+     "retorno": 0.06847879708653326,
+     "anual": 0.030709245672094543,
+     "caidaMax": 0.10283829988522518,
+     "operaciones": 47,
+     "rPromedio": 0.1474168618283484
+    },
+    {
+     "serie": "DOGE 1d",
+     "retorno": -0.048786324340512,
+     "anual": -0.008782331762087536,
+     "caidaMax": 0.05611300820545095,
+     "operaciones": 23,
+     "rPromedio": -0.21245818091552007
+    },
+    {
+     "serie": "BNB 4h",
+     "retorno": -0.13212269543103328,
+     "anual": -0.062673987288558,
+     "caidaMax": 0.14246868114861472,
+     "operaciones": 50,
+     "rPromedio": -0.27797729778944125
+    },
+    {
+     "serie": "BNB 1d",
+     "retorno": -0.0637243302910252,
+     "anual": -0.011545582470010252,
+     "caidaMax": 0.0862146251290403,
+     "operaciones": 18,
+     "rPromedio": -0.36166419158915775
+    },
+    {
+     "serie": "AVAX 4h",
+     "retorno": 0.01820737374222814,
+     "anual": 0.008275521456141188,
+     "caidaMax": 0.07228346771534098,
+     "operaciones": 40,
+     "rPromedio": 0.04973084734820502
+    },
+    {
+     "serie": "AVAX 1d",
+     "retorno": 0.06274219780502288,
+     "anual": 0.010976500367434916,
+     "caidaMax": 0.02915539313027908,
+     "operaciones": 13,
+     "rPromedio": 0.47384961714631185
+    },
+    {
+     "serie": "LINK 4h",
+     "retorno": 0.04268002854315278,
+     "anual": 0.019269005063656808,
+     "caidaMax": 0.03249951358741989,
+     "operaciones": 42,
+     "rPromedio": 0.10420641228784579
+    },
+    {
+     "serie": "LINK 1d",
+     "retorno": -0.04307193993689118,
+     "anual": -0.0077459010953166985,
+     "caidaMax": 0.07403259251001267,
+     "operaciones": 19,
+     "rPromedio": -0.22726688367375755
+    },
+    {
+     "serie": "LTC 4h",
+     "retorno": -0.0902614938241062,
+     "anual": -0.04227915225169232,
+     "caidaMax": 0.12217312063984295,
+     "operaciones": 49,
+     "rPromedio": -0.1885099182028908
+    },
+    {
+     "serie": "LTC 1d",
+     "retorno": -0.06065711109658134,
+     "anual": -0.010975257077218692,
+     "caidaMax": 0.0859842694419575,
+     "operaciones": 19,
+     "rPromedio": -0.3250061941254603
+    },
+    {
+     "serie": "ADA 4h",
+     "retorno": 0.028259410723887823,
+     "anual": 0.012807216507048524,
+     "caidaMax": 0.06095640478170977,
+     "operaciones": 47,
+     "rPromedio": 0.06457218497157349
+    },
+    {
+     "serie": "ADA 1d",
+     "retorno": -0.040702180191246606,
+     "anual": -0.007910715336947094,
+     "caidaMax": 0.06146912170675951,
+     "operaciones": 19,
+     "rPromedio": -0.21411954603058914
+    },
+    {
+     "serie": "SUI 4h",
+     "retorno": 0.04646698619357692,
+     "anual": 0.02095785479114931,
+     "caidaMax": 0.05761252665327085,
+     "operaciones": 48,
+     "rPromedio": 0.09935422058423608
+    },
+    {
+     "serie": "SUI 1d",
+     "retorno": 0.011692925983004088,
+     "anual": 0.003924715600346573,
+     "caidaMax": 0.0438144425985908,
+     "operaciones": 11,
+     "rPromedio": 0.11150108577208906
+    },
+    {
+     "serie": "AAVE 4h",
+     "retorno": 0.06933498132182536,
+     "anual": 0.031086325848097784,
+     "caidaMax": 0.049163155883435235,
+     "operaciones": 43,
+     "rPromedio": 0.16087746362797753
+    },
+    {
+     "serie": "AAVE 1d",
+     "retorno": -0.022829577744323926,
+     "anual": -0.004191965692553312,
+     "caidaMax": 0.05874431624272267,
+     "operaciones": 21,
+     "rPromedio": -0.10543873069461092
+    },
+    {
+     "serie": "DOT 4h",
+     "retorno": 0.027444797465221882,
+     "anual": 0.012440728478621654,
+     "caidaMax": 0.05554137308114141,
+     "operaciones": 39,
+     "rPromedio": 0.07436641229705736
+    },
+    {
+     "serie": "DOT 1d",
+     "retorno": -0.06050228096417187,
+     "anual": -0.011615869132640011,
+     "caidaMax": 0.06458887178235168,
+     "operaciones": 17,
+     "rPromedio": -0.36149726187468556
+    },
+    {
+     "serie": "NEAR 4h",
+     "retorno": -0.029731961385611183,
+     "anual": -0.013688705438110182,
+     "caidaMax": 0.12742184079410646,
+     "operaciones": 38,
+     "rPromedio": -0.0738303615149462
+    },
+    {
+     "serie": "NEAR 1d",
+     "retorno": -0.003554086701317294,
+     "anual": -0.000686738456726621,
+     "caidaMax": 0.04741352058662961,
+     "operaciones": 19,
+     "rPromedio": -0.013645459688014899
+    },
+    {
+     "serie": "HYPE 4h",
+     "retorno": 0.030671114829172508,
+     "anual": 0.01662625746730617,
+     "caidaMax": 0.059005120708481,
+     "operaciones": 39,
+     "rPromedio": 0.08236708926504989
+    },
+    {
+     "serie": "HYPE 1d",
+     "retorno": 0.005183013319624452,
+     "anual": 0.003768450412852342,
+     "caidaMax": 0.016046561690963423,
+     "operaciones": 4,
+     "rPromedio": 0.13662298177668372
+    }
+   ],
+   "probabilidadAzar": 0.541,
+   "leGanaAlAzar": false,
+   "leGanaAGuardar": false,
+   "confiable": false
+  },
+  {
+   "id": "onda5",
+   "nombre": "Elliott: corrección tras 5 ondas",
+   "grupo": "Elliott",
+   "explicacion": "Impulso completo de 5 ondas que cumple las reglas; opera la corrección hasta el final de la onda 4.",
+   "operaciones": 251,
+   "rPromedio": 0.026151030195580596,
+   "t": 0.43880394426100006,
+   "aciertos": 0.5697211155378487,
+   "factorGanancia": 1.064386881735533,
+   "anualPromedio": 0.0006756194619465934,
+   "caidaPromedio": 0.027503209434100482,
+   "seriesEnGanancia": 16,
+   "rParteVieja": 0.09742195177892153,
+   "opsVieja": 178,
+   "rParteNueva": -0.14763286078845622,
+   "opsNueva": 73,
+   "porSerie": [
+    {
+     "serie": "BTC 4h",
+     "retorno": -0.04387906822207155,
+     "anual": -0.020282121967219235,
+     "caidaMax": 0.04387906822207151,
+     "operaciones": 10,
+     "rPromedio": -0.4449016908879786
+    },
+    {
+     "serie": "BTC 1d",
+     "retorno": -0.007565829757436249,
+     "anual": -0.0013398102682808943,
+     "caidaMax": 0.030317658903971298,
+     "operaciones": 7,
+     "rPromedio": -0.10515973649650337
+    },
+    {
+     "serie": "ETH 4h",
+     "retorno": -0.012149560664856063,
+     "anual": -0.005566617845850219,
+     "caidaMax": 0.04210081118983744,
+     "operaciones": 16,
+     "rPromedio": -0.07201418088387809
+    },
+    {
+     "serie": "ETH 1d",
+     "retorno": 0.011646822773370369,
+     "anual": 0.0020462763198294542,
+     "caidaMax": 0.015337373885866248,
+     "operaciones": 4,
+     "rPromedio": 0.29295343340738855
+    },
+    {
+     "serie": "SOL 4h",
+     "retorno": -0.02068402161564864,
+     "anual": -0.009499165497168893,
+     "caidaMax": 0.04964514702011811,
+     "operaciones": 13,
+     "rPromedio": -0.15699449874010146
+    },
+    {
+     "serie": "SOL 1d",
+     "retorno": -0.021804133434572992,
+     "anual": -0.003933538658198343,
+     "caidaMax": 0.02943401135638789,
+     "operaciones": 4,
+     "rPromedio": -0.5466581559573594
+    },
+    {
+     "serie": "XRP 4h",
+     "retorno": -0.07194084168572568,
+     "anual": -0.03351931775849293,
+     "caidaMax": 0.0771866655157062,
+     "operaciones": 14,
+     "rPromedio": -0.5293663499882626
+    },
+    {
+     "serie": "XRP 1d",
+     "retorno": 0.011771471033866554,
+     "anual": 0.002099561526416993,
+     "caidaMax": 0.0127884096497762,
+     "operaciones": 3,
+     "rPromedio": 0.39391475208958776
+    },
+    {
+     "serie": "DOGE 4h",
+     "retorno": 0.0014167284484001286,
+     "anual": 0.0006467110421579658,
+     "caidaMax": 0.048561097287580735,
+     "operaciones": 15,
+     "rPromedio": 0.015676701130974635
+    },
+    {
+     "serie": "DOGE 1d",
+     "retorno": 0.028596536766987812,
+     "anual": 0.004985019865414664,
+     "caidaMax": 0.014677224122716744,
+     "operaciones": 6,
+     "rPromedio": 0.4737057490996304
+    },
+    {
+     "serie": "BNB 4h",
+     "retorno": 0.0017981579718089336,
+     "anual": 0.0008209129358969225,
+     "caidaMax": 0.02044009914408165,
+     "operaciones": 8,
+     "rPromedio": 0.025066776823373
+    },
+    {
+     "serie": "BNB 1d",
+     "retorno": -0.009822718009119269,
+     "anual": -0.0017394244672835901,
+     "caidaMax": 0.011808381400853562,
+     "operaciones": 1,
+     "rPromedio": -0.9822718009119242
+    },
+    {
+     "serie": "AVAX 4h",
+     "retorno": -0.02588780071175889,
+     "anual": -0.01190859719274362,
+     "caidaMax": 0.03579785318785584,
+     "operaciones": 11,
+     "rPromedio": -0.2340539195617489
+    },
+    {
+     "serie": "AVAX 1d",
+     "retorno": 0.02002400184040254,
+     "anual": 0.003563063663235777,
+     "caidaMax": 0.01173016130730452,
+     "operaciones": 7,
+     "rPromedio": 0.28561977678553135
+    },
+    {
+     "serie": "LINK 4h",
+     "retorno": 0.03859776666421566,
+     "anual": 0.01744472308819911,
+     "caidaMax": 0.021048639109683895,
+     "operaciones": 15,
+     "rPromedio": 0.25647044227602517
+    },
+    {
+     "serie": "LINK 1d",
+     "retorno": -0.021017348747334963,
+     "anual": -0.003744618282364942,
+     "caidaMax": 0.02720326004036607,
+     "operaciones": 5,
+     "rPromedio": -0.42146369652436466
+    },
+    {
+     "serie": "LTC 4h",
+     "retorno": 0.03529898652138508,
+     "anual": 0.01596771548564835,
+     "caidaMax": 0.021677938670558696,
+     "operaciones": 11,
+     "rPromedio": 0.31976258819958814
+    },
+    {
+     "serie": "LTC 1d",
+     "retorno": 0.0073148089320118626,
+     "anual": 0.0012862005383258435,
+     "caidaMax": 0.007613638504908612,
+     "operaciones": 2,
+     "rPromedio": 0.3650982435351615
+    },
+    {
+     "serie": "ADA 4h",
+     "retorno": 0.07979716796143821,
+     "anual": 0.03568089028550414,
+     "caidaMax": 0.015432768112395091,
+     "operaciones": 13,
+     "rPromedio": 0.598084606171041
+    },
+    {
+     "serie": "ADA 1d",
+     "retorno": 0.012656658669034648,
+     "anual": 0.002406781886912457,
+     "caidaMax": 0.006654015277843728,
+     "operaciones": 2,
+     "rPromedio": 0.6311891777984879
+    },
+    {
+     "serie": "SUI 4h",
+     "retorno": -0.019625090989316862,
+     "anual": -0.009010217451428826,
+     "caidaMax": 0.03729441490943566,
+     "operaciones": 13,
+     "rPromedio": -0.14888423279411903
+    },
+    {
+     "serie": "SUI 1d",
+     "retorno": -0.019489416713099006,
+     "anual": -0.006609785500076404,
+     "caidaMax": 0.03032725411293657,
+     "operaciones": 2,
+     "rPromedio": -0.9792619342121472
+    },
+    {
+     "serie": "AAVE 4h",
+     "retorno": 0.018258715352648558,
+     "anual": 0.008297006402621543,
+     "caidaMax": 0.04851140614529678,
+     "operaciones": 17,
+     "rPromedio": 0.11325013112753585
+    },
+    {
+     "serie": "AAVE 1d",
+     "retorno": 0.01734337812737552,
+     "anual": 0.003132567369445116,
+     "caidaMax": 0.02005369679410312,
+     "operaciones": 3,
+     "rPromedio": 0.5756766861605086
+    },
+    {
+     "serie": "DOT 4h",
+     "retorno": 0.06632523268577084,
+     "anual": 0.029760047620681407,
+     "caidaMax": 0.029910357249184612,
+     "operaciones": 12,
+     "rPromedio": 0.5407521037763404
+    },
+    {
+     "serie": "DOT 1d",
+     "retorno": 0.0030409830164790375,
+     "anual": 0.0005686052769011685,
+     "caidaMax": 0.013410781066014121,
+     "operaciones": 3,
+     "rPromedio": 0.10487750589425766
+    },
+    {
+     "serie": "NEAR 4h",
+     "retorno": -0.006288324859979766,
+     "anual": -0.0028765332418618783,
+     "caidaMax": 0.04029650060371527,
+     "operaciones": 14,
+     "rPromedio": -0.04019412704833141
+    },
+    {
+     "serie": "NEAR 1d",
+     "retorno": -0.0073823666040189195,
+     "anual": -0.0014286729272681153,
+     "caidaMax": 0.023479943972336277,
+     "operaciones": 5,
+     "rPromedio": -0.1443052827183276
+    },
+    {
+     "serie": "HYPE 4h",
+     "retorno": -0.011927473051054682,
+     "anual": -0.0065280868687707105,
+     "caidaMax": 0.03247774526426219,
+     "operaciones": 13,
+     "rPromedio": -0.08822647685878487
+    },
+    {
+     "serie": "HYPE 1d",
+     "retorno": 0.013147581668540465,
+     "anual": 0.009549008478215493,
+     "caidaMax": 0.005999960995845867,
+     "operaciones": 2,
+     "rPromedio": 0.6552378491731153
+    }
+   ],
+   "probabilidadAzar": 0.1875,
+   "leGanaAlAzar": false,
+   "leGanaAGuardar": true,
+   "confiable": false
+  },
+  {
+   "id": "envolvente",
+   "nombre": "Velas: envolvente",
+   "grupo": "Velas",
+   "explicacion": "Envolvente a favor de la tendencia (media de 200 velas). Stop en el extremo del patrón, objetivo 2 veces lo arriesgado.",
+   "operaciones": 4763,
+   "rPromedio": -0.06176273646677927,
+   "t": -3.082845272398737,
+   "aciertos": 0.34809993701448666,
+   "factorGanancia": 0.9096681445703804,
+   "anualPromedio": -0.046111252333766,
+   "caidaPromedio": 0.21736928073670203,
+   "seriesEnGanancia": 10,
+   "rParteVieja": -0.041607740759821134,
+   "opsVieja": 3326,
+   "rParteNueva": -0.10841236466534757,
+   "opsNueva": 1437,
+   "porSerie": [
+    {
+     "serie": "BTC 4h",
+     "retorno": -0.436947414953637,
+     "anual": -0.23071675070732023,
+     "caidaMax": 0.4560694551684968,
+     "operaciones": 265,
+     "rPromedio": -0.20435344560162652
+    },
+    {
+     "serie": "BTC 1d",
+     "retorno": -0.22287425207031908,
+     "anual": -0.043537538629717765,
+     "caidaMax": 0.22762746707701068,
+     "operaciones": 102,
+     "rPromedio": -0.2387466703293326
+    },
+    {
+     "serie": "ETH 4h",
+     "retorno": -0.02409657321152614,
+     "anual": -0.011076826298193065,
+     "caidaMax": 0.19723540668088926,
+     "operaciones": 250,
+     "rPromedio": -0.0022833370739088724
+    },
+    {
+     "serie": "ETH 1d",
+     "retorno": 0.011455258014755554,
+     "anual": 0.00201277683951373,
+     "caidaMax": 0.12344558561964808,
+     "operaciones": 106,
+     "rPromedio": 0.020239015779750756
+    },
+    {
+     "serie": "SOL 4h",
+     "retorno": -0.20279067724959599,
+     "anual": -0.09832034517936572,
+     "caidaMax": 0.2817914314289078,
+     "operaciones": 240,
+     "rPromedio": -0.08498903251893968
+    },
+    {
+     "serie": "SOL 1d",
+     "retorno": 0.12756762585081782,
+     "anual": 0.0216969960299922,
+     "caidaMax": 0.10794229984080522,
+     "operaciones": 96,
+     "rPromedio": 0.1350557890049934
+    },
+    {
+     "serie": "XRP 4h",
+     "retorno": 0.205907576240135,
+     "anual": 0.08926279458991027,
+     "caidaMax": 0.12442067025556774,
+     "operaciones": 238,
+     "rPromedio": 0.08910974371623165
+    },
+    {
+     "serie": "XRP 1d",
+     "retorno": -0.16077842667341546,
+     "anual": -0.030925457664019995,
+     "caidaMax": 0.22035154866917603,
+     "operaciones": 107,
+     "rPromedio": -0.15476698386765517
+    },
+    {
+     "serie": "DOGE 4h",
+     "retorno": -0.006909886538898347,
+     "anual": -0.003161397077529382,
+     "caidaMax": 0.22354762039546147,
+     "operaciones": 209,
+     "rPromedio": 0.00653346177742472
+    },
+    {
+     "serie": "DOGE 1d",
+     "retorno": 0.11047891732809001,
+     "anual": 0.018653273407637228,
+     "caidaMax": 0.12051522653903966,
+     "operaciones": 89,
+     "rPromedio": 0.12796118112521304
+    },
+    {
+     "serie": "BNB 4h",
+     "retorno": -0.3304468038700574,
+     "anual": -0.16741832378652144,
+     "caidaMax": 0.38840419348536437,
+     "operaciones": 217,
+     "rPromedio": -0.1758096017368976
+    },
+    {
+     "serie": "BNB 1d",
+     "retorno": -0.1468430137886919,
+     "anual": -0.027620073578918714,
+     "caidaMax": 0.2194121243030109,
+     "operaciones": 91,
+     "rPromedio": -0.1657296979364404
+    },
+    {
+     "serie": "AVAX 4h",
+     "retorno": 0.23377682526206733,
+     "anual": 0.10070915224259713,
+     "caidaMax": 0.20972765810443694,
+     "operaciones": 226,
+     "rPromedio": 0.10329351338385326
+    },
+    {
+     "serie": "AVAX 1d",
+     "retorno": 0.15253520800397435,
+     "anual": 0.02579483811950456,
+     "caidaMax": 0.09457534874029533,
+     "operaciones": 93,
+     "rPromedio": 0.1631194214872762
+    },
+    {
+     "serie": "LINK 4h",
+     "retorno": -0.3584738701044048,
+     "anual": -0.18348726876343002,
+     "caidaMax": 0.37317279058495595,
+     "operaciones": 230,
+     "rPromedio": -0.1840370257505375
+    },
+    {
+     "serie": "LINK 1d",
+     "retorno": -0.0011835635847672332,
+     "anual": -0.000209142839656562,
+     "caidaMax": 0.10485729675607014,
+     "operaciones": 112,
+     "rPromedio": 0.00822837084676661
+    },
+    {
+     "serie": "LTC 4h",
+     "retorno": -0.3244371973242133,
+     "anual": -0.16398214241141595,
+     "caidaMax": 0.3620179343531405,
+     "operaciones": 221,
+     "rPromedio": -0.16807399280589858
+    },
+    {
+     "serie": "LTC 1d",
+     "retorno": -0.12418471430192346,
+     "anual": -0.02311455828981146,
+     "caidaMax": 0.2026297348437566,
+     "operaciones": 93,
+     "rPromedio": -0.13372319099322075
+    },
+    {
+     "serie": "ADA 4h",
+     "retorno": -0.0005452968967408767,
+     "anual": -0.00024905089197979624,
+     "caidaMax": 0.1678135123414796,
+     "operaciones": 211,
+     "rPromedio": 0.009143714830735736
+    },
+    {
+     "serie": "ADA 1d",
+     "retorno": 0.22231601867333928,
+     "anual": 0.0391145093307399,
+     "caidaMax": 0.08913475302450913,
+     "operaciones": 99,
+     "rPromedio": 0.21307843861089626
+    },
+    {
+     "serie": "SUI 4h",
+     "retorno": -0.27212079153178514,
+     "anual": -0.1350154858452306,
+     "caidaMax": 0.3457640347932369,
+     "operaciones": 214,
+     "rPromedio": -0.13927731183021924
+    },
+    {
+     "serie": "SUI 1d",
+     "retorno": 0.025081172623411696,
+     "anual": 0.008381703353861347,
+     "caidaMax": 0.04678147546778619,
+     "operaciones": 40,
+     "rPromedio": 0.07105595039306242
+    },
+    {
+     "serie": "AAVE 4h",
+     "retorno": -0.052484566962790136,
+     "anual": -0.024318766739800268,
+     "caidaMax": 0.20462286997727758,
+     "operaciones": 210,
+     "rPromedio": -0.016174893886659727
+    },
+    {
+     "serie": "AAVE 1d",
+     "retorno": -0.229165246372527,
+     "anual": -0.04624121591934749,
+     "caidaMax": 0.28179489620534137,
+     "operaciones": 105,
+     "rPromedio": -0.2394283486160895
+    },
+    {
+     "serie": "DOT 4h",
+     "retorno": -0.24856675091132974,
+     "anual": -0.12234383705252927,
+     "caidaMax": 0.29072686716437485,
+     "operaciones": 226,
+     "rPromedio": -0.1169507368451322
+    },
+    {
+     "serie": "DOT 1d",
+     "retorno": 0.1397135212332059,
+     "anual": 0.024785139156620284,
+     "caidaMax": 0.07334703318184939,
+     "operaciones": 101,
+     "rPromedio": 0.13944797334702008
+    },
+    {
+     "serie": "NEAR 4h",
+     "retorno": -0.17611391787448993,
+     "anual": -0.08466493665129093,
+     "caidaMax": 0.2770527623523386,
+     "operaciones": 229,
+     "rPromedio": -0.07503812579059696
+    },
+    {
+     "serie": "NEAR 1d",
+     "retorno": 0.03550276915747386,
+     "anual": 0.0067540878264313875,
+     "caidaMax": 0.1356675382036891,
+     "operaciones": 87,
+     "rPromedio": 0.0495403749416366
+    },
+    {
+     "serie": "HYPE 4h",
+     "retorno": -0.4488896480761876,
+     "anual": -0.27762829227461316,
+     "caidaMax": 0.45624915828668905,
+     "operaciones": 227,
+     "rPromedio": -0.2534740770501726
+    },
+    {
+     "serie": "HYPE 1d",
+     "retorno": -0.06330925690699685,
+     "anual": -0.04647143030909617,
+     "caidaMax": 0.11437972825645566,
+     "operaciones": 29,
+     "rPromedio": -0.21637241147446595
+    }
+   ],
+   "probabilidadAzar": 0.72275,
+   "leGanaAlAzar": false,
+   "leGanaAGuardar": false,
+   "confiable": false
+  },
+  {
+   "id": "martillo",
+   "nombre": "Velas: martillo / estrella fugaz",
+   "grupo": "Velas",
+   "explicacion": "Martillo o estrella fugaz en un extremo de 5 velas, a favor de la tendencia.",
+   "operaciones": 1515,
+   "rPromedio": -0.15368495497228363,
+   "t": -4.346096617154259,
+   "aciertos": 0.31485148514851485,
+   "factorGanancia": 0.791008073200257,
+   "anualPromedio": -0.027268047282002546,
+   "caidaPromedio": 0.14652346518000176,
+   "seriesEnGanancia": 5,
+   "rParteVieja": -0.1428198618738229,
+   "opsVieja": 1100,
+   "rParteNueva": -0.18248399692001144,
+   "opsNueva": 415,
+   "porSerie": [
+    {
+     "serie": "BTC 4h",
+     "retorno": -0.22174577951913377,
+     "anual": -0.10817468805651909,
+     "caidaMax": 0.31469174763545854,
+     "operaciones": 75,
+     "rPromedio": -0.32843977557663306
+    },
+    {
+     "serie": "BTC 1d",
+     "retorno": -0.1169650023683223,
+     "anual": -0.021719863735270906,
+     "caidaMax": 0.16221634410278604,
+     "operaciones": 37,
+     "rPromedio": -0.32747680050108474
+    },
+    {
+     "serie": "ETH 4h",
+     "retorno": -0.10255797292693603,
+     "anual": -0.04821245947679975,
+     "caidaMax": 0.14080185224090938,
+     "operaciones": 72,
+     "rPromedio": -0.14083492730025904
+    },
+    {
+     "serie": "ETH 1d",
+     "retorno": -0.10825298944599282,
+     "anual": -0.02002288519482054,
+     "caidaMax": 0.13632324220262132,
+     "operaciones": 35,
+     "rPromedio": -0.3190483737432321
+    },
+    {
+     "serie": "SOL 4h",
+     "retorno": -0.11088615697413262,
+     "anual": -0.05225610811074455,
+     "caidaMax": 0.15398864707461976,
+     "operaciones": 60,
+     "rPromedio": -0.18602510397510125
+    },
+    {
+     "serie": "SOL 1d",
+     "retorno": -0.10713666000540689,
+     "anual": -0.020055947213355685,
+     "caidaMax": 0.12730036304781442,
+     "operaciones": 38,
+     "rPromedio": -0.2897378009778246
+    },
+    {
+     "serie": "XRP 4h",
+     "retorno": -0.005059636579860083,
+     "anual": -0.00231370592287794,
+     "caidaMax": 0.16080119628215345,
+     "operaciones": 65,
+     "rPromedio": 0.0024619879765951386
+    },
+    {
+     "serie": "XRP 1d",
+     "retorno": -0.13050769983647892,
+     "anual": -0.024751666802010686,
+     "caidaMax": 0.1624098682892237,
+     "operaciones": 34,
+     "rPromedio": -0.4038189142431956
+    },
+    {
+     "serie": "DOGE 4h",
+     "retorno": -0.09864664950328195,
+     "anual": -0.046320400382571125,
+     "caidaMax": 0.18760812101143354,
+     "operaciones": 79,
+     "rPromedio": -0.12179899492157681
+    },
+    {
+     "serie": "DOGE 1d",
+     "retorno": 0.018918601564893223,
+     "anual": 0.0033108614679553394,
+     "caidaMax": 0.06262973409603168,
+     "operaciones": 32,
+     "rPromedio": 0.06866448422703647
+    },
+    {
+     "serie": "BNB 4h",
+     "retorno": -0.2351685288804941,
+     "anual": -0.11525456875169027,
+     "caidaMax": 0.2759999077843769,
+     "operaciones": 80,
+     "rPromedio": -0.3342428312477245
+    },
+    {
+     "serie": "BNB 1d",
+     "retorno": -0.163628570174724,
+     "anual": -0.031021803803528702,
+     "caidaMax": 0.17568264629677785,
+     "operaciones": 38,
+     "rPromedio": -0.4623512734107463
+    },
+    {
+     "serie": "AVAX 4h",
+     "retorno": -0.06712201515211802,
+     "anual": -0.031237291635344278,
+     "caidaMax": 0.12870598733031657,
+     "operaciones": 61,
+     "rPromedio": -0.10384560427626895
+    },
+    {
+     "serie": "AVAX 1d",
+     "retorno": -0.08056424576019428,
+     "anual": -0.014955415891081958,
+     "caidaMax": 0.09385839249416367,
+     "operaciones": 36,
+     "rPromedio": -0.22479625702310363
+    },
+    {
+     "serie": "LINK 4h",
+     "retorno": 0.049511511186384416,
+     "anual": 0.022313199204800904,
+     "caidaMax": 0.05725682043214075,
+     "operaciones": 70,
+     "rPromedio": 0.07969648239527388
+    },
+    {
+     "serie": "LINK 1d",
+     "retorno": -0.0937623498696073,
+     "anual": -0.017238570804654407,
+     "caidaMax": 0.13998944991353676,
+     "operaciones": 34,
+     "rPromedio": -0.28152297296956347
+    },
+    {
+     "serie": "LTC 4h",
+     "retorno": -0.09641141996747793,
+     "anual": -0.04524113572602695,
+     "caidaMax": 0.1242836943203815,
+     "operaciones": 61,
+     "rPromedio": -0.15623636093840207
+    },
+    {
+     "serie": "LTC 1d",
+     "retorno": -0.05160377529222959,
+     "anual": -0.009300759007223935,
+     "caidaMax": 0.09138195878428515,
+     "operaciones": 33,
+     "rPromedio": -0.15236567293094355
+    },
+    {
+     "serie": "ADA 4h",
+     "retorno": -0.032140783438334264,
+     "anual": -0.014807656040767836,
+     "caidaMax": 0.20703619392187148,
+     "operaciones": 78,
+     "rPromedio": -0.03164425020146252
+    },
+    {
+     "serie": "ADA 1d",
+     "retorno": 0.056684500580461705,
+     "anual": 0.010593916209800103,
+     "caidaMax": 0.06386099658632777,
+     "operaciones": 23,
+     "rPromedio": 0.25034211789878347
+    },
+    {
+     "serie": "SUI 4h",
+     "retorno": 0.18178708187360004,
+     "anual": 0.07925879683343484,
+     "caidaMax": 0.11607800785326418,
+     "operaciones": 76,
+     "rPromedio": 0.23089193185823154
+    },
+    {
+     "serie": "SUI 1d",
+     "retorno": 0.022623010090814466,
+     "anual": 0.007566278721435449,
+     "caidaMax": 0.1039962798758627,
+     "operaciones": 21,
+     "rPromedio": 0.11725585935266845
+    },
+    {
+     "serie": "AAVE 4h",
+     "retorno": -0.2253406732029739,
+     "anual": -0.11005825489782073,
+     "caidaMax": 0.23147542855937084,
+     "operaciones": 83,
+     "rPromedio": -0.29822559230074064
+    },
+    {
+     "serie": "AAVE 1d",
+     "retorno": -0.03732363541298478,
+     "anual": -0.006895131286733025,
+     "caidaMax": 0.05488741477708732,
+     "operaciones": 28,
+     "rPromedio": -0.12666770081984033
+    },
+    {
+     "serie": "DOT 4h",
+     "retorno": -0.049767946650462025,
+     "anual": -0.023042317882178365,
+     "caidaMax": 0.2009056741294348,
+     "operaciones": 67,
+     "rPromedio": -0.06623661370617442
+    },
+    {
+     "serie": "DOT 1d",
+     "retorno": -0.019667792032139086,
+     "anual": -0.0037118252781854766,
+     "caidaMax": 0.10565290445563749,
+     "operaciones": 25,
+     "rPromedio": -0.0699289118051542
+    },
+    {
+     "serie": "NEAR 4h",
+     "retorno": -0.15011918720793382,
+     "anual": -0.07158787767853536,
+     "caidaMax": 0.2245128002915242,
+     "operaciones": 77,
+     "rPromedio": -0.2017792267468038
+    },
+    {
+     "serie": "NEAR 1d",
+     "retorno": -0.1297219716868404,
+     "anual": -0.02645248301057901,
+     "caidaMax": 0.1631120970077053,
+     "operaciones": 28,
+     "rPromedio": -0.48837234201739677
+    },
+    {
+     "serie": "HYPE 4h",
+     "retorno": -0.13530682761480217,
+     "anual": -0.07628601499063237,
+     "caidaMax": 0.1861554148582279,
+     "operaciones": 62,
+     "rPromedio": -0.2252328608800064
+    },
+    {
+     "serie": "HYPE 1d",
+     "retorno": -0.00022764780012551888,
+     "anual": -0.00016563931755009254,
+     "caidaMax": 0.04210076974470881,
+     "operaciones": 7,
+     "rPromedio": 0.005579440013409328
+    }
+   ],
+   "probabilidadAzar": 0.999,
+   "leGanaAlAzar": false,
+   "leGanaAGuardar": false,
+   "confiable": false
+  },
+  {
+   "id": "estrella",
+   "nombre": "Velas: estrella de la mañana / tarde",
+   "grupo": "Velas",
+   "explicacion": "Patrón de 3 velas de giro, a favor de la tendencia.",
+   "operaciones": 1029,
+   "rPromedio": -0.04859457924919389,
+   "t": -1.1534939748905038,
+   "aciertos": 0.35276967930029157,
+   "factorGanancia": 0.9256956078210598,
+   "anualPromedio": -0.010021956765651319,
+   "caidaPromedio": 0.08769580481306495,
+   "seriesEnGanancia": 13,
+   "rParteVieja": -0.056795456449722316,
+   "opsVieja": 709,
+   "rParteNueva": -0.030424510701773027,
+   "opsNueva": 320,
+   "porSerie": [
+    {
+     "serie": "BTC 4h",
+     "retorno": -0.10584774399453023,
+     "anual": -0.04980732149760503,
+     "caidaMax": 0.10584774399453022,
+     "operaciones": 49,
+     "rPromedio": -0.2199644206338794
+    },
+    {
+     "serie": "BTC 1d",
+     "retorno": -0.06742255663582308,
+     "anual": -0.012247043138684854,
+     "caidaMax": 0.0960585202857923,
+     "operaciones": 29,
+     "rPromedio": -0.23245645733081505
+    },
+    {
+     "serie": "ETH 4h",
+     "retorno": -0.07963685951003996,
+     "anual": -0.03718754133088431,
+     "caidaMax": 0.12633635966623832,
+     "operaciones": 55,
+     "rPromedio": -0.14205884317557763
+    },
+    {
+     "serie": "ETH 1d",
+     "retorno": 0.01768189095831274,
+     "anual": 0.003098981098893061,
+     "caidaMax": 0.08256067029183455,
+     "operaciones": 29,
+     "rPromedio": 0.07022249308589548
+    },
+    {
+     "serie": "SOL 4h",
+     "retorno": 0.06134057962462869,
+     "anual": 0.02755902489314277,
+     "caidaMax": 0.09050205491354463,
+     "operaciones": 51,
+     "rPromedio": 0.12699050340296955
+    },
+    {
+     "serie": "SOL 1d",
+     "retorno": 0.036622865163540075,
+     "anual": 0.006451154949991045,
+     "caidaMax": 0.06608711794896142,
+     "operaciones": 22,
+     "rPromedio": 0.17309875627372018
+    },
+    {
+     "serie": "XRP 4h",
+     "retorno": -0.03476537599355711,
+     "anual": -0.01602856064489988,
+     "caidaMax": 0.14020508971456985,
+     "operaciones": 51,
+     "rPromedio": -0.06018258101803008
+    },
+    {
+     "serie": "XRP 1d",
+     "retorno": 0.027074653125252368,
+     "anual": 0.004799269036608544,
+     "caidaMax": 0.03899448506188973,
+     "operaciones": 18,
+     "rPromedio": 0.1580415897974923
+    },
+    {
+     "serie": "DOGE 4h",
+     "retorno": -0.1470435841048976,
+     "anual": -0.07005510622169697,
+     "caidaMax": 0.15996607904880655,
+     "operaciones": 47,
+     "rPromedio": -0.3303549961208488
+    },
+    {
+     "serie": "DOGE 1d",
+     "retorno": -0.04132981534902547,
+     "anual": -0.007416368492752401,
+     "caidaMax": 0.07358452304109657,
+     "operaciones": 20,
+     "rPromedio": -0.20575565575900617
+    },
+    {
+     "serie": "BNB 4h",
+     "retorno": -0.11491843627140363,
+     "anual": -0.05423231581361665,
+     "caidaMax": 0.14124557384626515,
+     "operaciones": 43,
+     "rPromedio": -0.27469794557946214
+    },
+    {
+     "serie": "BNB 1d",
+     "retorno": -0.0228869902578821,
+     "anual": -0.004075025452180192,
+     "caidaMax": 0.06619283372537355,
+     "operaciones": 16,
+     "rPromedio": -0.13671619020859913
+    },
+    {
+     "serie": "AVAX 4h",
+     "retorno": 0.02578544600088084,
+     "anual": 0.01169616219517744,
+     "caidaMax": 0.0466588918377505,
+     "operaciones": 46,
+     "rPromedio": 0.06531968367664982
+    },
+    {
+     "serie": "AVAX 1d",
+     "retorno": 0.05624168859251899,
+     "anual": 0.009864344635143185,
+     "caidaMax": 0.03975337255510806,
+     "operaciones": 17,
+     "rPromedio": 0.3314700823586027
+    },
+    {
+     "serie": "LINK 4h",
+     "retorno": 0.06361780575326392,
+     "anual": 0.028565251846358164,
+     "caidaMax": 0.09783451380014002,
+     "operaciones": 50,
+     "rPromedio": 0.13393759029336383
+    },
+    {
+     "serie": "LINK 1d",
+     "retorno": -0.025642800818356126,
+     "anual": -0.00457760088287551,
+     "caidaMax": 0.08878592542317586,
+     "operaciones": 25,
+     "rPromedio": -0.09519986812270076
+    },
+    {
+     "serie": "LTC 4h",
+     "retorno": -0.13118248745331562,
+     "anual": -0.06219776506306651,
+     "caidaMax": 0.15792968114694747,
+     "operaciones": 52,
+     "rPromedio": -0.2625043917964199
+    },
+    {
+     "serie": "LTC 1d",
+     "retorno": 0.03071323908165513,
+     "anual": 0.00534945202713244,
+     "caidaMax": 0.042840688255786644,
+     "operaciones": 18,
+     "rPromedio": 0.17744932758116697
+    },
+    {
+     "serie": "ADA 4h",
+     "retorno": 0.09741554289722787,
+     "anual": 0.04336382326264254,
+     "caidaMax": 0.055050027590683906,
+     "operaciones": 45,
+     "rPromedio": 0.2162510310680332
+    },
+    {
+     "serie": "ADA 1d",
+     "retorno": 0.023339835383827,
+     "anual": 0.004419423870309691,
+     "caidaMax": 0.04597385656283686,
+     "operaciones": 23,
+     "rPromedio": 0.10966779297982285
+    },
+    {
+     "serie": "SUI 4h",
+     "retorno": -0.0794949442344276,
+     "anual": -0.03711974843867105,
+     "caidaMax": 0.17221807800921493,
+     "operaciones": 58,
+     "rPromedio": -0.1335526587426452
+    },
+    {
+     "serie": "SUI 1d",
+     "retorno": 0.005106980765245295,
+     "anual": 0.001717874033705824,
+     "caidaMax": 0.0414597685151149,
+     "operaciones": 10,
+     "rPromedio": 0.06012434812555258
+    },
+    {
+     "serie": "AAVE 4h",
+     "retorno": -0.01181150414636456,
+     "anual": -0.005411227452534639,
+     "caidaMax": 0.09351009026816755,
+     "operaciones": 52,
+     "rPromedio": -0.013458877474598986
+    },
+    {
+     "serie": "AAVE 1d",
+     "retorno": 0.07225910651214673,
+     "anual": 0.012771437751209591,
+     "caidaMax": 0.03479809832348905,
+     "operaciones": 19,
+     "rPromedio": 0.3769632481307851
+    },
+    {
+     "serie": "DOT 4h",
+     "retorno": -0.014059157321799631,
+     "anual": -0.006444922351347415,
+     "caidaMax": 0.0978721210667611,
+     "operaciones": 52,
+     "rPromedio": -0.01815261837863951
+    },
+    {
+     "serie": "DOT 1d",
+     "retorno": -0.055950698010908795,
+     "anual": -0.010721180242922346,
+     "caidaMax": 0.07996289281249877,
+     "operaciones": 15,
+     "rPromedio": -0.37598503064263616
+    },
+    {
+     "serie": "NEAR 4h",
+     "retorno": -0.1173479440130124,
+     "anual": -0.05540774979170027,
+     "caidaMax": 0.16414875743683524,
+     "operaciones": 57,
+     "rPromedio": -0.21024416317636577
+    },
+    {
+     "serie": "NEAR 1d",
+     "retorno": 0.07250307787494625,
+     "anual": 0.013597031172733143,
+     "caidaMax": 0.054101197982267445,
+     "operaciones": 15,
+     "rPromedio": 0.47733020417901084
+    },
+    {
+     "serie": "HYPE 4h",
+     "retorno": -0.019393256887592414,
+     "anual": -0.010632446284842945,
+     "caidaMax": 0.07711335740268851,
+     "operaciones": 41,
+     "rPromedio": -0.038461394682840065
+    },
+    {
+     "serie": "HYPE 1d",
+     "retorno": -0.04147457461107096,
+     "anual": -0.030350010642306025,
+     "caidaMax": 0.05328177386357847,
+     "operaciones": 4,
+     "rPromedio": -1.053382975814355
+    }
+   ],
+   "probabilidadAzar": 0.49075,
+   "leGanaAlAzar": false,
+   "leGanaAGuardar": false,
+   "confiable": false
+  },
+  {
+   "id": "soldados",
+   "nombre": "Velas: tres soldados / tres cuervos",
+   "grupo": "Velas",
+   "explicacion": "Tres velas fuertes seguidas en el mismo sentido, a favor de la tendencia.",
+   "operaciones": 83,
+   "rPromedio": 0.2577091612303363,
+   "t": 2.185652693290106,
+   "aciertos": 0.5783132530120482,
+   "factorGanancia": 1.752348758415535,
+   "anualPromedio": 0.0019440167736923624,
+   "caidaPromedio": 0.013846580515262726,
+   "seriesEnGanancia": 17,
+   "rParteVieja": 0.21797921895201985,
+   "opsVieja": 61,
+   "rParteNueva": 0.3678694557293045,
+   "opsNueva": 22,
+   "porSerie": [
+    {
+     "serie": "BTC 4h",
+     "retorno": -0.027780159951928174,
+     "anual": -0.012783157432106784,
+     "caidaMax": 0.04632879809586278,
+     "operaciones": 6,
+     "rPromedio": -0.4660886344939434
+    },
+    {
+     "serie": "BTC 1d",
+     "retorno": 0.011106041349721485,
+     "anual": 0.0019516948712015036,
+     "caidaMax": 0.018255374861919676,
+     "operaciones": 3,
+     "rPromedio": 0.37606940776761616
+    },
+    {
+     "serie": "ETH 4h",
+     "retorno": 0.0063627645505142105,
+     "anual": 0.00290059882863436,
+     "caidaMax": 0.02214017626506153,
+     "operaciones": 3,
+     "rPromedio": 0.21950710584667518
+    },
+    {
+     "serie": "ETH 1d",
+     "retorno": 0.04849598780468356,
+     "anual": 0.008395145230431833,
+     "caidaMax": 0.010161040322964708,
+     "operaciones": 5,
+     "rPromedio": 0.9575867663334522
+    },
+    {
+     "serie": "SOL 4h",
+     "retorno": 0.04993565771870201,
+     "anual": 0.022501848736969476,
+     "caidaMax": 0.008609783877232028,
+     "operaciones": 5,
+     "rPromedio": 0.9826714743726092
+    },
+    {
+     "serie": "SOL 1d",
+     "retorno": -0.0016426766173736063,
+     "anual": -0.00029387798789282105,
+     "caidaMax": 0.015255073455275804,
+     "operaciones": 4,
+     "rPromedio": -0.03626710778728573
+    },
+    {
+     "serie": "XRP 4h",
+     "retorno": -0.020208518313445167,
+     "anual": -0.00927957224488174,
+     "caidaMax": 0.031430564665442105,
+     "operaciones": 2,
+     "rPromedio": -1.0155826334484708
+    },
+    {
+     "serie": "XRP 1d",
+     "retorno": 0.0062011106398449645,
+     "anual": 0.001108544275192358,
+     "caidaMax": 0.012568608877538204,
+     "operaciones": 2,
+     "rPromedio": 0.3097106202184382
+    },
+    {
+     "serie": "DOGE 4h",
+     "retorno": 0.0016173347148771278,
+     "anual": 0.0007382440043710581,
+     "caidaMax": 0.011252412217691594,
+     "operaciones": 3,
+     "rPromedio": 0.054848432508976565
+    },
+    {
+     "serie": "DOGE 1d",
+     "retorno": 0.02480018225130376,
+     "anual": 0.004329852130521061,
+     "caidaMax": 0.006115919356724754,
+     "operaciones": 2,
+     "rPromedio": 1.2351304003945254
+    },
+    {
+     "serie": "BNB 4h",
+     "retorno": 0.019865233324344755,
+     "anual": 0.009025035901847112,
+     "caidaMax": 0.014267156267352582,
+     "operaciones": 3,
+     "rPromedio": 0.6659234981443743
+    },
+    {
+     "serie": "BNB 1d",
+     "retorno": 0,
+     "anual": 0,
+     "caidaMax": 0,
+     "operaciones": 0,
+     "rPromedio": 0
+    },
+    {
+     "serie": "AVAX 4h",
+     "retorno": -0.00014272038648099894,
+     "anual": -0.00006519046536934692,
+     "caidaMax": 0.008375903510670153,
+     "operaciones": 1,
+     "rPromedio": -0.014272038648079844
+    },
+    {
+     "serie": "AVAX 1d",
+     "retorno": 0.010624286049769616,
+     "anual": 0.0018976978879527984,
+     "caidaMax": 0.012339624201081038,
+     "operaciones": 3,
+     "rPromedio": 0.36063166173312117
+    },
+    {
+     "serie": "LINK 4h",
+     "retorno": -0.010143344292956824,
+     "anual": -0.0046448669647584095,
+     "caidaMax": 0.03521913893796215,
+     "operaciones": 7,
+     "rPromedio": -0.14262417676715916
+    },
+    {
+     "serie": "LINK 1d",
+     "retorno": 0.01909954119023194,
+     "anual": 0.003347138281554418,
+     "caidaMax": 0.013471291747602615,
+     "operaciones": 4,
+     "rPromedio": 0.47967910582747325
+    },
+    {
+     "serie": "LTC 4h",
+     "retorno": -0.029346077295714923,
+     "anual": -0.013509594148030435,
+     "caidaMax": 0.03242935054230581,
+     "operaciones": 5,
+     "rPromedio": -0.5898535277953325
+    },
+    {
+     "serie": "LTC 1d",
+     "retorno": 0,
+     "anual": 0,
+     "caidaMax": 0,
+     "operaciones": 0,
+     "rPromedio": 0
+    },
+    {
+     "serie": "ADA 4h",
+     "retorno": 0,
+     "anual": 0,
+     "caidaMax": 0,
+     "operaciones": 0,
+     "rPromedio": 0
+    },
+    {
+     "serie": "ADA 1d",
+     "retorno": 0.004669472813116471,
+     "anual": 0.0008907970193872128,
+     "caidaMax": 0.009083364112860086,
+     "operaciones": 2,
+     "rPromedio": 0.2342204762866791
+    },
+    {
+     "serie": "SUI 4h",
+     "retorno": 0.0658304036134365,
+     "anual": 0.02954180124245087,
+     "caidaMax": 0.006285379622452431,
+     "operaciones": 4,
+     "rPromedio": 1.608709723224835
+    },
+    {
+     "serie": "SUI 1d",
+     "retorno": 0,
+     "anual": 0,
+     "caidaMax": 0,
+     "operaciones": 0,
+     "rPromedio": 0
+    },
+    {
+     "serie": "AAVE 4h",
+     "retorno": 0.01855069871328241,
+     "anual": 0.008429028108914327,
+     "caidaMax": 0.015062920554545946,
+     "operaciones": 3,
+     "rPromedio": 0.620010235343659
+    },
+    {
+     "serie": "AAVE 1d",
+     "retorno": 0.008349125101854371,
+     "anual": 0.0015135236836194554,
+     "caidaMax": 0.008116945426962776,
+     "operaciones": 2,
+     "rPromedio": 0.4166014385902074
+    },
+    {
+     "serie": "DOT 4h",
+     "retorno": 0.0007446235829116077,
+     "anual": 0.0003399692849328506,
+     "caidaMax": 0.012838212429338398,
+     "operaciones": 2,
+     "rPromedio": 0.0429414841238539
+    },
+    {
+     "serie": "DOT 1d",
+     "retorno": -0.004421958301591866,
+     "anual": -0.000829333938563992,
+     "caidaMax": 0.010012731138315406,
+     "operaciones": 2,
+     "rPromedio": -0.2182706612839868
+    },
+    {
+     "serie": "NEAR 4h",
+     "retorno": 0.0016000091036689756,
+     "anual": 0.0007303390385722253,
+     "caidaMax": 0.02631605210944627,
+     "operaciones": 4,
+     "rPromedio": 0.04762185714062572
+    },
+    {
+     "serie": "NEAR 1d",
+     "retorno": 0.011608895566173505,
+     "anual": 0.0022294896617258697,
+     "caidaMax": 0.007175043629491658,
+     "operaciones": 2,
+     "rPromedio": 0.5790150628637865
+    },
+    {
+     "serie": "HYPE 4h",
+     "retorno": -0.00026499749424468977,
+     "anual": -0.0001446517959043936,
+     "caidaMax": 0.022286549231781184,
+     "operaciones": 4,
+     "rPromedio": -0.0026169531499510845
+    },
+    {
+     "serie": "HYPE 1d",
+     "retorno": 0,
+     "anual": 0,
+     "caidaMax": 0,
+     "operaciones": 0,
+     "rPromedio": 0
+    }
+   ],
+   "probabilidadAzar": 0.0195,
+   "leGanaAlAzar": true,
+   "leGanaAGuardar": true,
+   "confiable": true
+  },
+  {
+   "id": "confluencia",
+   "nombre": "Todo junto: Fibonacci + vela + tendencia",
+   "grupo": "Combinada",
+   "explicacion": "Retroceso a la zona 50–78,6% de Fibonacci, con un patrón de vela de giro y a favor de la media de 200 velas.",
+   "operaciones": 874,
+   "rPromedio": -0.1284255869553639,
+   "t": -3.4424427133291475,
+   "aciertos": 0.391304347826087,
+   "factorGanancia": 0.7709749868496713,
+   "anualPromedio": -0.012752839388456302,
+   "caidaPromedio": 0.08097214686724723,
+   "seriesEnGanancia": 6,
+   "rParteVieja": -0.14277658468390225,
+   "opsVieja": 607,
+   "rParteNueva": -0.0957999104713827,
+   "opsNueva": 267,
+   "porSerie": [
+    {
+     "serie": "BTC 4h",
+     "retorno": -0.10821695402067077,
+     "anual": -0.05095787660968554,
+     "caidaMax": 0.14233141683182296,
+     "operaciones": 47,
+     "rPromedio": -0.23751990990187782
+    },
+    {
+     "serie": "BTC 1d",
+     "retorno": -0.06785967665623405,
+     "anual": -0.012328791243501946,
+     "caidaMax": 0.0739611848604461,
+     "operaciones": 16,
+     "rPromedio": -0.4351769153163374
+    },
+    {
+     "serie": "ETH 4h",
+     "retorno": -0.0658804190051192,
+     "anual": -0.03064229971244059,
+     "caidaMax": 0.1296396049665884,
+     "operaciones": 49,
+     "rPromedio": -0.1320715781154892
+    },
+    {
+     "serie": "ETH 1d",
+     "retorno": -0.02278574534944522,
+     "anual": -0.004060740050974676,
+     "caidaMax": 0.04734972604348334,
+     "operaciones": 15,
+     "rPromedio": -0.14799638705499493
+    },
+    {
+     "serie": "SOL 4h",
+     "retorno": -0.06338857700344225,
+     "anual": -0.029462309520629226,
+     "caidaMax": 0.10398012535332873,
+     "operaciones": 47,
+     "rPromedio": -0.13378996613169608
+    },
+    {
+     "serie": "SOL 1d",
+     "retorno": -0.012148262132272603,
+     "anual": -0.0021827952765827163,
+     "caidaMax": 0.0580682792591513,
+     "operaciones": 18,
+     "rPromedio": -0.061184188983186956
+    },
+    {
+     "serie": "XRP 4h",
+     "retorno": -0.0012731962093257554,
+     "anual": -0.0005816160102009027,
+     "caidaMax": 0.08435161562525945,
+     "operaciones": 51,
+     "rPromedio": 0.0031013816477335108
+    },
+    {
+     "serie": "XRP 1d",
+     "retorno": -0.07530753785642685,
+     "anual": -0.01393386186679213,
+     "caidaMax": 0.09252812765601416,
+     "operaciones": 19,
+     "rPromedio": -0.4078886839790338
+    },
+    {
+     "serie": "DOGE 4h",
+     "retorno": 0.06815011566394502,
+     "anual": 0.030564444377455313,
+     "caidaMax": 0.07619954023977997,
+     "operaciones": 40,
+     "rPromedio": 0.17338752054109158
+    },
+    {
+     "serie": "DOGE 1d",
+     "retorno": -0.02061327559940651,
+     "anual": -0.0036666946668019174,
+     "caidaMax": 0.04227028017003508,
+     "operaciones": 15,
+     "rPromedio": -0.13496163287079377
+    },
+    {
+     "serie": "BNB 4h",
+     "retorno": -0.05356710027492617,
+     "anual": -0.024833076734036452,
+     "caidaMax": 0.06904197892011527,
+     "operaciones": 45,
+     "rPromedio": -0.11717256814853323
+    },
+    {
+     "serie": "BNB 1d",
+     "retorno": -0.07438966203245534,
+     "anual": -0.013540771825574893,
+     "caidaMax": 0.09199745713097496,
+     "operaciones": 17,
+     "rPromedio": -0.450147973707422
+    },
+    {
+     "serie": "AVAX 4h",
+     "retorno": 0.039601656655216644,
+     "anual": 0.017897464941249108,
+     "caidaMax": 0.05625164909753701,
+     "operaciones": 40,
+     "rPromedio": 0.10313695655324187
+    },
+    {
+     "serie": "AVAX 1d",
+     "retorno": -0.025034987351137294,
+     "anual": -0.004538019867840193,
+     "caidaMax": 0.0560315301954505,
+     "operaciones": 16,
+     "rPromedio": -0.15166028657672836
+    },
+    {
+     "serie": "LINK 4h",
+     "retorno": 0.00286555600523708,
+     "anual": 0.0013075608195129984,
+     "caidaMax": 0.07015710577437752,
+     "operaciones": 52,
+     "rPromedio": 0.013306047154634518
+    },
+    {
+     "serie": "LINK 1d",
+     "retorno": -0.09073208992365145,
+     "anual": -0.0166589706012652,
+     "caidaMax": 0.10443494252141304,
+     "operaciones": 18,
+     "rPromedio": -0.5238108336661397
+    },
+    {
+     "serie": "LTC 4h",
+     "retorno": -0.10167686964852907,
+     "anual": -0.04778584522502782,
+     "caidaMax": 0.12240525869240901,
+     "operaciones": 43,
+     "rPromedio": -0.243520973511662
+    },
+    {
+     "serie": "LTC 1d",
+     "retorno": -0.04247273494943127,
+     "anual": -0.007625171630659677,
+     "caidaMax": 0.08571795309904748,
+     "operaciones": 24,
+     "rPromedio": -0.17267212708795396
+    },
+    {
+     "serie": "ADA 4h",
+     "retorno": -0.13554478594603658,
+     "anual": -0.06435095494373666,
+     "caidaMax": 0.1695953369759442,
+     "operaciones": 38,
+     "rPromedio": -0.3784094721125474
+    },
+    {
+     "serie": "ADA 1d",
+     "retorno": -0.022223625499707578,
+     "anual": -0.004286305405134638,
+     "caidaMax": 0.04953043358051593,
+     "operaciones": 11,
+     "rPromedio": -0.19812712314978406
+    },
+    {
+     "serie": "SUI 4h",
+     "retorno": -0.002304292451701273,
+     "anual": -0.0010529322611083636,
+     "caidaMax": 0.09306953961957168,
+     "operaciones": 42,
+     "rPromedio": -0.00042340927904472805
+    },
+    {
+     "serie": "SUI 1d",
+     "retorno": -0.005602728192016571,
+     "anual": -0.0018913370940636387,
+     "caidaMax": 0.04541022497631486,
+     "operaciones": 7,
+     "rPromedio": -0.06914639026404355
+    },
+    {
+     "serie": "AAVE 4h",
+     "retorno": 0.049219621563844296,
+     "anual": 0.02218335010021555,
+     "caidaMax": 0.0620117126756142,
+     "operaciones": 42,
+     "rPromedio": 0.1226802684229624
+    },
+    {
+     "serie": "AAVE 1d",
+     "retorno": 0.01700377312989243,
+     "anual": 0.0030716486639428275,
+     "caidaMax": 0.03548722858004132,
+     "operaciones": 14,
+     "rPromedio": 0.12701750277445206
+    },
+    {
+     "serie": "DOT 4h",
+     "retorno": -0.12760671062936824,
+     "anual": -0.06043717197584342,
+     "caidaMax": 0.14956942822205038,
+     "operaciones": 40,
+     "rPromedio": -0.3363349040881658
+    },
+    {
+     "serie": "DOT 1d",
+     "retorno": -0.03721053520874007,
+     "anual": -0.007074024095751086,
+     "caidaMax": 0.04002880193232663,
+     "operaciones": 13,
+     "rPromedio": -0.28413155985462457
+    },
+    {
+     "serie": "NEAR 4h",
+     "retorno": -0.09950821146480371,
+     "anual": -0.046736787681880276,
+     "caidaMax": 0.133402655304067,
+     "operaciones": 45,
+     "rPromedio": -0.22729538137936015
+    },
+    {
+     "serie": "NEAR 1d",
+     "retorno": -0.03561437076466223,
+     "anual": -0.006972639590965279,
+     "caidaMax": 0.05126018379389492,
+     "operaciones": 13,
+     "rPromedio": -0.2742798404126062
+    },
+    {
+     "serie": "HYPE 4h",
+     "retorno": 0.013525688268232638,
+     "anual": 0.007360172857154179,
+     "caidaMax": 0.06850492326396893,
+     "operaciones": 32,
+     "rPromedio": 0.04884717055730255
+    },
+    {
+     "serie": "HYPE 1d",
+     "retorno": -0.012853901764201092,
+     "anual": -0.009368829522721778,
+     "caidaMax": 0.024576160655872197,
+     "operaciones": 5,
+     "rPromedio": -0.25394071183755573
+    }
+   ],
+   "probabilidadAzar": 0.962,
+   "leGanaAlAzar": false,
+   "leGanaAGuardar": false,
+   "confiable": false
+  },
+  {
+   "id": "tendencia",
+   "nombre": "Seguir la tendencia (Donchian 55/20)",
+   "grupo": "Comparación",
+   "explicacion": "La estrategia de tendencia más clásica: compra al superar el máximo de 55 velas y sale al perder el mínimo de 20 (y al revés).",
+   "operaciones": 1492,
+   "rPromedio": 0.06659311383239538,
+   "t": 1.6821205227311355,
+   "aciertos": 0.35924932975871315,
+   "factorGanancia": 1.209250631759737,
+   "anualPromedio": 0.0076318719419088115,
+   "caidaPromedio": 0.07595739001599648,
+   "seriesEnGanancia": 17,
+   "rParteVieja": 0.10361685412660208,
+   "opsVieja": 1023,
+   "rParteNueva": -0.01416442629761191,
+   "opsNueva": 469,
+   "porSerie": [
+    {
+     "serie": "BTC 4h",
+     "retorno": -0.11605972700354816,
+     "anual": -0.054778442893064994,
+     "caidaMax": 0.1350674937613074,
+     "operaciones": 75,
+     "rPromedio": -0.1615586605012004
+    },
+    {
+     "serie": "BTC 1d",
+     "retorno": 0.0029982173557605574,
+     "anual": 0.0005286367748824627,
+     "caidaMax": 0.032987850754472484,
+     "operaciones": 33,
+     "rPromedio": 0.01205377359752373
+    },
+    {
+     "serie": "ETH 4h",
+     "retorno": -0.03335821173220421,
+     "anual": -0.015373753796850687,
+     "caidaMax": 0.07010938060364089,
+     "operaciones": 74,
+     "rPromedio": -0.04048175224043708
+    },
+    {
+     "serie": "ETH 1d",
+     "retorno": 0.05149111206018975,
+     "anual": 0.00890306877005087,
+     "caidaMax": 0.04214116412233611,
+     "operaciones": 27,
+     "rPromedio": 0.18820292134614364
+    },
+    {
+     "serie": "SOL 4h",
+     "retorno": -0.0016369997053362617,
+     "anual": -0.0007478811514404216,
+     "caidaMax": 0.10785223667451033,
+     "operaciones": 74,
+     "rPromedio": 0.003155772741639438
+    },
+    {
+     "serie": "SOL 1d",
+     "retorno": 0.17549683498675783,
+     "anual": 0.029329164210171843,
+     "caidaMax": 0.11404364249372168,
+     "operaciones": 28,
+     "rPromedio": 0.6011862444518179
+    },
+    {
+     "serie": "XRP 4h",
+     "retorno": 0.39509393256018255,
+     "anual": 0.164217893053344,
+     "caidaMax": 0.14427813030689896,
+     "operaciones": 70,
+     "rPromedio": 0.5727302894369093
+    },
+    {
+     "serie": "XRP 1d",
+     "retorno": 0.0813543381598616,
+     "anual": 0.01411625456602561,
+     "caidaMax": 0.038135583321709805,
+     "operaciones": 20,
+     "rPromedio": 0.40711237561597213
+    },
+    {
+     "serie": "DOGE 4h",
+     "retorno": 0.05461822259118376,
+     "anual": 0.0245817879030219,
+     "caidaMax": 0.06233034471485401,
+     "operaciones": 69,
+     "rPromedio": 0.08111740766517078
+    },
+    {
+     "serie": "DOGE 1d",
+     "retorno": 0.0861316625343509,
+     "anual": 0.014678315849178558,
+     "caidaMax": 0.18346762581918477,
+     "operaciones": 27,
+     "rPromedio": 0.3317527396327346
+    },
+    {
+     "serie": "BNB 4h",
+     "retorno": -0.0817455791303795,
+     "anual": -0.03820335283556453,
+     "caidaMax": 0.09324043952811788,
+     "operaciones": 74,
+     "rPromedio": -0.11175405611384162
+    },
+    {
+     "serie": "BNB 1d",
+     "retorno": 0.023192425864103194,
+     "anual": 0.0040517858593698275,
+     "caidaMax": 0.06080602563315849,
+     "operaciones": 29,
+     "rPromedio": 0.08446681821425116
+    },
+    {
+     "serie": "AVAX 4h",
+     "retorno": -0.010950672142794216,
+     "anual": -0.005016712219685471,
+     "caidaMax": 0.07265260071357617,
+     "operaciones": 77,
+     "rPromedio": -0.010184150435119128
+    },
+    {
+     "serie": "AVAX 1d",
+     "retorno": 0.15778201850332696,
+     "anual": 0.026631027052269607,
+     "caidaMax": 0.04081798856811849,
+     "operaciones": 24,
+     "rPromedio": 0.6282406231956504
+    },
+    {
+     "serie": "LINK 4h",
+     "retorno": 0.04762624467493293,
+     "anual": 0.021474179183511133,
+     "caidaMax": 0.06256876780238937,
+     "operaciones": 73,
+     "rPromedio": 0.07208216389639312
+    },
+    {
+     "serie": "LINK 1d",
+     "retorno": -0.03722307425636939,
+     "anual": -0.00667742500232682,
+     "caidaMax": 0.07393322249042103,
+     "operaciones": 32,
+     "rPromedio": -0.1150807399616566
+    },
+    {
+     "serie": "LTC 4h",
+     "retorno": -0.10579681259338991,
+     "anual": -0.04978260597307904,
+     "caidaMax": 0.12432240335216875,
+     "operaciones": 81,
+     "rPromedio": -0.13491945289891202
+    },
+    {
+     "serie": "LTC 1d",
+     "retorno": -0.07688056918513142,
+     "anual": -0.01400947773995942,
+     "caidaMax": 0.09961314304458149,
+     "operaciones": 32,
+     "rPromedio": -0.2472814641964503
+    },
+    {
+     "serie": "ADA 4h",
+     "retorno": 0.15574725801335076,
+     "anual": 0.0683334104194051,
+     "caidaMax": 0.07571091294905186,
+     "operaciones": 76,
+     "rPromedio": 0.2033042242107995
+    },
+    {
+     "serie": "ADA 1d",
+     "retorno": 0.04291801767819092,
+     "anual": 0.008064127760957884,
+     "caidaMax": 0.0475952455800423,
+     "operaciones": 30,
+     "rPromedio": 0.1484792563077639
+    },
+    {
+     "serie": "SUI 4h",
+     "retorno": 0.06130217702048402,
+     "anual": 0.027542046066339143,
+     "caidaMax": 0.051882530987139165,
+     "operaciones": 72,
+     "rPromedio": 0.08879214978680976
+    },
+    {
+     "serie": "SUI 1d",
+     "retorno": 0.049630180542229896,
+     "anual": 0.01645489300056191,
+     "caidaMax": 0.033220457811577085,
+     "operaciones": 14,
+     "rPromedio": 0.3564343501887736
+    },
+    {
+     "serie": "AAVE 4h",
+     "retorno": -0.006886378144447258,
+     "anual": -0.0031506213378581505,
+     "caidaMax": 0.09203409574456486,
+     "operaciones": 75,
+     "rPromedio": -0.005551061051736348
+    },
+    {
+     "serie": "AAVE 1d",
+     "retorno": -0.016729565892530718,
+     "anual": -0.003064102820049097,
+     "caidaMax": 0.048432535446837864,
+     "operaciones": 24,
+     "rPromedio": -0.068548238469127
+    },
+    {
+     "serie": "DOT 4h",
+     "retorno": -0.01628768467561703,
+     "anual": -0.007471086163315488,
+     "caidaMax": 0.07522361040925159,
+     "operaciones": 81,
+     "rPromedio": -0.01585137553305971
+    },
+    {
+     "serie": "DOT 1d",
+     "retorno": 0.021226645297354185,
+     "anual": 0.003940029112750487,
+     "caidaMax": 0.040416670196447575,
+     "operaciones": 24,
+     "rPromedio": 0.09021710455088335
+    },
+    {
+     "serie": "NEAR 4h",
+     "retorno": 0.02473435261493573,
+     "anual": 0.011220182983508797,
+     "caidaMax": 0.06387132523180096,
+     "operaciones": 72,
+     "rPromedio": 0.037673800611644305
+    },
+    {
+     "serie": "NEAR 1d",
+     "retorno": 0.10451994063956582,
+     "anual": 0.01936622381572395,
+     "caidaMax": 0.07557155226606949,
+     "operaciones": 25,
+     "rPromedio": 0.4101129522245227
+    },
+    {
+     "serie": "HYPE 4h",
+     "retorno": -0.016966456103065353,
+     "anual": -0.009296746073964024,
+     "caidaMax": 0.0780076599458517,
+     "operaciones": 69,
+     "rPromedio": -0.020544127440571477
+    },
+    {
+     "serie": "HYPE 1d",
+     "retorno": -0.03679049668944001,
+     "anual": -0.026904660116650603,
+     "caidaMax": 0.03838706020609207,
+     "operaciones": 11,
+     "rPromedio": -0.33924971094660133
+    }
+   ],
+   "probabilidadAzar": 0.00075,
+   "leGanaAlAzar": true,
+   "leGanaAGuardar": true,
+   "confiable": false
+  }
+ ],
+ "azar": {
+  "rMediana": -0.05327029656402403,
+  "r95": -0.00011142153227370526,
+  "anualMediana": -0.026232618327425763,
+  "anual95": -0.0032141257597647116,
+  "operacionesMediana": 3208
+ },
+ "comprarYGuardar": [
+  {
+   "serie": "BTC 4h",
+   "final": 641.7377815061619,
+   "retorno": 0.2834755630123238,
+   "anual": 0.12071717419160644,
+   "caidaMax": 0.535023067177677,
+   "exposicion": 1,
+   "operaciones": []
+  },
+  {
+   "serie": "BTC 1d",
+   "final": 776.6750711136576,
+   "retorno": 0.5533501422273153,
+   "anual": 0.08085056060592688,
+   "caidaMax": 0.7666957563565903,
+   "exposicion": 1,
+   "operaciones": []
+  },
+  {
+   "serie": "ETH 4h",
+   "final": 446.19189377638025,
+   "retorno": -0.10761621244723951,
+   "anual": -0.050665982567450585,
+   "caidaMax": 0.6807063250832248,
+   "exposicion": 1,
+   "operaciones": []
+  },
+  {
+   "serie": "ETH 1d",
+   "final": 676.1819958755867,
+   "retorno": 0.3523639917511734,
+   "anual": 0.05473303942866803,
+   "caidaMax": 0.7935130756288556,
+   "exposicion": 1,
+   "operaciones": []
+  },
+  {
+   "serie": "SOL 4h",
+   "final": 314.1714779698743,
+   "retorno": -0.37165704406025146,
+   "anual": -0.19119280674562522,
+   "caidaMax": 0.7845852566792558,
+   "exposicion": 1,
+   "operaciones": []
+  },
+  {
+   "serie": "SOL 1d",
+   "final": 2340.3537364067433,
+   "retorno": 3.680707472813487,
+   "anual": 0.3177684247100572,
+   "caidaMax": 0.9627849002849003,
+   "exposicion": 1,
+   "operaciones": []
+  },
+  {
+   "serie": "XRP 4h",
+   "final": 1034.9398576060642,
+   "retorno": 1.0698797152121284,
+   "anual": 0.39405127082047176,
+   "caidaMax": 0.7255050295120127,
+   "exposicion": 1,
+   "operaciones": []
+  },
+  {
+   "serie": "XRP 1d",
+   "final": 548.8720336833521,
+   "retorno": 0.09774406736670427,
+   "anual": 0.016853996251929848,
+   "caidaMax": 0.832907261354365,
+   "exposicion": 1,
+   "operaciones": []
+  },
+  {
+   "serie": "DOGE 4h",
+   "final": 356.68729277376275,
+   "retorno": -0.28662541445247447,
+   "anual": -0.1429298357344514,
+   "caidaMax": 0.8544097952936676,
+   "exposicion": 1,
+   "operaciones": []
+  },
+  {
+   "serie": "DOGE 1d",
+   "final": 701.8371528502958,
+   "retorno": 0.4036743057005916,
+   "anual": 0.06162831616201303,
+   "caidaMax": 0.9235454548083792,
+   "exposicion": 1,
+   "operaciones": []
+  },
+  {
+   "serie": "BNB 4h",
+   "final": 655.4931299355324,
+   "retorno": 0.31098625987106465,
+   "anual": 0.13165300585306228,
+   "caidaMax": 0.5961191806331471,
+   "exposicion": 1,
+   "operaciones": []
+  },
+  {
+   "serie": "BNB 1d",
+   "final": 1535.0298517727692,
+   "retorno": 2.0700597035455384,
+   "anual": 0.21875159952060286,
+   "caidaMax": 0.7092915902843122,
+   "exposicion": 1,
+   "operaciones": []
+  },
+  {
+   "serie": "AVAX 4h",
+   "final": 178.8600244371252,
+   "retorno": -0.6422799511257495,
+   "anual": -0.37471265732067893,
+   "caidaMax": 0.8946816143497758,
+   "exposicion": 1,
+   "operaciones": []
+  },
+  {
+   "serie": "AVAX 1d",
+   "final": 128.80936339324143,
+   "retorno": -0.7423812732135171,
+   "anual": -0.21597162435148376,
+   "caidaMax": 0.9563157972776608,
+   "exposicion": 1,
+   "operaciones": []
+  },
+  {
+   "serie": "LINK 4h",
+   "final": 495.1411374906881,
+   "retorno": -0.00971772501862378,
+   "anual": -0.004449447849962596,
+   "caidaMax": 0.7648040829766216,
+   "exposicion": 1,
+   "operaciones": []
+  },
+  {
+   "serie": "LINK 1d",
+   "final": 171.4559795209775,
+   "retorno": -0.657088040958045,
+   "anual": -0.17224084580349042,
+   "caidaMax": 0.9019766397124889,
+   "exposicion": 1,
+   "operaciones": []
+  },
+  {
+   "serie": "LTC 4h",
+   "final": 417.32312448300854,
+   "retorno": -0.16535375103398287,
+   "anual": -0.07922505678958203,
+   "caidaMax": 0.721665162141518,
+   "exposicion": 1,
+   "operaciones": []
+  },
+  {
+   "serie": "LTC 1d",
+   "final": 142.38056244655237,
+   "retorno": -0.7152388751068952,
+   "anual": -0.1987095014233613,
+   "caidaMax": 0.8947308811037606,
+   "exposicion": 1,
+   "operaciones": []
+  },
+  {
+   "serie": "ADA 4h",
+   "final": 253.7048695460855,
+   "retorno": -0.492590260907829,
+   "anual": -0.26641600884561223,
+   "caidaMax": 0.8918585021485574,
+   "exposicion": 1,
+   "operaciones": []
+  },
+  {
+   "serie": "ADA 1d",
+   "final": 42.38841856182391,
+   "retorno": -0.9152231628763522,
+   "anual": -0.3760334570871937,
+   "caidaMax": 0.9515975733063702,
+   "exposicion": 1,
+   "operaciones": []
+  },
+  {
+   "serie": "SUI 4h",
+   "final": 532.9373113127475,
+   "retorno": 0.06587462262549493,
+   "anual": 0.029561306457609682,
+   "caidaMax": 0.8779044270537977,
+   "exposicion": 1,
+   "operaciones": []
+  },
+  {
+   "serie": "SUI 1d",
+   "final": 782.3128919776976,
+   "retorno": 0.5646257839553952,
+   "anual": 0.1628024300063713,
+   "caidaMax": 0.8769139162980605,
+   "exposicion": 1,
+   "operaciones": []
+  },
+  {
+   "serie": "AAVE 4h",
+   "final": 532.8246785178609,
+   "retorno": 0.06564935703572172,
+   "anual": 0.029461936155746216,
+   "caidaMax": 0.8480391659479478,
+   "exposicion": 1,
+   "operaciones": []
+  },
+  {
+   "serie": "AAVE 1d",
+   "final": 140.73115534418767,
+   "retorno": -0.7185376893116246,
+   "anual": -0.20594429737075293,
+   "caidaMax": 0.9210186822112857,
+   "exposicion": 1,
+   "operaciones": []
+  },
+  {
+   "serie": "DOT 4h",
+   "final": 105.55223763191704,
+   "retorno": -0.788895524736166,
+   "anual": -0.5084965198876238,
+   "caidaMax": 0.9343600107787658,
+   "exposicion": 1,
+   "operaciones": []
+  },
+  {
+   "serie": "DOT 1d",
+   "final": 28.06443064806039,
+   "retorno": -0.9438711387038792,
+   "anual": -0.4167791450946192,
+   "caidaMax": 0.9860637725273298,
+   "exposicion": 1,
+   "operaciones": []
+  },
+  {
+   "serie": "NEAR 4h",
+   "final": 443.6075569938829,
+   "retorno": -0.11278488601223424,
+   "anual": -0.05318089040138818,
+   "caidaMax": 0.8821471232331276,
+   "exposicion": 1,
+   "operaciones": []
+  },
+  {
+   "serie": "NEAR 1d",
+   "final": 352.87689562453727,
+   "retorno": -0.29424620875092544,
+   "anual": -0.06502933157699953,
+   "caidaMax": 0.9524088625531366,
+   "exposicion": 1,
+   "operaciones": []
+  },
+  {
+   "serie": "HYPE 4h",
+   "final": 1593.5303962244773,
+   "retorno": 2.1870607924489547,
+   "anual": 0.8826284586027864,
+   "caidaMax": 0.6492806669716843,
+   "exposicion": 1,
+   "operaciones": []
+  },
+  {
+   "serie": "HYPE 1d",
+   "final": 1085.8779056859778,
+   "retorno": 1.1717558113719555,
+   "anual": 0.7581672625005322,
+   "caidaMax": 0.6422395415863703,
+   "exposicion": 1,
+   "operaciones": []
+  }
+ ]
+}

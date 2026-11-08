@@ -1,0 +1,6 @@
+node_modules/
+.compilado/
+.wrangler/
+.dev.vars
+# Precios bajados por el laboratorio (se vuelven a bajar solos)
+datos/

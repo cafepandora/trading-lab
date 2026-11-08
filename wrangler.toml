@@ -1,0 +1,23 @@
+# Worker de la simulación en vivo. Se publica solo al hacer push a main si el
+# repo está conectado en Cloudflare (Workers & Pages → Create → Import a repository).
+name = "trading-lab"
+main = "src/vivo/index.ts"
+compatibility_date = "2025-09-01"
+workers_dev = true
+
+# La simulación vive en un Durable Object con su propia base SQLite
+# (disponible en el plan gratis de Cloudflare).
+[[durable_objects.bindings]]
+name = "SIMULADOR"
+class_name = "Simulador"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["Simulador"]
+
+# Cada 10 minutos revisa que la alarma de cada minuto siga puesta.
+[triggers]
+crons = ["*/10 * * * *"]
+
+[observability]
+enabled = true
