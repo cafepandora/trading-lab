@@ -1,0 +1,1093 @@
+{
+ "generado": "2026-11-08T15:41:21.228Z",
+ "reglas": {
+  "capital": 50,
+  "riesgo": 0.005,
+  "tope": 1,
+  "costos": {
+   "comision": 0.001,
+   "desliz": 0.0005,
+   "deslizStop": 0.001,
+   "fundingHora": 0
+  },
+  "minimoBinance": 5
+ },
+ "ultimoAnio": {
+  "desde": "2025-11-08",
+  "porEstilo": {
+   "scalping": {
+    "nombre": "Scalping",
+    "combinaciones": 7,
+    "ganan": 0,
+    "rPromedio": -1.000169385379152,
+    "costoR": 0.9073366451318468,
+    "operaciones": 31880,
+    "mejor": {
+     "combo": "scalping|5m|cruce-20-50-compras",
+     "estilo": "scalping",
+     "tf": "5m",
+     "estrategia": "cruce-20-50-compras",
+     "operaciones": 4907,
+     "porDia": 13.443835616438356,
+     "aciertos": 0.19034033014061544,
+     "rPromedio": -0.7343542094629808,
+     "t": -54.88819830304499,
+     "costoR": 0.676310640410875,
+     "horasPromedio": 0.7435636166021021,
+     "cuenta": {
+      "final": 5.1530447682381215,
+      "resultado": -0.8969391046352375,
+      "caida": 0.8974017884196953,
+      "hechas": 869
+     }
+    },
+    "filas": [
+     {
+      "combo": "scalping|5m|cruce-20-50-compras",
+      "estilo": "scalping",
+      "tf": "5m",
+      "estrategia": "cruce-20-50-compras",
+      "operaciones": 4907,
+      "porDia": 13.443835616438356,
+      "aciertos": 0.19034033014061544,
+      "rPromedio": -0.7343542094629808,
+      "t": -54.88819830304499,
+      "costoR": 0.676310640410875,
+      "horasPromedio": 0.7435636166021021,
+      "cuenta": {
+       "final": 5.1530447682381215,
+       "resultado": -0.8969391046352375,
+       "caida": 0.8974017884196953,
+       "hechas": 869
+      }
+     },
+     {
+      "combo": "scalping|5m|bollinger-compras",
+      "estilo": "scalping",
+      "tf": "5m",
+      "estrategia": "bollinger-compras",
+      "operaciones": 4035,
+      "porDia": 11.054794520547945,
+      "aciertos": 0.218091697645601,
+      "rPromedio": -0.8509059931405348,
+      "t": -59.568589752398324,
+      "costoR": 0.826654520726347,
+      "horasPromedio": 0.48938455183808943,
+      "cuenta": {
+       "final": 5.150966463669678,
+       "resultado": -0.8969806707266065,
+       "caida": 0.8971745705412173,
+       "hechas": 806
+      }
+     },
+     {
+      "combo": "scalping|5m|rsi-2-10-compras",
+      "estilo": "scalping",
+      "tf": "5m",
+      "estrategia": "rsi-2-10-compras",
+      "operaciones": 4939,
+      "porDia": 13.531506849315068,
+      "aciertos": 0.058716339339947354,
+      "rPromedio": -0.6787597825356373,
+      "t": -85.33311789779782,
+      "costoR": 0.5956512002989157,
+      "horasPromedio": 0.236569481001552,
+      "cuenta": {
+       "final": 5.150388406984578,
+       "resultado": -0.8969922318603084,
+       "caida": 0.8969922318603084,
+       "hechas": 887
+      }
+     },
+     {
+      "combo": "scalping|5m|martillo",
+      "estilo": "scalping",
+      "tf": "5m",
+      "estrategia": "martillo",
+      "operaciones": 4065,
+      "porDia": 11.136986301369863,
+      "aciertos": 0.16678966789667896,
+      "rPromedio": -1.8635465922854262,
+      "t": -79.24203514738772,
+      "costoR": 1.6551544492251329,
+      "horasPromedio": 0.3454079540795411,
+      "cuenta": {
+       "final": 5.144612612210931,
+       "resultado": -0.8971077477557814,
+       "caida": 0.8971077477557814,
+       "hechas": 661
+      }
+     },
+     {
+      "combo": "scalping|5m|tendencia-20-10-compras",
+      "estilo": "scalping",
+      "tf": "5m",
+      "estrategia": "tendencia-20-10-compras",
+      "operaciones": 5743,
+      "porDia": 15.734246575342466,
+      "aciertos": 0.2155667769458471,
+      "rPromedio": -0.558021904270498,
+      "t": -51.526430682073034,
+      "costoR": 0.49185520889743733,
+      "horasPromedio": 0.7614487201810707,
+      "cuenta": {
+       "final": 5.137643428470111,
+       "resultado": -0.8972471314305978,
+       "caida": 0.8972471314305978,
+       "hechas": 972
+      }
+     },
+     {
+      "combo": "scalping|5m|estrella",
+      "estilo": "scalping",
+      "tf": "5m",
+      "estrategia": "estrella",
+      "operaciones": 3967,
+      "porDia": 10.868493150684932,
+      "aciertos": 0.19889084950844466,
+      "rPromedio": -1.2383513941834585,
+      "t": -59.628997264140736,
+      "costoR": 1.1398322709205253,
+      "horasPromedio": 0.5559826905302141,
+      "cuenta": {
+       "final": 5.137228226843096,
+       "resultado": -0.8972554354631381,
+       "caida": 0.8972554354631381,
+       "hechas": 741
+      }
+     },
+     {
+      "combo": "scalping|5m|envolvente",
+      "estilo": "scalping",
+      "tf": "5m",
+      "estrategia": "envolvente",
+      "operaciones": 4224,
+      "porDia": 11.572602739726028,
+      "aciertos": 0.2050189393939394,
+      "rPromedio": -1.3739457805860913,
+      "t": -63.08754620797607,
+      "costoR": 1.2441102616856279,
+      "horasPromedio": 0.47435290404040975,
+      "cuenta": {
+       "final": 5.136940425350856,
+       "resultado": -0.8972611914929829,
+       "caida": 0.8972611914929829,
+       "hechas": 757
+      }
+     }
+    ]
+   },
+   "day": {
+    "nombre": "Day trading",
+    "combinaciones": 12,
+    "ganan": 0,
+    "rPromedio": -0.37176984844134675,
+    "costoR": 0.33325267173408835,
+    "operaciones": 13471,
+    "mejor": {
+     "combo": "day|1h|soldados",
+     "estilo": "day",
+     "tf": "1h",
+     "estrategia": "soldados",
+     "operaciones": 18,
+     "porDia": 0.049315068493150684,
+     "aciertos": 0.5,
+     "rPromedio": -0.0315027697085354,
+     "t": -0.15371534293984315,
+     "costoR": 0.148761381586198,
+     "horasPromedio": 19,
+     "cuenta": {
+      "final": 49.704837593864994,
+      "resultado": -0.005903248122700155,
+      "caida": 0.016929613130034715,
+      "hechas": 14
+     }
+    },
+    "filas": [
+     {
+      "combo": "day|1h|soldados",
+      "estilo": "day",
+      "tf": "1h",
+      "estrategia": "soldados",
+      "operaciones": 18,
+      "porDia": 0.049315068493150684,
+      "aciertos": 0.5,
+      "rPromedio": -0.0315027697085354,
+      "t": -0.15371534293984315,
+      "costoR": 0.148761381586198,
+      "horasPromedio": 19,
+      "cuenta": {
+       "final": 49.704837593864994,
+       "resultado": -0.005903248122700155,
+       "caida": 0.016929613130034715,
+       "hechas": 14
+      }
+     },
+     {
+      "combo": "day|15m|soldados",
+      "estilo": "day",
+      "tf": "15m",
+      "estrategia": "soldados",
+      "operaciones": 170,
+      "porDia": 0.4657534246575342,
+      "aciertos": 0.3941176470588235,
+      "rPromedio": -0.2080921249324827,
+      "t": -2.3571564726070235,
+      "costoR": 0.3304361683360589,
+      "horasPromedio": 5.185294117647059,
+      "cuenta": {
+       "final": 44.79292409768761,
+       "resultado": -0.10414151804624783,
+       "caida": 0.11610114351170164,
+       "hechas": 158
+      }
+     },
+     {
+      "combo": "day|1h|cruce-20-50-compras",
+      "estilo": "day",
+      "tf": "1h",
+      "estrategia": "cruce-20-50-compras",
+      "operaciones": 535,
+      "porDia": 1.4657534246575343,
+      "aciertos": 0.34953271028037386,
+      "rPromedio": -0.1580116226079041,
+      "t": -2.5936791592526887,
+      "costoR": 0.1814085331516643,
+      "horasPromedio": 16.005607476635515,
+      "cuenta": {
+       "final": 37.67138902284956,
+       "resultado": -0.24657221954300879,
+       "caida": 0.28539397862338145,
+       "hechas": 431
+      }
+     },
+     {
+      "combo": "day|1h|tendencia-20-10-compras",
+      "estilo": "day",
+      "tf": "1h",
+      "estrategia": "tendencia-20-10-compras",
+      "operaciones": 910,
+      "porDia": 2.493150684931507,
+      "aciertos": 0.3010989010989011,
+      "rPromedio": -0.08587511708695023,
+      "t": -2.110922615880756,
+      "costoR": 0.1558149905148547,
+      "horasPromedio": 14.002197802197802,
+      "cuenta": {
+       "final": 35.97245872567759,
+       "resultado": -0.28055082548644816,
+       "caida": 0.38693386231659943,
+       "hechas": 590
+      }
+     },
+     {
+      "combo": "day|1h|bollinger-compras",
+      "estilo": "day",
+      "tf": "1h",
+      "estrategia": "bollinger-compras",
+      "operaciones": 275,
+      "porDia": 0.7534246575342466,
+      "aciertos": 0.44363636363636366,
+      "rPromedio": -0.33481246478673804,
+      "t": -6.464698388328614,
+      "costoR": 0.2136788037741648,
+      "horasPromedio": 7.970909090909091,
+      "cuenta": {
+       "final": 32.562157303213795,
+       "resultado": -0.3487568539357241,
+       "caida": 0.3611430518209475,
+       "hechas": 250
+      }
+     },
+     {
+      "combo": "day|15m|envolvente",
+      "estilo": "day",
+      "tf": "15m",
+      "estrategia": "envolvente",
+      "operaciones": 209,
+      "porDia": 0.5726027397260274,
+      "aciertos": 0.215311004784689,
+      "rPromedio": -0.9756881939876114,
+      "t": -10.930968047367228,
+      "costoR": 0.631628205812467,
+      "horasPromedio": 1.2966507177033493,
+      "cuenta": {
+       "final": 23.775589805991185,
+       "resultado": -0.5244882038801764,
+       "caida": 0.5244882038801764,
+       "hechas": 190
+      }
+     },
+     {
+      "combo": "day|1h|rsi-2-10-compras",
+      "estilo": "day",
+      "tf": "1h",
+      "estrategia": "rsi-2-10-compras",
+      "operaciones": 916,
+      "porDia": 2.5095890410958903,
+      "aciertos": 0.3395196506550218,
+      "rPromedio": -0.2228461110132624,
+      "t": -15.472847348260371,
+      "costoR": 0.1707787469806026,
+      "horasPromedio": 3.118995633187773,
+      "cuenta": {
+       "final": 21.204403770142708,
+       "resultado": -0.5759119245971458,
+       "caida": 0.5764337901214261,
+       "hechas": 711
+      }
+     },
+     {
+      "combo": "day|15m|cruce-20-50-compras",
+      "estilo": "day",
+      "tf": "15m",
+      "estrategia": "cruce-20-50-compras",
+      "operaciones": 2109,
+      "porDia": 5.778082191780822,
+      "aciertos": 0.18492176386913228,
+      "rPromedio": -0.40712312663218575,
+      "t": -8.25614436177726,
+      "costoR": 0.3860818341879256,
+      "horasPromedio": 8.946301564722617,
+      "cuenta": {
+       "final": 10.782285389841295,
+       "resultado": -0.7843542922031741,
+       "caida": 0.79366438803192,
+       "hechas": 860
+      }
+     },
+     {
+      "combo": "day|1h|envolvente",
+      "estilo": "day",
+      "tf": "1h",
+      "estrategia": "envolvente",
+      "operaciones": 1187,
+      "porDia": 3.252054794520548,
+      "aciertos": 0.3235046335299073,
+      "rPromedio": -0.43388757544567164,
+      "t": -10.64381406109874,
+      "costoR": 0.42260456647288125,
+      "horasPromedio": 6.026116259477675,
+      "cuenta": {
+       "final": 10.34838384554979,
+       "resultado": -0.7930323230890042,
+       "caida": 0.7967837082721807,
+       "hechas": 680
+      }
+     },
+     {
+      "combo": "day|15m|bollinger-compras",
+      "estilo": "day",
+      "tf": "15m",
+      "estrategia": "bollinger-compras",
+      "operaciones": 1251,
+      "porDia": 3.4273972602739726,
+      "aciertos": 0.390087929656275,
+      "rPromedio": -0.5489306465825908,
+      "t": -22.385153461365444,
+      "costoR": 0.45580627805080226,
+      "horasPromedio": 1.8657074340527577,
+      "cuenta": {
+       "final": 8.577149554034026,
+       "resultado": -0.8284570089193195,
+       "caida": 0.8288085846207596,
+       "hechas": 758
+      }
+     },
+     {
+      "combo": "day|15m|tendencia-20-10-compras",
+      "estilo": "day",
+      "tf": "15m",
+      "estrategia": "tendencia-20-10-compras",
+      "operaciones": 3307,
+      "porDia": 9.06027397260274,
+      "aciertos": 0.20562443302086483,
+      "rPromedio": -0.3686547927348607,
+      "t": -15.745888951774475,
+      "costoR": 0.3258819519723892,
+      "horasPromedio": 3.9451920169337766,
+      "cuenta": {
+       "final": 6.0118544686944535,
+       "resultado": -0.8797629106261109,
+       "caida": 0.8803578540613828,
+       "hechas": 1082
+      }
+     },
+     {
+      "combo": "day|15m|rsi-2-10-compras",
+      "estilo": "day",
+      "tf": "15m",
+      "estrategia": "rsi-2-10-compras",
+      "operaciones": 2584,
+      "porDia": 7.079452054794521,
+      "aciertos": 0.15092879256965944,
+      "rPromedio": -0.39855502321885844,
+      "t": -42.996244384951254,
+      "costoR": 0.3407743439755152,
+      "horasPromedio": 0.7125580495356038,
+      "cuenta": {
+       "final": 5.315994457799524,
+       "resultado": -0.8936801108440096,
+       "caida": 0.8937496078272829,
+       "hechas": 1127
+      }
+     }
+    ]
+   },
+   "swing": {
+    "nombre": "Swing trading",
+    "combinaciones": 16,
+    "ganan": 5,
+    "rPromedio": -0.004671669961606617,
+    "costoR": 0.057265952566423,
+    "operaciones": 1415,
+    "mejor": {
+     "combo": "swing|4h|cruce-50-200-compras",
+     "estilo": "swing",
+     "tf": "4h",
+     "estrategia": "cruce-50-200-compras",
+     "operaciones": 75,
+     "porDia": 0.2054794520547945,
+     "aciertos": 0.2,
+     "rPromedio": 0.32651096586706446,
+     "t": 0.8450297963130713,
+     "costoR": 0.0698724706348053,
+     "horasPromedio": 384.85333333333335,
+     "cuenta": {
+      "final": 54.62588601679869,
+      "resultado": 0.09251772033597372,
+      "caida": 0.12020382133202501,
+      "hechas": 31
+     }
+    },
+    "filas": [
+     {
+      "combo": "swing|4h|cruce-50-200-compras",
+      "estilo": "swing",
+      "tf": "4h",
+      "estrategia": "cruce-50-200-compras",
+      "operaciones": 75,
+      "porDia": 0.2054794520547945,
+      "aciertos": 0.2,
+      "rPromedio": 0.32651096586706446,
+      "t": 0.8450297963130713,
+      "costoR": 0.0698724706348053,
+      "horasPromedio": 384.85333333333335,
+      "cuenta": {
+       "final": 54.62588601679869,
+       "resultado": 0.09251772033597372,
+       "caida": 0.12020382133202501,
+       "hechas": 31
+      }
+     },
+     {
+      "combo": "swing|4h|tendencia-55-20-compras",
+      "estilo": "swing",
+      "tf": "4h",
+      "estrategia": "tendencia-55-20-compras",
+      "operaciones": 208,
+      "porDia": 0.5698630136986301,
+      "aciertos": 0.2932692307692308,
+      "rPromedio": -0.0477550141786974,
+      "t": -0.5941522434722815,
+      "costoR": 0.03738822116714618,
+      "horasPromedio": 118.88461538461539,
+      "cuenta": {
+       "final": 53.87481954085775,
+       "resultado": 0.07749639081715509,
+       "caida": 0.022681829002023313,
+       "hechas": 19
+      }
+     },
+     {
+      "combo": "swing|4h|cruce-20-50-compras",
+      "estilo": "swing",
+      "tf": "4h",
+      "estrategia": "cruce-20-50-compras",
+      "operaciones": 307,
+      "porDia": 0.8410958904109589,
+      "aciertos": 0.2280130293159609,
+      "rPromedio": 0.03142911802517922,
+      "t": 0.19456286414263688,
+      "costoR": 0.0709221355317214,
+      "horasPromedio": 142.65798045602605,
+      "cuenta": {
+       "final": 50.68261621925506,
+       "resultado": 0.013652324385101222,
+       "caida": 0.1675772332824116,
+       "hechas": 111
+      }
+     },
+     {
+      "combo": "swing|4h|soldados",
+      "estilo": "swing",
+      "tf": "4h",
+      "estrategia": "soldados",
+      "operaciones": 13,
+      "porDia": 0.03561643835616438,
+      "aciertos": 0.6153846153846154,
+      "rPromedio": 0.3661728468545097,
+      "t": 1.0631115500591641,
+      "costoR": 0.04414090401404898,
+      "horasPromedio": 72.92307692307692,
+      "cuenta": {
+       "final": 50.48146012988853,
+       "resultado": 0.00962920259777067,
+       "caida": 0,
+       "hechas": 1
+      }
+     },
+     {
+      "combo": "swing|4h|bollinger-compras",
+      "estilo": "swing",
+      "tf": "4h",
+      "estrategia": "bollinger-compras",
+      "operaciones": 135,
+      "porDia": 0.3698630136986301,
+      "aciertos": 0.5777777777777777,
+      "rPromedio": 0.013218822175358538,
+      "t": 0.18780835491333206,
+      "costoR": 0.0847013773546029,
+      "horasPromedio": 37.422222222222224,
+      "cuenta": {
+       "final": 50.30028185671206,
+       "resultado": 0.006005637134241182,
+       "caida": 0.042783551142722365,
+       "hechas": 81
+      }
+     },
+     {
+      "combo": "swing|1d|cruce-20-50-compras",
+      "estilo": "swing",
+      "tf": "1d",
+      "estrategia": "cruce-20-50-compras",
+      "operaciones": 37,
+      "porDia": 0.10136986301369863,
+      "aciertos": 0.2702702702702703,
+      "rPromedio": -0.06719311082158698,
+      "t": -0.283477753162434,
+      "costoR": 0.03054072805985222,
+      "horasPromedio": 721.9459459459459,
+      "cuenta": {
+       "final": 50,
+       "resultado": 0,
+       "caida": 0,
+       "hechas": 0
+      }
+     },
+     {
+      "combo": "swing|1d|cruce-50-200-compras",
+      "estilo": "swing",
+      "tf": "1d",
+      "estrategia": "cruce-50-200-compras",
+      "operaciones": 8,
+      "porDia": 0.021917808219178082,
+      "aciertos": 0,
+      "rPromedio": -0.968096983464668,
+      "t": -18.935927341069984,
+      "costoR": 0.02348279762363248,
+      "horasPromedio": 624,
+      "cuenta": {
+       "final": 50,
+       "resultado": 0,
+       "caida": 0,
+       "hechas": 0
+      }
+     },
+     {
+      "combo": "swing|1d|tendencia-20-10-compras",
+      "estilo": "swing",
+      "tf": "1d",
+      "estrategia": "tendencia-20-10-compras",
+      "operaciones": 86,
+      "porDia": 0.2356164383561644,
+      "aciertos": 0.23255813953488372,
+      "rPromedio": -0.05040731279973373,
+      "t": -0.44854421610655465,
+      "costoR": 0.023159725855911688,
+      "horasPromedio": 353.5813953488372,
+      "cuenta": {
+       "final": 50,
+       "resultado": 0,
+       "caida": 0,
+       "hechas": 0
+      }
+     },
+     {
+      "combo": "swing|1d|tendencia-55-20-compras",
+      "estilo": "swing",
+      "tf": "1d",
+      "estrategia": "tendencia-55-20-compras",
+      "operaciones": 29,
+      "porDia": 0.07945205479452055,
+      "aciertos": 0.41379310344827586,
+      "rPromedio": 0.1452111497223557,
+      "t": 0.7265642605562559,
+      "costoR": 0.017765342119025442,
+      "horasPromedio": 715.0344827586207,
+      "cuenta": {
+       "final": 50,
+       "resultado": 0,
+       "caida": 0,
+       "hechas": 0
+      }
+     },
+     {
+      "combo": "swing|1d|soldados",
+      "estilo": "swing",
+      "tf": "1d",
+      "estrategia": "soldados",
+      "operaciones": 3,
+      "porDia": 0.00821917808219178,
+      "aciertos": 0.3333333333333333,
+      "rPromedio": -0.0869250415652147,
+      "t": -0.22916180467694214,
+      "costoR": 0.018242212078588053,
+      "horasPromedio": 696,
+      "cuenta": {
+       "final": 50,
+       "resultado": 0,
+       "caida": 0,
+       "hechas": 0
+      }
+     },
+     {
+      "combo": "swing|1d|rsi-14-30-compras",
+      "estilo": "swing",
+      "tf": "1d",
+      "estrategia": "rsi-14-30-compras",
+      "operaciones": 0,
+      "porDia": 0,
+      "aciertos": 0,
+      "rPromedio": 0,
+      "t": 0,
+      "costoR": 0,
+      "horasPromedio": 0,
+      "cuenta": {
+       "final": 50,
+       "resultado": 0,
+       "caida": 0,
+       "hechas": 0
+      }
+     },
+     {
+      "combo": "swing|1d|bollinger-compras",
+      "estilo": "swing",
+      "tf": "1d",
+      "estrategia": "bollinger-compras",
+      "operaciones": 6,
+      "porDia": 0.01643835616438356,
+      "aciertos": 0.5,
+      "rPromedio": -0.12650225759539166,
+      "t": -0.42497966599237147,
+      "costoR": 0.03184646815844864,
+      "horasPromedio": 272,
+      "cuenta": {
+       "final": 50,
+       "resultado": 0,
+       "caida": 0,
+       "hechas": 0
+      }
+     },
+     {
+      "combo": "swing|1d|triple",
+      "estilo": "swing",
+      "tf": "1d",
+      "estrategia": "triple",
+      "operaciones": 1,
+      "porDia": 0.0027397260273972603,
+      "aciertos": 1,
+      "rPromedio": 0.8045723933037593,
+      "t": 0,
+      "costoR": 0.011617427399765895,
+      "horasPromedio": 720,
+      "cuenta": {
+       "final": 50,
+       "resultado": 0,
+       "caida": 0,
+       "hechas": 0
+      }
+     },
+     {
+      "combo": "swing|4h|triple",
+      "estilo": "swing",
+      "tf": "4h",
+      "estrategia": "triple",
+      "operaciones": 13,
+      "porDia": 0.03561643835616438,
+      "aciertos": 0.6153846153846154,
+      "rPromedio": 0.03948212267632619,
+      "t": 0.22391548359809615,
+      "costoR": 0.035194357396313075,
+      "horasPromedio": 134.76923076923077,
+      "cuenta": {
+       "final": 49.73352852377571,
+       "resultado": -0.005329429524485785,
+       "caida": 0.005329429524485785,
+       "hechas": 1
+      }
+     },
+     {
+      "combo": "swing|4h|rsi-14-30-compras",
+      "estilo": "swing",
+      "tf": "4h",
+      "estrategia": "rsi-14-30-compras",
+      "operaciones": 20,
+      "porDia": 0.0547945205479452,
+      "aciertos": 0.6,
+      "rPromedio": -0.006240041250143639,
+      "t": -0.04101007934730969,
+      "costoR": 0.06376730665348798,
+      "horasPromedio": 27.4,
+      "cuenta": {
+       "final": 49.31375236160707,
+       "resultado": -0.013724952767858567,
+       "caida": 0.021829629451192822,
+       "hechas": 7
+      }
+     },
+     {
+      "combo": "swing|4h|tendencia-20-10-compras",
+      "estilo": "swing",
+      "tf": "4h",
+      "estrategia": "tendencia-20-10-compras",
+      "operaciones": 474,
+      "porDia": 1.2986301369863014,
+      "aciertos": 0.2679324894514768,
+      "rPromedio": -0.05733680103149024,
+      "t": -0.808081107416629,
+      "costoR": 0.05995237966613388,
+      "horasPromedio": 60.49789029535865,
+      "cuenta": {
+       "final": 49.132233348166096,
+       "resultado": -0.017355333036678022,
+       "caida": 0.16998571556368536,
+       "hechas": 135
+      }
+     }
+    ]
+   }
+  }
+ },
+ "formula": {
+  "desde": "2024-01-01",
+  "final": 73.4488623962922,
+  "resultado": 0.46897724792584405,
+  "caida": 0.4178800127658331,
+  "hechas": 511,
+  "rPromedio": 0.22141156021514416,
+  "t": 2.8850535945100333,
+  "operaciones": 1891,
+  "eleccionesPorEstilo": {
+   "swing": 36
+  },
+  "ventanas": [
+   {
+    "desde": "2024-01-01",
+    "hasta": "2024-04-01",
+    "elegidas": [
+     {
+      "combo": "swing|4h|cruce-20-50-compras",
+      "n": 1205,
+      "r": 0.758,
+      "t": 5.61
+     },
+     {
+      "combo": "swing|4h|tendencia-55-20-compras",
+      "n": 986,
+      "r": 0.314,
+      "t": 5.32
+     },
+     {
+      "combo": "swing|4h|tendencia-20-10-compras",
+      "n": 2202,
+      "r": 0.191,
+      "t": 4.33
+     }
+    ],
+    "operaciones": 300
+   },
+   {
+    "desde": "2024-04-01",
+    "hasta": "2024-07-01",
+    "elegidas": [
+     {
+      "combo": "swing|4h|cruce-20-50-compras",
+      "n": 1282,
+      "r": 0.811,
+      "t": 6.04
+     },
+     {
+      "combo": "swing|4h|tendencia-55-20-compras",
+      "n": 1049,
+      "r": 0.308,
+      "t": 5.43
+     },
+     {
+      "combo": "swing|1d|tendencia-20-10-compras",
+      "n": 329,
+      "r": 0.717,
+      "t": 4.83
+     }
+    ],
+    "operaciones": 132
+   },
+   {
+    "desde": "2024-07-01",
+    "hasta": "2024-10-01",
+    "elegidas": [
+     {
+      "combo": "swing|4h|cruce-20-50-compras",
+      "n": 1365,
+      "r": 0.731,
+      "t": 5.77
+     },
+     {
+      "combo": "swing|4h|tendencia-55-20-compras",
+      "n": 1095,
+      "r": 0.283,
+      "t": 5.18
+     },
+     {
+      "combo": "swing|1d|tendencia-20-10-compras",
+      "n": 349,
+      "r": 0.685,
+      "t": 4.85
+     }
+    ],
+    "operaciones": 178
+   },
+   {
+    "desde": "2024-10-01",
+    "hasta": "2025-01-01",
+    "elegidas": [
+     {
+      "combo": "swing|4h|cruce-20-50-compras",
+      "n": 1437,
+      "r": 0.683,
+      "t": 5.67
+     },
+     {
+      "combo": "swing|4h|tendencia-55-20-compras",
+      "n": 1165,
+      "r": 0.269,
+      "t": 5.22
+     },
+     {
+      "combo": "swing|1d|tendencia-20-10-compras",
+      "n": 368,
+      "r": 0.624,
+      "t": 4.64
+     }
+    ],
+    "operaciones": 145
+   },
+   {
+    "desde": "2025-01-01",
+    "hasta": "2025-04-01",
+    "elegidas": [
+     {
+      "combo": "swing|4h|cruce-20-50-compras",
+      "n": 1509,
+      "r": 0.804,
+      "t": 6.06
+     },
+     {
+      "combo": "swing|4h|tendencia-55-20-compras",
+      "n": 1227,
+      "r": 0.315,
+      "t": 5.25
+     },
+     {
+      "combo": "swing|1d|tendencia-20-10-compras",
+      "n": 400,
+      "r": 0.635,
+      "t": 4.99
+     }
+    ],
+    "operaciones": 144
+   },
+   {
+    "desde": "2025-04-01",
+    "hasta": "2025-07-01",
+    "elegidas": [
+     {
+      "combo": "swing|4h|cruce-20-50-compras",
+      "n": 1597,
+      "r": 0.721,
+      "t": 5.73
+     },
+     {
+      "combo": "swing|4h|tendencia-55-20-compras",
+      "n": 1276,
+      "r": 0.294,
+      "t": 5.09
+     },
+     {
+      "combo": "swing|1d|tendencia-20-10-compras",
+      "n": 412,
+      "r": 0.665,
+      "t": 4.91
+     }
+    ],
+    "operaciones": 171
+   },
+   {
+    "desde": "2025-07-01",
+    "hasta": "2025-10-01",
+    "elegidas": [
+     {
+      "combo": "swing|4h|cruce-20-50-compras",
+      "n": 1665,
+      "r": 0.703,
+      "t": 5.79
+     },
+     {
+      "combo": "swing|4h|tendencia-55-20-compras",
+      "n": 1334,
+      "r": 0.281,
+      "t": 5.06
+     },
+     {
+      "combo": "swing|1d|tendencia-20-10-compras",
+      "n": 436,
+      "r": 0.625,
+      "t": 4.87
+     }
+    ],
+    "operaciones": 156
+   },
+   {
+    "desde": "2025-10-01",
+    "hasta": "2026-01-01",
+    "elegidas": [
+     {
+      "combo": "swing|4h|cruce-20-50-compras",
+      "n": 1736,
+      "r": 0.709,
+      "t": 6.05
+     },
+     {
+      "combo": "swing|4h|tendencia-55-20-compras",
+      "n": 1408,
+      "r": 0.286,
+      "t": 5.35
+     },
+     {
+      "combo": "swing|1d|tendencia-20-10-compras",
+      "n": 465,
+      "r": 0.612,
+      "t": 5.06
+     }
+    ],
+    "operaciones": 131
+   },
+   {
+    "desde": "2026-01-01",
+    "hasta": "2026-04-01",
+    "elegidas": [
+     {
+      "combo": "swing|4h|cruce-20-50-compras",
+      "n": 1814,
+      "r": 0.638,
+      "t": 5.68
+     },
+     {
+      "combo": "swing|4h|tendencia-55-20-compras",
+      "n": 1451,
+      "r": 0.268,
+      "t": 5.15
+     },
+     {
+      "combo": "swing|1d|tendencia-20-10-compras",
+      "n": 474,
+      "r": 0.591,
+      "t": 4.96
+     }
+    ],
+    "operaciones": 164
+   },
+   {
+    "desde": "2026-04-01",
+    "hasta": "2026-07-01",
+    "elegidas": [
+     {
+      "combo": "swing|4h|cruce-20-50-compras",
+      "n": 1904,
+      "r": 0.59,
+      "t": 5.5
+     },
+     {
+      "combo": "swing|4h|tendencia-55-20-compras",
+      "n": 1505,
+      "r": 0.246,
+      "t": 4.89
+     },
+     {
+      "combo": "swing|1d|tendencia-20-10-compras",
+      "n": 498,
+      "r": 0.542,
+      "t": 4.76
+     }
+    ],
+    "operaciones": 155
+   },
+   {
+    "desde": "2026-07-01",
+    "hasta": "2026-10-01",
+    "elegidas": [
+     {
+      "combo": "swing|4h|cruce-20-50-compras",
+      "n": 1974,
+      "r": 0.556,
+      "t": 5.37
+     },
+     {
+      "combo": "swing|4h|tendencia-55-20-compras",
+      "n": 1561,
+      "r": 0.229,
+      "t": 4.69
+     },
+     {
+      "combo": "swing|1d|tendencia-20-10-compras",
+      "n": 521,
+      "r": 0.504,
+      "t": 4.61
+     }
+    ],
+    "operaciones": 192
+   },
+   {
+    "desde": "2026-10-01",
+    "hasta": "2026-11-08",
+    "elegidas": [
+     {
+      "combo": "swing|4h|cruce-20-50-compras",
+      "n": 2049,
+      "r": 0.568,
+      "t": 5.62
+     },
+     {
+      "combo": "swing|4h|tendencia-55-20-compras",
+      "n": 1633,
+      "r": 0.239,
+      "t": 5.05
+     },
+     {
+      "combo": "swing|1d|tendencia-20-10-compras",
+      "n": 542,
+      "r": 0.498,
+      "t": 4.73
+     }
+    ],
+    "operaciones": 23
+   }
+  ]
+ },
+ "botHoy": {
+  "final": 89.84102651211076,
+  "resultado": 0.7968205302422151,
+  "caida": 0.42268064774286507,
+  "hechas": 541
+ }
+}

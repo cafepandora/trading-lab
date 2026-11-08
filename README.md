@@ -132,6 +132,36 @@ sale del rango por abajo queda con monedas compradas más caras, y eso se come
 todo. BTC: entre −7% y +2% al año (guardar BTC: +5%); ETH y SOL: entre −4% y
 −40% al año, con caídas de 45% a 69%.
 
+## Scalping, day trading y swing, con las reglas del bot (`npm run estilos`)
+
+Cada estilo con sus velas y sus estrategias típicas, **solo compras** y con lo
+que cobra Binance spot (0,1% por orden más deslizamiento), en la cuenta del
+bot (50 USD, 0,5% de riesgo, órdenes de al menos 5 USD). Último año
+(noviembre 2025 → noviembre 2026), el único con datos de los tres estilos
+(`resultados/estilos.json`):
+
+| Estilo | Velas | Cuánto dura cada operación | Combinaciones que ganan | Por cada $1 arriesgado | Lo que se comen los costos por operación | La cuenta |
+|---|---|---|---|---|---|---|
+| Scalping | 5 min | menos de 1 hora | 0 de 7 | −1,00 | 0,91 | se queda sin plata para operar (−90%) en todas |
+| Day trading | 15 min y 1 hora | menos de 1 día | 0 de 12 | −0,37 | 0,33 | de −1% a −89% |
+| Swing trading | 4 horas y diarias | días o semanas | 5 de 16 | 0,00 | 0,06 | de −2% a +9% |
+
+Las operaciones cortas mueven tan poco el precio que la comisión se come casi
+todo lo que arriesgan. Y la ventaja de fondo es cero: repitiendo lo mismo sin
+ninguna comisión ni deslizamiento, scalping da +0,005 por cada $1 arriesgado
+y day trading +0,003, o sea nada. Lo único que hacen es pagar comisiones.
+
+**Trading algorítmico** es todo lo de este repositorio. La fórmula
+algorítmica que elige sola entre los tres estilos: cada 3 meses mira solo lo
+que ya pasó, elige hasta 3 combinaciones con t ≥ 2 y al menos 30
+operaciones, y las opera los 3 meses siguientes, que no vio. De enero de 2024
+a hoy, a ciegas, eligió swing las 36 veces (scalping y day trading nunca
+pasaron los filtros): 50 USD → 73 USD (+47%), cayendo hasta 42%. El bot de hoy
+(swing, cruce 20/50 en 4 horas), en el mismo período: 50 → 90 USD (+80%),
+también con caídas de hasta 42%. Por eso el bot sigue siendo de swing; si
+algún día un estilo corto empieza a pasar los filtros, `npm run estilos` lo
+mostrará.
+
 ## Las simulaciones en vivo
 
 38 cuentas virtuales, cada una con su propia plata, operando a la vez:
@@ -309,6 +339,7 @@ npm run corto-plazo           # velas de 5 min a 4 h y bot de grilla (resultados
 npm run referencia            # pasa resultados/binance-15-monedas.json al panel
 npm run traders               # busca traders que lleven años ganando (src/vivo/traders.json)
 npm run probabilidades        # qué tan seguido gana el bot y con qué riesgo (resultados/probabilidades.json)
+npm run estilos               # scalping, day trading, swing y la fórmula que elige entre ellos (resultados/estilos.json)
 npm run pruebas               # que nada mire el futuro, vivo = laboratorio, copias y bot real
 npm run en-vivo -- 30         # repite los últimos 30 días con el ciclo en vivo real
 npm run tipos                 # revisa los tipos
