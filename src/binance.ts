@@ -16,7 +16,8 @@ export class ErrorBinance extends Error {
 }
 
 export const simbolo = (moneda: string) => `${moneda}USDT`;
-const intervalo = (horas: number) => (horas === 24 ? '1d' : `${horas}h`);
+/** 24 → "1d", 4 → "4h", 0.25 → "15m". */
+const intervalo = (horas: number) => (horas === 24 ? '1d' : horas >= 1 ? `${horas}h` : `${Math.round(horas * 60)}m`);
 
 async function pedir<T>(ruta: string, params: Record<string, string | number>): Promise<T> {
   const consulta = new URLSearchParams(Object.entries(params).map(([k, v]) => [k, String(v)])).toString();
@@ -51,10 +52,10 @@ export async function velas(moneda: string, horas: number, cantidad: number): Pr
   return ks.map(aVela);
 }
 
-/** Toda la historia disponible, solo velas ya cerradas (para el laboratorio). */
-export async function historia(moneda: string, horas: number, ahora = Date.now()): Promise<Vela[]> {
+/** La historia desde `desde` (por defecto toda), solo velas ya cerradas (para el laboratorio). */
+export async function historia(moneda: string, horas: number, ahora = Date.now(), desdeInicio = 0): Promise<Vela[]> {
   const out: Vela[] = [];
-  let desde = 0;
+  let desde = desdeInicio;
   for (;;) {
     const ks = await pedir<Kline[]>('/api/v3/klines', { symbol: simbolo(moneda), interval: intervalo(horas), startTime: desde, limit: 1000 });
     for (const k of ks) if (k[6] < ahora) out.push(aVela(k));

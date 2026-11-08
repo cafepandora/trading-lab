@@ -9,7 +9,8 @@
     "referencia": "node scripts/referencia.mjs",
     "deploy": "wrangler deploy",
     "en-vivo": "node scripts/compilar.mjs && node scripts/en-vivo.mjs",
-    "sistema": "node scripts/compilar.mjs && node scripts/sistema.mjs"
+    "sistema": "node scripts/compilar.mjs && node scripts/sistema.mjs",
+    "corto-plazo": "node scripts/compilar.mjs && node scripts/corto-plazo.mjs"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^5.20261107.1",

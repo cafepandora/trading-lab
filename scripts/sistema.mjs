@@ -26,6 +26,8 @@ const MIN_T = 2;
 const ELEGIR = 3;
 // Riesgo por operación (LAB_RIESGO solo para ver cuánto cambia con apuestas más chicas o más grandes).
 const RIESGO = Number(process.env.LAB_RIESGO) || 0.005;
+// Tope de todo lo abierto junto, en veces la cuenta (LAB_TOPE solo para ver el efecto).
+const TOPE = Number(process.env.LAB_TOPE) || AJUSTES.apalancamientoMax;
 const CAIDA_MAXIMA = 0.25;
 const AHORA = Date.now();
 
@@ -105,13 +107,17 @@ for (let desde = INICIO_CIEGO; desde < AHORA; desde = sumarMeses(desde, MESES)) 
 function cuenta(ops) {
   const eventos = [];
   ops.forEach((o, k) => { eventos.push([o.tEntrada, 1, k]); eventos.push([o.tSalida, 0, k]); });
-  eventos.sort((a, b) => a[0] - b[0] || a[1] - b[1]); // a la misma hora, primero las salidas
+  // En una misma vela, primero las entradas (son a la apertura) y después las
+  // salidas (pasan durante la vela). Así una operación que toca el stop en su
+  // misma vela de entrada se abre y se cierra, en ese orden.
+  eventos.sort((a, b) => a[0] - b[0] || b[1] - a[1]);
   let caja = AJUSTES.capital, pico = caja, caida = 0, abierto = 0, abiertas = 0, maxAbiertas = 0;
   const tomadas = new Map();
+  const curva = [[ops.length ? Math.min(...ops.map((o) => o.tEntrada)) : 0, caja]];
   for (const [, tipo, k] of eventos) {
     const o = ops[k];
     if (tipo === 1) {
-      const nocional = Math.min((caja * RIESGO) / o.riesgoPct, Math.max(0, AJUSTES.apalancamientoMax * caja - abierto));
+      const nocional = Math.min((caja * RIESGO) / o.riesgoPct, Math.max(0, TOPE * caja - abierto));
       if (nocional < AJUSTES.ordenMinima) continue;
       tomadas.set(k, nocional);
       abierto += nocional;
@@ -123,9 +129,10 @@ function cuenta(ops) {
       abiertas--;
       pico = Math.max(pico, caja);
       caida = Math.max(caida, (pico - caja) / pico);
+      curva.push([o.tSalida, caja]);
     }
   }
-  return { final: caja / AJUSTES.capital, caidaMax: caida, maxAbiertas, tomadas: tomadas.size };
+  return { final: caja / AJUSTES.capital, caidaMax: caida, maxAbiertas, tomadas: tomadas.size, curva };
 }
 
 function resumen(ops, desde, hasta) {
@@ -185,9 +192,9 @@ for (const v of ventanas) {
   console.log(`${fecha(v.desde)} → ${fecha(v.hasta)}  ${(v.elegidas.map((e) => e.id).join(', ') || '(ninguna pasó: no opera)').padEnd(60)} ${String(r.operaciones).padStart(5)}  ${num(r.rPromedio).padStart(6)}`);
 }
 console.log(`\nSISTEMA a ciegas (${fecha(INICIO_CIEGO)} → hoy): ${sistema.operaciones} predicciones · acierto ${pct(sistema.aciertos)} · ${num(sistema.rPromedio)} R por operación · t ${num(sistema.t, 1)} · suerte ${pct(sistema.suerte)}`);
-console.log(`  cuenta de 500 USD arriesgando ${pct(RIESGO)} por operación (tope 2x): ${pct(sistema.anual)} al año · peor caída ${pct(sistema.caidaMax)} · ${sistema.tomadas} operaciones cupieron (las demás no tenían espacio) · hasta ${sistema.maxAbiertas} abiertas a la vez`);
+console.log(`  cuenta de 500 USD arriesgando ${pct(RIESGO)} por operación (tope ${String(TOPE).replace(".", ",")}x): ${pct(sistema.anual)} al año · peor caída ${pct(sistema.caidaMax)} · ${sistema.tomadas} operaciones cupieron (las demás no tenían espacio) · hasta ${sistema.maxAbiertas} abiertas a la vez`);
 console.log(`  frente a escoger 3 estrategias al azar cada semestre: mejor que el ${pct(peoresQueElSistema)} de 1.000 intentos`);
-for (const id of ['soldados', 'tendencia']) {
+for (const id of ['soldados', 'tendencia', 'cruce-20-50', 'cruce-20-50-compras']) {
   const f = fija(id);
   console.log(`  ${nombre(id)} fija: ${f.operaciones} ops · ${num(f.rPromedio)} R · ${pct(f.anual)} al año · caída ${pct(f.caidaMax)}`);
 }
@@ -198,12 +205,14 @@ console.log(`\n¿FUNCIONA según las reglas fijadas antes? ${funciona ? 'SÍ' : 
 const hoy = elegir(AHORA);
 console.log(`\nHoy elige: ${hoy.elegidas.map((e) => `${nombre(e.id)} (${e.n} ops, ${num(e.r)} R, t ${num(e.t, 1)})`).join(' · ')}`);
 
-const porAnio = {};
-for (const o of ciegas) (porAnio[new Date(o.tSalida).getUTCFullYear()] ??= []).push(o);
-const anual = Object.fromEntries(Object.entries(porAnio).map(([a, ops]) => {
-  const r = resumen(ops, Date.UTC(+a, 0, 1), Math.min(Date.UTC(+a + 1, 0, 1), AHORA));
-  return [a, { operaciones: r.operaciones, rPromedio: r.rPromedio, rendimiento: r.final - 1 }];
-}));
+// Por año, sobre la MISMA cuenta continua (arrastra lo ganado y lo abierto).
+const { curva } = cuenta(ciegas);
+const valorEn = (t) => { let v = curva[0][1]; for (const [tt, c] of curva) { if (tt > t) break; v = c; } return v; };
+const anual = {};
+for (let a = new Date(INICIO_CIEGO).getUTCFullYear(); a <= new Date(AHORA).getUTCFullYear(); a++) {
+  const ops = ciegas.filter((o) => new Date(o.tSalida).getUTCFullYear() === a);
+  anual[a] = { operaciones: ops.length, rPromedio: media(ops.map((o) => o.r)), rendimiento: valorEn(Date.UTC(a + 1, 0, 1) - 1) / valorEn(Date.UTC(a, 0, 1) - 1) - 1 };
+}
 console.log('Por año (a ciegas):', Object.entries(anual).map(([a, x]) => `${a}: ${x.operaciones} ops ${num(x.rPromedio)} R ${pct(x.rendimiento)}`).join(' · '));
 
 const reglas = { inicioCiego: fecha(INICIO_CIEGO), meses: MESES, minOperaciones: MIN_OPERACIONES, minT: MIN_T, elegir: ELEGIR, riesgo: RIESGO, caidaMaxima: CAIDA_MAXIMA };

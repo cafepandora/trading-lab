@@ -76,20 +76,55 @@ Resultado a ciegas, enero 2021 → noviembre 2026 (`resultados/sistema.json`):
 | Predicciones a ciegas | 12.298 |
 | Aciertos | 33,6% (gana pocas, pero más grandes) |
 | Por cada $1 arriesgado | +0,11 (t 6,4; el azar no llega ahí) |
-| Cuenta de 500 USD, 0,5% por operación | +29,8% al año, pero **cae hasta 54%** |
-| Por año | 2021 +386% · 2022 +1% · 2023 −26% · 2024 +168% · 2025 +11% · 2026 −44% |
+| Cuenta de 500 USD, 0,5% por operación, tope 2x | +19,8% al año, pero **cae hasta 71%** |
+| Por año (misma cuenta, continua) | 2021 +354% · 2022 +7% · 2023 −27% · 2024 +91% · 2025 −27% · 2026 −42% |
 | Frente a escoger 3 estrategias al azar | mejor que el 87% (no alcanza el 95%) |
 | **¿Funciona según las reglas?** | **No**: la caída pasa de 25% |
 
 - Casi siempre eligió **seguir la tendencia** (Donchian 20/10 y cruce de
   medias 20/50). Por operación tiene una ventaja real, pero como cuenta es
   demasiado brusca: llega a tener decenas de posiciones abiertas en monedas
-  que caen todas juntas. Con menos riesgo por operación (0,25%) la caída
-  sigue en 44%.
-- La ventaja se apagó: 2025 casi plano y 2026 en pérdida.
+  que caen todas juntas.
+- Lo que más baja el riesgo es el **tope de todo lo abierto junto**
+  (`LAB_TOPE`), no el riesgo por operación: con tope 1x cae hasta 48%; con
+  tope 0,5x, +23,8% al año y cae hasta 24,5% (2021 +145% · 2022 +23% ·
+  2023 −3% · 2024 +11% · 2025 +8% · 2026 0%). Pero ese tope se eligió
+  después de ver los resultados: no es una prueba a ciegas, y casi toda la
+  ganancia es de 2021 (de 2022 en adelante, unos 7% al año).
 - Cambiar las reglas ahora para que el pasado salga bien ya no sería una
   prueba a ciegas. La única prueba a ciegas que queda es el futuro: la
   simulación en vivo.
+
+> Corrección: una primera versión de esta cuenta procesaba la salida de una
+> operación antes que su entrada cuando las dos caían en la misma vela, y
+> esas posiciones quedaban abiertas para siempre. Los números de arriba ya
+> están corregidos (antes decía +29,8% al año y caída de 54%).
+
+## ¿Y si se hacen muchas operaciones cortas? (`npm run corto-plazo`)
+
+Las mismas estrategias en velas de 5 minutos, 15 minutos, 1 hora y 4 horas
+(BTC, ETH, SOL, XRP, DOGE, BNB), con dos escenarios: órdenes a mercado, y el
+mejor caso imposible de órdenes límite que siempre se llenan (comisión
+0,02%). Detalle en `resultados/corto-plazo.json`.
+
+| Velas | Lo que cuestan comisión y deslizamiento por operación | Entrar al azar | Lo mejor que salió (a mercado) |
+|---|---|---|---|
+| 5 min | 0,33 a 1,06 R | −0,67 R | Todas pierden; la cuenta se queda en cero en menos de un año |
+| 15 min | 0,19 a 0,61 R | −0,35 R | Todas pierden (−33% a −89% al año) |
+| 1 hora | 0,08 a 0,31 R | −0,19 R | Cruce de medias, +0,07 R, sin confianza (t 1,1; negativa en lo reciente) |
+| 4 horas | 0,03 a 0,15 R | −0,07 R | Tres soldados +0,27 R (cae 3%) · cruce de medias +0,20 R, +14% al año (cae 15%) |
+
+Mientras más corta la vela, más se comen los costos: en 5 minutos cada
+operación paga en costos entre un tercio y un R completo, antes de ganar
+nada. Y ni siquiera con órdenes límite perfectas aparece una ventaja en
+velas de 5 o 15 minutos.
+
+**Bot de grilla** (compra en cada bajón y vende en cada subida dentro de un
+rango, como el de Binance; velas de 15 minutos, últimos 2 años, se rearma
+cada 30 días): hace miles de "vueltas" ganadoras, pero cuando el precio se
+sale del rango por abajo queda con monedas compradas más caras, y eso se come
+todo. BTC: entre −7% y +2% al año (guardar BTC: +5%); ETH y SOL: entre −4% y
+−40% al año, con caídas de 45% a 69%.
 
 ## La simulación en vivo
 
@@ -155,6 +190,8 @@ npm run laboratorio           # prueba todo (BTC, ETH, SOL) con Binance
 LAB_MONEDAS=BTC,ETH,XRP npm run laboratorio   # con otras monedas
 LAB_FUENTE=hyperliquid npm run laboratorio    # con precios de Hyperliquid
 npm run sistema               # 35 estrategias + prueba a ciegas (resultados/sistema.json)
+LAB_TOPE=0.5 npm run sistema  # lo mismo con otro tope de exposición total (solo para comparar)
+npm run corto-plazo           # velas de 5 min a 4 h y bot de grilla (resultados/corto-plazo.json)
 npm run referencia            # pasa resultados/binance-15-monedas.json al panel
 npm run pruebas               # que nada mire el futuro y que vivo = laboratorio
 npm run en-vivo -- 30         # repite los últimos 30 días con el ciclo en vivo real
