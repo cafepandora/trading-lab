@@ -1,16 +1,21 @@
-// Worker de Cloudflare: el panel (con clave) y un Durable Object que corre
-// la simulación cada 30 segundos con una alarma. El cron cada 10 minutos
-// solo revisa que la alarma siga puesta.
+// Worker de Cloudflare: el panel (con clave), un Durable Object que corre
+// las simulaciones en papel cada 30 segundos, y otro aparte (real/durable.ts)
+// para el bot con dinero real, que arranca apagado. El cron cada 10 minutos
+// solo revisa que las alarmas sigan puestas.
 
 import { DurableObject } from 'cloudflare:workers';
 import * as binance from '../binance';
 import { AlmacenDO } from './almacen';
 import { MONEDAS } from './config';
 import { paginaEntrar, paginaFaltaClave, paginaPanel } from './panel';
-import { VERSION, armarEstado, correrCiclo, iniciar } from './simulacion';
+import { BotReal, type EnvBot } from './real/durable';
+import { VERSION, armarEstado, correrCiclo, iniciar, type Memoria } from './simulacion';
 
-export interface Env {
+export { BotReal };
+
+export interface Env extends EnvBot {
   SIMULADOR: DurableObjectNamespace<Simulador>;
+  BOT: DurableObjectNamespace<BotReal>;
   CLAVE_PANEL?: string;
 }
 
@@ -19,6 +24,7 @@ const INTERVALO = 30_000;
 export class Simulador extends DurableObject<Env> {
   private almacen: AlmacenDO;
   private corriendo = false;
+  private mem: Memoria = {};
 
   constructor(ctx: DurableObjectState, env: Env) {
     super(ctx, env);
@@ -53,7 +59,7 @@ export class Simulador extends DurableObject<Env> {
     if (this.corriendo) return null;
     this.corriendo = true;
     try {
-      return await correrCiclo(this.almacen);
+      return await correrCiclo(this.almacen, Date.now(), this.mem);
     } finally {
       this.corriendo = false;
     }
@@ -61,10 +67,11 @@ export class Simulador extends DurableObject<Env> {
 
   async estado() {
     await this.asegurar();
-    return JSON.stringify(await armarEstado(this.almacen));
+    return JSON.stringify(await armarEstado(this.almacen, Date.now(), this.mem));
   }
 
   async operacionesDe(cuenta: string) {
+    if (cuenta.startsWith('trader-')) return JSON.stringify({ copia: true, operaciones: await this.almacen.operacionesCopia(cuenta, 200) });
     return JSON.stringify(await this.almacen.operaciones(cuenta, 200));
   }
 
@@ -112,6 +119,8 @@ const json = (cuerpo: string, status = 200) =>
   new Response(cuerpo, { status, headers: { 'Content-Type': 'application/json; charset=utf-8', ...CABECERAS } });
 
 const simulador = (env: Env) => env.SIMULADOR.get(env.SIMULADOR.idFromName('principal'));
+// En Sudamérica: Binance bloquea servidores de algunos países (entre ellos EE. UU.).
+const bot = (env: Env) => env.BOT.get(env.BOT.idFromName('real'), { locationHint: 'sam' });
 
 export default {
   async fetch(req: Request, env: Env): Promise<Response> {
@@ -156,6 +165,21 @@ export default {
       }
     }
     if (url.pathname === '/api/operaciones') return json(await sim.operacionesDe((url.searchParams.get('cuenta') ?? '').slice(0, 20)));
+    // ── Bot con dinero real ──
+    if (url.pathname.startsWith('/api/real/')) {
+      // Las acciones solo desde el mismo panel (no desde otra página).
+      if (req.method === 'POST' && req.headers.get('Origin') !== url.origin) return json('{"error":"origen no permitido"}', 403);
+      if (url.pathname === '/api/real/estado') return json(await bot(env).estado());
+      if (req.method !== 'POST') return json('{"error":"método"}', 405);
+      if (url.pathname === '/api/real/probar') return json(await bot(env).probar());
+      if (url.pathname === '/api/real/detener') return json(await bot(env).detener());
+      if (url.pathname === '/api/real/activar') {
+        const cuerpo = (await req.json().catch(() => ({}))) as { confirmo?: string };
+        if (cuerpo.confirmo !== 'ACTIVAR') return json('{"ok":false,"error":"Para activarlo hay que escribir ACTIVAR."}', 400);
+        return json(await bot(env).activar());
+      }
+      return json('{"error":"no existe"}', 404);
+    }
     if (url.pathname === '/api/reiniciar' && req.method === 'POST') {
       await sim.reiniciar();
       return json('{"ok":true}');
@@ -168,5 +192,6 @@ export default {
 
   async scheduled(_evento: ScheduledController, env: Env, ctx: ExecutionContext) {
     ctx.waitUntil(simulador(env).asegurar());
+    ctx.waitUntil(bot(env).asegurar());
   },
 } satisfies ExportedHandler<Env>;

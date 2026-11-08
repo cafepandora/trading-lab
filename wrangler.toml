@@ -11,9 +11,18 @@ workers_dev = true
 name = "SIMULADOR"
 class_name = "Simulador"
 
+# El bot con dinero real (src/vivo/real/): arranca apagado.
+[[durable_objects.bindings]]
+name = "BOT"
+class_name = "BotReal"
+
 [[migrations]]
 tag = "v1"
 new_sqlite_classes = ["Simulador"]
+
+[[migrations]]
+tag = "v2"
+new_sqlite_classes = ["BotReal"]
 
 # Cada 10 minutos revisa que la alarma de cada minuto siga puesta.
 [triggers]

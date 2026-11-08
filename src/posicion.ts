@@ -28,7 +28,8 @@ export interface Abierta {
   velas: number;
 }
 
-export type MotivoSalida = 'stop' | 'objetivo' | 'tiempo' | 'fin';
+/** 'senal': la estrategia pidió salir (stop "infinito"), a la apertura de la vela siguiente. */
+export type MotivoSalida = 'stop' | 'objetivo' | 'tiempo' | 'fin' | 'senal';
 
 /**
  * Prepara la entrada a la apertura de la vela siguiente a la señal.
@@ -63,8 +64,9 @@ export function cobrarFunding(p: Abierta, v: Vela, horas: number, c: Costos): nu
  */
 export function revisarSalida(p: Abierta, v: Vela, c: Costos): { precio: number; por: MotivoSalida } | null {
   p.velas += 1;
-  if (p.lado === 1 && v.l <= p.stop) return { precio: Math.min(v.o, p.stop) * (1 - c.deslizStop), por: 'stop' };
-  if (p.lado === -1 && v.h >= p.stop) return { precio: Math.max(v.o, p.stop) * (1 + c.deslizStop), por: 'stop' };
+  const por: MotivoSalida = Number.isFinite(p.stop) ? 'stop' : 'senal';
+  if (p.lado === 1 && v.l <= p.stop) return { precio: Math.min(v.o, p.stop) * (1 - c.deslizStop), por };
+  if (p.lado === -1 && v.h >= p.stop) return { precio: Math.max(v.o, p.stop) * (1 + c.deslizStop), por };
   if (p.lado === 1 && v.h >= p.objetivo) return { precio: Math.max(v.o, p.objetivo) * (1 - c.desliz), por: 'objetivo' };
   if (p.lado === -1 && v.l <= p.objetivo) return { precio: Math.min(v.o, p.objetivo) * (1 + c.desliz), por: 'objetivo' };
   if (p.velas >= p.maxVelas) return { precio: v.c * (1 - p.lado * c.desliz), por: 'tiempo' };

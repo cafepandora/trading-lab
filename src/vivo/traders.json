@@ -1,0 +1,23 @@
+[
+ {
+  "id": "trader-1",
+  "nombre": "Copia del trader 1 (1,9 años ganando)",
+  "direccion": "0x5f94a51948d2376ad34a6fadfa2544e651b74b96",
+  "alElegir": {
+   "fecha": "2026-11-08",
+   "anios": 1.89,
+   "gananciaTotal": 8159632,
+   "trimestresEnVerde": 0.88,
+   "trimestres": 8,
+   "caidaMax": 0.288,
+   "valorCuenta": 2212781,
+   "apalancamiento": 6.23,
+   "monedas": [
+    "HYPE",
+    "ZEC",
+    "TRUMP",
+    "WLFI"
+   ]
+  }
+ }
+]

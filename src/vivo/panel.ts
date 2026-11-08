@@ -54,6 +54,15 @@ input{font:inherit;padding:10px 12px;border-radius:10px;border:1px solid var(--l
 .precios{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-top:8px}
 .precio{display:flex;justify-content:space-between;align-items:baseline;gap:6px;padding:8px 10px;border:1px solid var(--linea);border-radius:10px;font-variant-numeric:tabular-nums;flex-wrap:wrap}
 .precio b{min-width:44px}
+.real{border-width:2px;border-color:var(--ambar)}.real.activo{border-color:var(--verde)}.real.apagado{border-color:var(--linea)}
+.estado{display:inline-block;font-weight:700;padding:3px 12px;border-radius:99px;font-size:.9rem}
+.estado.on{background:var(--verde-bg);color:var(--verde)}.estado.off{background:var(--linea);color:var(--suave)}.estado.alerta{background:var(--rojo-bg);color:var(--rojo)}
+.botones{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+button.principal{background:var(--azul);border-color:var(--azul);color:#fff}
+.tipo{font-size:.75rem;font-weight:700;padding:1px 8px;border-radius:99px;margin-left:6px;vertical-align:middle}
+.tipo.copia{background:var(--azul-bg);color:var(--azul)}.tipo.referencia{background:var(--ambar-bg);color:var(--ambar)}.tipo.espejo{background:var(--verde-bg);color:var(--verde)}
+select{font:inherit;min-height:44px;padding:8px 12px;border-radius:10px;border:1px solid var(--linea);background:var(--tarjeta);color:var(--texto);max-width:100%}
+ol.pasos{margin:8px 0;padding-left:22px}ol.pasos li{margin:6px 0}
 @media (max-width:560px){.cuadros{grid-template-columns:1fr 1fr;gap:10px}.cuadro{padding:12px}.cuadro .n{font-size:1.2rem}.posiciones{grid-template-columns:1fr}}
 `;
 
@@ -80,11 +89,15 @@ ${error ? `<p class="aviso">${error}</p>` : ''}
 
 export function paginaPanel() {
   return base('Laboratorio de trading', `
-<h1>Laboratorio de trading <span class="chip">SIN DINERO REAL</span></h1>
+<h1>Laboratorio de trading</h1>
 <p class="meta" id="linea">Cargando…</p>
+<h2>Bot con dinero real</h2>
+<div id="real"><p class="tarjeta meta">Cargando…</p></div>
+<h2>Simulaciones <span class="chip">SIN DINERO REAL</span></h2>
 <div id="contenido"></div>
 <script>${SCRIPT}</script>`);
 }
+
 
 const SCRIPT = String.raw`
 const $ = (s) => document.querySelector(s);
@@ -98,20 +111,100 @@ const fecha = (t) => new Date(t).toLocaleDateString('es-CO', { day: 'numeric', m
 const hora = (t) => new Date(t).toLocaleString('es-CO', { day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' });
 // Precios en formato colombiano: $75.830,12 · $52,13 · $0,07149
 const precio = (x) => x == null ? '—' : '$' + (x >= 1000 ? x.toLocaleString('es-CO', { maximumFractionDigits: 2 }) : x.toLocaleString('es-CO', { maximumSignificantDigits: 5 }));
-const COLORES = { soldados: '#2a6fdb', triple: '#2a9d8f', tendencia: '#8e5cc4', confluencia: '#d1495b', BTC: 'var(--btc)' };
-let estado = null, abierta = null;
+const PALETA = ['#2a6fdb', '#2a9d8f', '#8e5cc4', '#d1495b', '#4f772d', '#1982c4', '#bc4749', '#5e60ce'];
+let estado = null, real = null, abierta = null, verPosiciones = null;
 let vivos = null, tVivos = null, errorVivos = false;
 
+const colorDe = (f, i) => f.tipo === 'referencia' ? 'var(--btc)' : f.id === 'espejo-real' ? '#1f7a4a' : f.tipo === 'copia' ? '#8e5cc4' : PALETA[i % PALETA.length];
+const etiquetaTipo = (f) => f.id === 'espejo-real' ? '<span class="tipo espejo">igual al bot real</span>' : f.tipo === 'copia' ? '<span class="tipo copia">copia de trader</span>' : f.tipo === 'referencia' ? '<span class="tipo referencia">referencia</span>' : '';
+const precioVivo = (m) => (vivos && vivos[m] ? vivos[m].precio : null);
+
+// ── Bot con dinero real ─────────────────────────────────────────────────
+
+function pintarReal() {
+  const cont = $('#real');
+  if (!real) return;
+  const e = real.estado, r = real.reglas;
+  if (real.error) { cont.innerHTML = '<p class="tarjeta aviso">No se pudo leer el estado del bot: ' + esc(real.error) + '</p>'; return; }
+  let h = '';
+  const reglas = '<ul class="meta" style="margin:8px 0 0;padding-left:20px">' +
+    '<li>Binance <b>spot, solo compras</b>: sin apalancamiento ni ventas en corto. Lo máximo que se puede perder es su presupuesto.</li>' +
+    '<li>Estrategia: cruce de medias 20/50 en velas de 4 horas, en ' + (estado ? estado.monedas.length : 14) + ' monedas. Arriesga ' + (r.riesgo * 100) + '% por operación.</li>' +
+    '<li>Cada compra deja puesta en Binance una orden de stop. Si lo que vale baja de ' + usd(r.pisoUsd) + ', vende todo y se apaga.</li>' +
+    '<li>Solo usa su presupuesto (' + usd(r.capital) + ') y solo vende lo que él mismo compró: no toca el resto de tu cuenta.</li></ul>';
+  if (!real.llaves) {
+    h = '<div class="tarjeta real apagado"><span class="estado off">Apagado · faltan las llaves</span>' +
+      '<p>Para que pueda operar con tu cuenta de Binance:</p><ol class="pasos">' +
+      '<li>En Binance: <b>Perfil → Gestión de API → Crear API</b>. Marca solo <b>"Habilitar trading de Spot y Margin"</b>. <b>Deja apagado el permiso de retiros.</b></li>' +
+      '<li>En Cloudflare: este Worker → <b>Settings → Variables and Secrets</b>. Agrega dos secretos: <b>BINANCE_API_KEY</b> (la API key) y <b>BINANCE_API_SECRET</b> (la clave secreta). Nunca las pegues en un chat.</li>' +
+      '<li>Pasa ' + usd(r.capital) + ' USDT a tu billetera <b>Spot</b>.</li>' +
+      '<li>Vuelve aquí: "Probar conexión" y, si todo sale bien, "Activar".</li></ol>' + reglas + '</div>';
+    cont.innerHTML = h;
+    return;
+  }
+  const errores = e.ultimoCiclo && e.ultimoCiclo.errores.length ? '<p class="meta">Último minuto con avisos: ' + esc(e.ultimoCiclo.errores.slice(0, 3).join(' · ')) + '</p>' : '';
+  if (!e.activo) {
+    h = '<div class="tarjeta real apagado"><span class="estado ' + (e.motivo ? 'alerta' : 'off') + '">' + (e.motivo ? 'Apagado' : 'Listo, pero apagado') + '</span>' +
+      (e.motivo ? '<p><b>Se apagó porque ' + esc(e.motivo) + '</b></p>' : '<p>Tiene las llaves. No opera hasta que lo actives.</p>') +
+      (e.operaciones ? '<p class="meta">Hasta ahora: ' + e.operaciones + ' operaciones, resultado ' + '<b class="' + clase(e.resultado) + '">' + usd2(e.resultado) + '</b>.</p>' : '') +
+      reglas + '<div class="botones"><button onclick="probarReal()">Probar conexión</button><button class="principal" onclick="activarReal()">Activar con ' + usd(r.capital) + '</button></div><p id="real-msg" class="meta"></p></div>';
+  } else {
+    const valor = e.valor, res = valor / e.presupuesto - 1;
+    h = '<div class="tarjeta real activo"><span class="estado on">Activo · operando con plata real</span>' +
+      '<div class="cuadros" style="margin-top:12px">' +
+      '<div class="cuadro"><div class="l">Vale ahora</div><div class="n ' + clase(res) + '">' + usd2(valor) + '</div><div class="l">' + pct(res) + ' desde ' + usd2(e.presupuesto) + '</div></div>' +
+      '<div class="cuadro"><div class="l">En caja (USDT)</div><div class="n">' + usd2(e.caja) + '</div><div class="l">se apaga si todo baja de ' + usd(r.pisoUsd) + '</div></div>' +
+      '<div class="cuadro"><div class="l">Operaciones cerradas</div><div class="n">' + e.operaciones + '</div><div class="l">' + e.ganadas + ' ganadas · resultado ' + usd2(e.resultado) + '</div></div></div>';
+    const ps = Object.values(e.posiciones);
+    h += ps.length ? '<div class="posiciones" style="margin-top:12px">' + ps.map((p) => tarjetaPosicion({
+      serie: p.moneda + ' 4h', moneda: p.moneda, lado: 1, entrada: p.entrada, tam: p.cantidad, stop: p.stop, objetivo: null,
+      arriesgado: p.arriesgado, tEntrada: p.tEntrada, motivo: p.ordenStop ? 'stop puesto en Binance ✓' : 'stop vigilado por el bot', cuenta: 'real', nombreCuenta: 'Dinero real',
+    }, '#1f7a4a')).join('') + '</div>' : '<p class="meta">Sin posiciones abiertas: espera una señal al cierre de las velas de 4 horas.</p>';
+    h += errores + '<div class="botones"><button onclick="probarReal()">Probar conexión</button><button class="peligro" onclick="detenerReal()">Detener y vender todo</button></div><p id="real-msg" class="meta"></p></div>';
+  }
+  if (real.eventos.length) h += '<div class="tarjeta"><b>Lo que ha hecho</b><ul class="eventos">' + real.eventos.slice(0, 12).map((ev) => '<li class="' + (ev.tipo === 'error' ? 'neg' : '') + '"><span class="meta">' + hora(ev.t) + '</span> · ' + esc(ev.texto) + '</li>').join('') + '</ul></div>';
+  cont.innerHTML = h;
+}
+
+async function accionReal(ruta, cuerpo) {
+  const msg = document.getElementById('real-msg');
+  if (msg) msg.textContent = 'Un momento…';
+  try {
+    const r = await fetch(ruta, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(cuerpo || {}) });
+    const j = await r.json();
+    await cargarReal();
+    const m = document.getElementById('real-msg');
+    if (m) m.textContent = j.ok === false ? j.error : j.usdt != null ? 'Conexión correcta. Tienes ' + usd2(j.usdt) + ' USDT libres en Spot.' : 'Listo.';
+    if (m && j.ok === false) m.className = 'aviso';
+  } catch (e) {
+    if (msg) msg.textContent = 'No se pudo: ' + e.message;
+  }
+}
+function probarReal() { accionReal('/api/real/probar'); }
+function activarReal() {
+  const t = prompt('Vas a activar el bot con DINERO REAL (' + usd(real.reglas.capital) + ' de tu cuenta de Binance). Puedes perder parte o todo ese dinero. Para confirmar, escribe ACTIVAR:');
+  if (t !== 'ACTIVAR') return;
+  accionReal('/api/real/activar', { confirmo: 'ACTIVAR' });
+}
+function detenerReal() {
+  if (!confirm('¿Detener el bot? Vende a mercado todo lo que compró y lo apaga.')) return;
+  accionReal('/api/real/detener');
+}
+
+// ── Simulaciones ─────────────────────────────────────────────────────────
+
+function ordenadas(e) {
+  return [...e.filas].sort((a, b) => b.resultado - a.resultado);
+}
+
 function veredicto(e) {
-  const c = e.filas[0];
-  const meta = e.ajustes.operacionesParaDecidir;
-  const n = c.operaciones;
+  const c = e.filas.find((f) => f.id === 'espejo-real') || e.filas[0];
+  const meta = e.ajustes.operacionesParaDecidir, n = c.operaciones;
   const barra = '<div class="barra" aria-hidden="true"><i style="width:' + Math.min(100, n / meta * 100) + '%"></i></div>';
-  if (n < meta) return { tipo: 'espera', texto: '<strong>Todavía no hay con qué decidir.</strong> La candidata (' + esc(c.nombre) + ') lleva ' + n + ' de ' + meta +
-    ' operaciones cerradas. Es una estrategia que opera poco: en la prueba con 9 años de precios de Binance, con estas monedas, salían unas 30 a 40 al año.' + barra };
-  if (c.rPromedio > 0 && c.resultado > 0) return { tipo: 'bien', texto: '<strong>' + esc(c.nombre) + ' sigue ganando en vivo:</strong> ' + rr(c.rPromedio) + ' por cada dólar arriesgado en ' + n +
-    ' operaciones (en la prueba con datos pasados: ' + rr(c.pasado?.rPromedio) + '). Si se decide probar con plata real, que sea poca y con las mismas reglas.' + barra };
-  return { tipo: 'mal', texto: '<strong>En vivo, ' + esc(c.nombre) + ' no está ganando</strong> (' + rr(c.rPromedio) + ' por cada dólar arriesgado en ' + n + ' operaciones). Lo de la prueba con datos pasados no se sostuvo: no conviene pasar a dinero real.' + barra };
+  const texto = n < meta
+    ? '<strong>' + esc(c.nombre) + ':</strong> lleva ' + n + ' de ' + meta + ' operaciones cerradas para poder comparar con confianza. Resultado hasta ahora: <b class="' + clase(c.resultado) + '">' + pct(c.resultado) + '</b> (' + usd2(c.valor) + ' de ' + usd2(c.capital) + ').'
+    : '<strong>' + esc(c.nombre) + ':</strong> ' + n + ' operaciones, ' + rr(c.rPromedio) + ' por cada dólar arriesgado, resultado <b class="' + clase(c.resultado) + '">' + pct(c.resultado) + '</b>.';
+  return { tipo: n < meta ? 'espera' : c.resultado > 0 ? 'bien' : 'mal', texto: texto + ' Si el bot real se activa, debería parecerse a esta simulación; si se separan mucho, algo en la ejecución real cuesta más de lo previsto.' + barra };
 }
 
 function grafica(e) {
@@ -120,48 +213,50 @@ function grafica(e) {
   if (tiempos.length < 3) return '<p class="tarjeta meta">La gráfica aparece en unas horas (se guarda un punto cada hora).</p>';
   const corta = tiempos[tiempos.length - 1] - tiempos[0] < 3 * 86400000;
   const etiqueta = (t) => corta ? new Date(t).toLocaleString('es-CO', { day: 'numeric', month: 'short', hour: 'numeric' }) : fecha(t);
+  // Se dibuja en % para comparar cuentas de distinto tamaño (500 y 50 USD).
+  const capital = Object.fromEntries(e.filas.map((f) => [f.id, f.capital]));
   const series = {};
-  for (const p of puntos) (series[p.cuenta] ??= {})[p.t] = p.valor;
-  const vals = puntos.map((p) => p.valor).concat([e.ajustes.capital]);
+  for (const p of puntos) (series[p.cuenta] ??= {})[p.t] = p.valor / (capital[p.cuenta] || 500) - 1;
+  const orden = ordenadas(e).filter((f) => f.tipo === 'estrategia' && f.id !== 'espejo-real');
+  const visibles = [...e.filas.filter((f) => f.id === 'espejo-real' || f.tipo !== 'estrategia'), ...orden.slice(0, 3), ...(abierta ? e.filas.filter((f) => f.id === abierta) : [])];
+  const unicas = [...new Map(visibles.map((f) => [f.id, f])).values()];
+  const vals = unicas.flatMap((f) => Object.values(series[f.id] || {})).concat([0]);
   let min = Math.min(...vals), max = Math.max(...vals);
-  const margen = Math.max((max - min) * 0.08, 3); min -= margen; max += margen;
+  const margen = Math.max((max - min) * 0.08, 0.005); min -= margen; max += margen;
   const W = Math.max(300, Math.min(900, (document.querySelector('main').clientWidth || 900) - 34));
   const H = W < 600 ? 250 : 320, iz = 54, de = 12, ar = 12, ab = 26;
-  const x = (t) => tiempos.length < 2 ? iz : iz + (W - iz - de) * (t - tiempos[0]) / (tiempos[tiempos.length - 1] - tiempos[0]);
+  const x = (t) => iz + (W - iz - de) * (t - tiempos[0]) / (tiempos[tiempos.length - 1] - tiempos[0]);
   const y = (v) => ar + (H - ar - ab) * (1 - (v - min) / (max - min));
-  let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="100%" role="img" aria-label="Valor de cada cuenta en el tiempo">';
+  let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="100%" role="img" aria-label="Resultado de cada simulación en el tiempo">';
   for (let i = 0; i <= 4; i++) {
     const v = min + (max - min) * i / 4;
     svg += '<line x1="' + iz + '" x2="' + (W - de) + '" y1="' + y(v) + '" y2="' + y(v) + '" stroke="currentColor" opacity=".12"/>';
-    svg += '<text x="' + (iz - 6) + '" y="' + (y(v) + 4) + '" text-anchor="end">' + usd(v) + '</text>';
+    svg += '<text x="' + (iz - 6) + '" y="' + (y(v) + 4) + '" text-anchor="end">' + pct(v) + '</text>';
   }
-  const b = e.ajustes.capital;
-  svg += '<line x1="' + iz + '" x2="' + (W - de) + '" y1="' + y(b) + '" y2="' + y(b) + '" stroke="currentColor" opacity=".45" stroke-dasharray="3 4"/>';
-  // En pantallas angostas, solo la primera y la última fecha (si no, se enciman).
+  svg += '<line x1="' + iz + '" x2="' + (W - de) + '" y1="' + y(0) + '" y2="' + y(0) + '" stroke="currentColor" opacity=".45" stroke-dasharray="3 4"/>';
   const marcas = W < 600 ? [[tiempos[0], 'start'], [tiempos[tiempos.length - 1], 'end']]
     : [[tiempos[0], 'start'], [tiempos[Math.floor(tiempos.length / 2)], 'middle'], [tiempos[tiempos.length - 1], 'end']];
-  marcas.forEach(([t, ancla]) => {
-    svg += '<text x="' + x(t) + '" y="' + (H - 6) + '" text-anchor="' + ancla + '">' + etiqueta(t) + '</text>';
-  });
-  for (const f of e.filas) {
+  marcas.forEach(([t, ancla]) => { svg += '<text x="' + x(t) + '" y="' + (H - 6) + '" text-anchor="' + ancla + '">' + etiqueta(t) + '</text>'; });
+  unicas.forEach((f, i) => {
     const s = series[f.id] || {};
-    const d = tiempos.filter((t) => s[t] != null).map((t, i) => (i ? 'L' : 'M') + x(t).toFixed(1) + ' ' + y(s[t]).toFixed(1)).join(' ');
-    const ancho = f.id === e.filas[0].id || abierta === f.id ? 3 : 1.6;
-    if (d) svg += '<path d="' + d + '" fill="none" stroke="' + (COLORES[f.id] || '#888') + '" stroke-width="' + ancho + '"' + (f.tipo === 'referencia' ? ' stroke-dasharray="7 5"' : '') + ' stroke-linejoin="round"/>';
-  }
+    const d = tiempos.filter((t) => s[t] != null).map((t, k) => (k ? 'L' : 'M') + x(t).toFixed(1) + ' ' + y(s[t]).toFixed(1)).join(' ');
+    const ancho = f.id === 'espejo-real' || f.id === abierta ? 3 : 1.8;
+    if (d) svg += '<path d="' + d + '" fill="none" stroke="' + colorDe(f, i) + '" stroke-width="' + ancho + '"' + (f.tipo === 'referencia' ? ' stroke-dasharray="7 5"' : '') + ' stroke-linejoin="round"/>';
+  });
   svg += '</svg>';
-  return '<div class="tarjeta">' + svg + '<div class="leyenda">' + e.filas.map((f) => '<span><i style="background:' + (COLORES[f.id] || '#888') + '"></i>' + esc(f.nombre) + '</span>').join('') +
-    '<span>- - - Capital inicial (' + usd(b) + ')</span></div></div>';
+  return '<div class="tarjeta">' + svg + '<div class="leyenda">' + unicas.map((f, i) => '<span><i style="background:' + colorDe(f, i) + '"></i>' + esc(f.nombre) + '</span>').join('') +
+    '</div><p class="meta" style="margin:6px 0 0">Muestra la que imita al bot real, las copias de traders, Bitcoin y las 3 mejores; toca una fila de la tabla para verla aquí.</p></div>';
 }
 
-function fila(f) {
-  const color = COLORES[f.id] || '#888';
-  let h = '<div class="fila" data-id="' + esc(f.id) + '"><span class="nombre" style="color:' + color + '">' + esc(f.nombre) + '</span>' +
+function fila(f, i) {
+  let h = '<div class="fila" data-id="' + esc(f.id) + '"><span class="nombre" style="color:' + colorDe(f, i) + '">' + esc(f.nombre) + etiquetaTipo(f) + '</span>' +
     '<span class="res ' + clase(f.resultado) + '">' + usd(f.valor) + ' · ' + pct(f.resultado) + '</span><span class="det">';
   if (f.tipo === 'referencia') h += 'Compró Bitcoin el primer día y lo guarda · peor caída ' + pct(f.caidaMax, false);
+  else if (f.tipo === 'copia') h += f.operaciones + ' operaciones · el trader solo: <b class="' + clase(f.resultadoTrader) + '">' + pct(f.resultadoTrader) + '</b> · peor caída ' + pct(f.caidaMax, false) +
+    (f.estado && f.estado !== 'activa' ? ' · <b class="neg">' + esc(f.motivoEstado || f.estado) + '</b>' : '') + ' · ' + f.posiciones.length + (f.posiciones.length === 1 ? ' abierta' : ' abiertas');
   else h += f.operaciones + ' operaciones cerradas' + (f.operaciones ? ' (' + pct(f.aciertos, false) + ' ganadas)' : '') +
     ' · por cada $1 arriesgado: <b class="' + clase(f.rPromedio) + '">' + rr(f.rPromedio) + '</b>' +
-    (f.pasado ? ' (en la prueba con datos pasados: ' + rr(f.pasado.rPromedio) + ' en ' + f.pasado.operaciones + ')' : '') +
+    (f.pasado ? ' (en la prueba con datos pasados: ' + rr(f.pasado.rPromedio) + ')' : '') +
     ' · ' + f.posiciones.length + (f.posiciones.length === 1 ? ' abierta' : ' abiertas') + ' · peor caída ' + pct(f.caidaMax, false);
   h += '</span>';
   if (abierta === f.id) h += '<div class="extra">' + detalle(f) + '</div>';
@@ -170,26 +265,33 @@ function fila(f) {
 
 function detalle(f) {
   let h = '<p>' + esc(f.explicacion) + '</p>';
+  if (f.nota && f.nota !== f.explicacion) h += '<p class="meta">' + esc(f.nota) + '</p>';
+  if (f.tipo === 'copia' && f.alElegir) {
+    const a = f.alElegir;
+    h += '<p class="meta">Billetera: <a href="https://app.hyperliquid.xyz/explorer/address/' + esc(f.direccion) + '" target="_blank" rel="noopener">' + esc(f.direccion) + '</a><br>Al elegirlo (' + esc(a.fecha) + '): ' +
+      esc(a.anios) + ' años de historia (lo máximo que muestra Hyperliquid), ganó en el ' + Math.round(a.trimestresEnVerde * 100) + '% de los trimestres, su peor caída fue ' + Math.round(a.caidaMax * 100) + '%, usa ' + esc(a.apalancamiento) + 'x y opera ' + esc((a.monedas || []).join(', ')) + '.</p>';
+  }
   if (f.tipo === 'referencia') return h;
-  h += '<p class="meta">Costos hasta hoy: comisiones ' + usd2(f.comisiones) + ' · funding ' + (f.funding >= 0 ? 'pagado ' : 'cobrado ') + usd2(Math.abs(f.funding)) +
-    (f.omitidas ? ' · ' + f.omitidas + ' señales sin espacio para operar' : '') + '</p>';
-  if (f.posiciones.length) {
-    h += '<table><tr><th>Moneda</th><th>Lado</th><th>Entró</th><th>Stop</th><th>Objetivo</th><th>Arriesga</th></tr>' + f.posiciones.map((p) =>
-      '<tr><td>' + esc(p.serie) + '</td><td>' + (p.lado === 1 ? 'Compra' : 'Venta en corto') + '</td><td>' + precio(p.entrada) + '<br><span class="meta">' + hora(p.tEntrada) + '</span></td><td>' + precio(p.stop) +
-      '</td><td>' + (p.objetivo == null ? 'sigue la tendencia' : precio(p.objetivo)) + '</td><td>' + usd2(p.arriesgado) + '</td></tr>').join('') + '</table>';
-  } else h += '<p class="meta">Sin posiciones abiertas.</p>';
+  h += '<p class="meta">Costos: comisiones ' + usd2(f.comisiones) + ' · funding ' + (f.funding >= 0 ? 'pagado ' : 'cobrado ') + usd2(Math.abs(f.funding)) + (f.omitidas ? ' · ' + f.omitidas + ' señales sin espacio' : '') + '</p>';
   h += '<div id="ops" class="meta">Cargando operaciones…</div>';
   return h;
 }
 
 async function cargarOperaciones(id) {
   const r = await fetch('/api/operaciones?cuenta=' + encodeURIComponent(id));
-  const ops = r.ok ? await r.json() : [];
+  const j = r.ok ? await r.json() : [];
   const cont = document.getElementById('ops');
   if (!cont) return;
+  if (j.copia) {
+    const ops = j.operaciones;
+    cont.innerHTML = ops.length ? '<p><b>Últimas operaciones</b></p><table><tr><th>Cuándo</th><th>Qué</th><th>Valor</th><th>Ganó</th></tr>' + ops.slice(0, 30).map((o) =>
+      '<tr><td>' + hora(o.t) + '</td><td>' + (o.lado === 'compra' ? 'Compra' : 'Venta') + ' ' + esc(o.moneda) + ' · ' + esc(o.motivo) + '</td><td>' + usd2(o.nocional) + '</td><td class="' + clase(o.pnl) + '">' + (o.pnl ? usd2(o.pnl) : '') + '</td></tr>').join('') + '</table>' : 'Todavía no ha operado.';
+    return;
+  }
+  const ops = j;
   cont.innerHTML = ops.length ? '<p><b>Operaciones cerradas</b></p><table><tr><th>Cerró</th><th>Moneda</th><th>Por qué</th><th>Resultado</th></tr>' + ops.slice(0, 30).map((o) =>
     '<tr><td>' + hora(o.tSalida) + '</td><td>' + esc(o.serie) + ' ' + (o.lado === 1 ? 'compra' : 'corto') + '</td><td>' + esc(o.motivo) + ' → ' +
-    ({ stop: 'stop', objetivo: 'objetivo', tiempo: 'tiempo', fin: 'cierre' }[o.por] || esc(o.por)) + '</td><td class="' + clase(o.pnl) + '">' + usd2(o.pnl) + ' (' + rr(o.r) + ' R)</td></tr>').join('') + '</table>'
+    ({ stop: 'stop', objetivo: 'objetivo', tiempo: 'tiempo', fin: 'cierre', senal: 'señal de salida' }[o.por] || esc(o.por)) + '</td><td class="' + clase(o.pnl) + '">' + usd2(o.pnl) + ' (' + rr(o.r) + ' R)</td></tr>').join('') + '</table>'
     : 'Todavía no ha cerrado operaciones.';
 }
 
@@ -197,32 +299,33 @@ function pintar() {
   const e = estado;
   if (!e.iniciada) { $('#contenido').innerHTML = '<p class="tarjeta">La simulación está arrancando…</p>'; return; }
   const atraso = e.ultimoCiclo ? (e.ahora - e.ultimoCiclo.t) / 60000 : 999;
-  $('#linea').textContent = 'Empezó el ' + fecha(e.iniciadaEl) + ' · día ' + Math.floor(e.dias) + ' · precios de Binance · ' + e.monedas.length + ' monedas en velas de 4 horas y diarias · se recarga cada 30 segundos' +
-    (e.ultimoCiclo ? ' (último: ' + hora(e.ultimoCiclo.t) + ')' : '');
+  const nEst = e.filas.filter((f) => f.tipo === 'estrategia').length, nCop = e.filas.filter((f) => f.tipo === 'copia').length;
+  $('#linea').textContent = 'Precios de Binance · se recarga cada 30 segundos · simulaciones desde el ' + fecha(e.iniciadaEl) + ' (día ' + Math.floor(e.dias) + ')' + (e.ultimoCiclo ? ' · último ciclo: ' + hora(e.ultimoCiclo.t) : '');
   let h = '';
-  if (atraso > 10) h += '<p class="aviso">La simulación no se actualiza desde hace ' + Math.round(atraso) + ' minutos. Si sigue así, revisa el Worker en Cloudflare.</p>';
+  if (atraso > 10) h += '<p class="aviso">Las simulaciones no se actualizan desde hace ' + Math.round(atraso) + ' minutos. Si sigue así, revisa el Worker en Cloudflare.</p>';
   if (e.ultimoCiclo && e.ultimoCiclo.errores.length) h += '<p class="meta">En la última revisión no se pudo leer: ' + esc(e.ultimoCiclo.errores.slice(0, 3).join(' · ')) + '. Se intenta de nuevo solo.</p>';
   const v = veredicto(e);
   h += '<div class="tarjeta veredicto ' + v.tipo + '">' + v.texto + '</div>';
-  h += '<h2>Operaciones abiertas</h2><div id="vivo-pos"></div>';
-  h += '<h2>Cuánto lleva cada cuenta</h2><div class="cuadros">' + e.filas.map((f) => '<div class="cuadro" style="--c:' + (COLORES[f.id] || '#888') + '"><div class="l">' + esc(f.nombre) + '</div><div class="n ' + clase(f.resultado) + '">' + usd(f.valor) +
-    '</div><div class="l">' + pct(f.resultado) + (f.tipo === 'estrategia' ? ' · ' + f.operaciones + ' op.' : '') + '</div></div>').join('') + '</div>';
+  h += '<p class="meta">' + nEst + ' estrategias' + (nCop ? ', ' + nCop + (nCop === 1 ? ' copia' : ' copias') + ' de traders' : '') + ' y Bitcoin guardado, cada una con su propia cuenta. Ordenadas por resultado; toca una para ver el detalle.</p>';
+  h += grafica(e);
+  const lista = ordenadas(e);
+  h += '<div class="tarjeta">' + lista.map((f) => fila(f, e.filas.indexOf(f))).join('') + '</div>';
+  const conPos = lista.filter((f) => f.posiciones.length);
+  if (!verPosiciones || !conPos.some((f) => f.id === verPosiciones)) verPosiciones = (conPos.find((f) => f.id === 'espejo-real') || conPos[0] || {}).id || null;
+  h += '<h2>Operaciones abiertas</h2>' + (conPos.length ? '<p><label class="meta" for="ver-pos">De la simulación: </label><select id="ver-pos" onchange="verPosiciones=this.value;pintarVivo()">' +
+    conPos.map((f) => '<option value="' + esc(f.id) + '"' + (f.id === verPosiciones ? ' selected' : '') + '>' + esc(f.nombre) + ' (' + f.posiciones.length + ')</option>').join('') + '</select></p>' : '') + '<div id="vivo-pos"></div>';
   h += '<h2>Precios en vivo</h2><div class="tarjeta" id="vivo-px"></div>';
-  h += '<h2>Cómo va cada una</h2>' + grafica(e);
-  h += '<div class="tarjeta">' + e.filas.map(fila).join('') + '</div>';
   h += '<h2>Cómo leer esto</h2><div class="tarjeta">' +
-    '<p>Cada estrategia tiene su propia cuenta de ' + usd(e.ajustes.capital) + ' virtuales y opera las ' + e.monedas.length + ' monedas a la vez. En cada operación arriesga el ' + (e.ajustes.riesgo * 100) +
-    '% de lo que vale la cuenta (la distancia entre la entrada y el stop), y entre todas las posiciones nunca pasa de ' + e.ajustes.apalancamientoMax + 'x.</p>' +
+    '<p>Cada simulación tiene su propia cuenta virtual: ' + usd(e.ajustes.capital) + ' las estrategias y las copias, y ' + usd(50) + ' la que imita al bot real (spot, comisión de 0,1%, sin apalancamiento). Arriesgan el ' + (e.ajustes.riesgo * 100) + '% de lo que valen por operación.</p>' +
     '<p><b>"Por cada $1 arriesgado"</b> es el número que importa: +0,26 quiere decir que, en promedio, cada operación ganó 26 centavos por cada dólar que puso en riesgo. Si es negativo, la estrategia pierde plata.</p>' +
-    '<p>Mira las velas cuando se cierran (cada 4 horas y cada día), entra a la apertura de la siguiente, y cobra las comisiones (' + (e.ajustes.comision * 100).toFixed(3) + '% por orden), el deslizamiento y el funding (costos de Binance Futuros). Son las mismas reglas de la prueba con datos pasados, para poder comparar.</p>' +
-    '<p><b>Stop (SL) y objetivo (TP):</b> cada operación nace con los dos. Se revisan con el máximo y el mínimo de cada vela cuando cierra: si el precio los tocó, la operación se cierra a ese precio. Si el precio en vivo ya los tocó antes del cierre, la tarjeta lo avisa. "Va ganando / perdiendo" no cuenta las comisiones.</p>' +
-    '<p>La que importa es <b>' + esc(e.filas[0].nombre) + '</b>, la que mejor salió en la prueba con 9 años de precios de Binance. Las otras están para comparar: si en vivo se portan como en la prueba, también confirma que el laboratorio mide bien.</p></div>';
-  if (e.eventos.length) h += '<h2>Lo que ha pasado</h2><div class="tarjeta"><ul class="eventos">' + e.eventos.map((ev) => '<li><span class="meta">' + hora(ev.t) + '</span> · ' + esc(ev.texto) + '</li>').join('') + '</ul></div>';
-  h += '<p style="margin-top:32px;display:flex;gap:10px;flex-wrap:wrap"><button onclick="location.href=\'/salir\'">Salir</button><button class="peligro" onclick="reiniciar()">Empezar de cero</button></p>';
+    '<p><b>Stop (SL) y objetivo (TP):</b> se revisan con el máximo y el mínimo de cada vela cuando cierra; si el precio en vivo ya los tocó antes, la tarjeta lo avisa. "Va ganando / perdiendo" no cuenta las comisiones.</p>' +
+    '<p><b>Copias de traders:</b> cada 30 segundos miran las posiciones de un trader de Hyperliquid con años ganando y hacen lo mismo en proporción, con tope de 2x y frenos (−5% en un día → pausa hasta mañana; −30% → se detiene). Son solo una guía: que haya ganado antes no asegura nada.</p></div>';
+  if (e.eventos.length) h += '<h2>Lo que ha pasado</h2><div class="tarjeta"><ul class="eventos">' + e.eventos.slice(0, 40).map((ev) => '<li><span class="meta">' + hora(ev.t) + '</span> · ' + esc(ev.texto) + '</li>').join('') + '</ul></div>';
+  h += '<p style="margin-top:32px;display:flex;gap:10px;flex-wrap:wrap"><button onclick="location.href=\'/salir\'">Salir</button><button class="peligro" onclick="reiniciar()">Empezar de cero las simulaciones</button></p>';
   $('#contenido').innerHTML = h;
-  document.querySelectorAll('.fila').forEach((f) => f.addEventListener('click', (ev) => {
+  document.querySelectorAll('.fila').forEach((el) => el.addEventListener('click', (ev) => {
     if (ev.target.closest('.extra')) return;
-    abierta = abierta === f.dataset.id ? null : f.dataset.id;
+    abierta = abierta === el.dataset.id ? null : el.dataset.id;
     pintar();
     if (abierta) cargarOperaciones(abierta);
   }));
@@ -235,42 +338,38 @@ function celda(etiqueta, valor, detalle, clase) {
   return '<div><span class="l">' + etiqueta + '</span><span class="v ' + (clase || '') + '">' + valor + '</span>' + (detalle ? '<span class="d">' + detalle + '</span>' : '') + '</div>';
 }
 
-function tarjetaPosicion(p) {
-  const actual = vivos && vivos[p.moneda] ? vivos[p.moneda].precio : null;
-  const color = COLORES[p.cuenta] || '#888';
+function tarjetaPosicion(p, color) {
+  const actual = precioVivo(p.moneda) ?? p.precioActual ?? null;
   const hasta = (nivel) => (actual ? 'a ' + pct(nivel / actual - 1) + ' del precio' : '');
   let h = '<div class="pos-card" style="--c:' + color + '"><div class="pos-top"><b>' + esc(p.serie) + ' · ' + (p.lado === 1 ? 'Compra (long)' : 'Venta en corto (short)') + '</b>' +
     '<span class="meta" style="color:' + color + '">' + esc(p.nombreCuenta) + '</span></div>' +
-    '<p class="meta" style="margin:4px 0 0">Entró ' + hora(p.tEntrada) + ' · ' + esc(p.motivo) + '</p><div class="pos-grid">' +
-    celda('Precio ahora', actual ? precio(actual) : '…', actual ? pct(actual / p.entrada - 1) + ' desde la entrada' : '') +
+    '<p class="meta" style="margin:4px 0 0">' + (p.tEntrada ? 'Entró ' + hora(p.tEntrada) + ' · ' : '') + esc(p.motivo) + '</p><div class="pos-grid">' +
+    celda('Precio ahora', actual ? precio(actual) : '…', actual ? pct(p.lado * (actual / p.entrada - 1)) + ' a su favor' : '') +
     celda('Entrada', precio(p.entrada), '') +
-    celda('Stop (SL)', precio(p.stop), hasta(p.stop), 'neg') +
-    celda('Objetivo (TP)', p.objetivo == null ? 'Sin fijo' : precio(p.objetivo), p.objetivo == null ? 'sigue la tendencia' : hasta(p.objetivo), 'pos') + '</div>';
-  if (p.objetivo != null && actual) {
+    celda('Stop (SL)', p.stop == null ? (p.cuenta && p.cuenta.startsWith('trader-') ? 'El del trader' : 'Sale con la señal') : precio(p.stop), p.stop == null ? '' : hasta(p.stop), p.stop == null ? '' : 'neg') +
+    celda('Objetivo (TP)', p.objetivo == null ? 'Sin fijo' : precio(p.objetivo), p.objetivo == null ? 'sale con la señal' : hasta(p.objetivo), 'pos') + '</div>';
+  if (p.objetivo != null && p.stop != null && actual) {
     const f = (x) => Math.max(0, Math.min(1, (x - p.stop) / (p.objetivo - p.stop))) * 100;
     h += '<div class="rango" role="img" aria-label="Dónde está el precio entre el stop y el objetivo"><span class="en" style="left:' + f(p.entrada) + '%"></span><span class="px" style="left:' + f(actual) + '%"></span></div>' +
       '<div class="rango-l"><span>SL</span><span>entrada ┃ precio ▮</span><span>TP</span></div>';
   }
   if (actual) {
     const pnl = p.lado * p.tam * (actual - p.entrada);
-    h += '<p class="pos-res ' + clase(pnl) + '">' + (pnl >= 0 ? 'Va ganando ' : 'Va perdiendo ') + usd2(Math.abs(pnl)) + ' (' + rr(pnl / p.arriesgado) + ' R) · arriesga ' + usd2(p.arriesgado) + '</p>';
+    h += '<p class="pos-res ' + clase(pnl) + '">' + (pnl >= 0 ? 'Va ganando ' : 'Va perdiendo ') + usd2(Math.abs(pnl)) + (p.arriesgado > 0 ? ' (' + rr(pnl / p.arriesgado) + ' R) · arriesga ' + usd2(p.arriesgado) : '') + '</p>';
   }
-  if (p.tocado) {
-    h += '<p class="aviso ' + (p.tocado.por === 'objetivo' ? 'bien' : '') + '" style="margin:10px 0 0">Ya tocó ' + (p.tocado.por === 'stop' ? 'el stop' : 'el objetivo') + ' (' + precio(p.tocado.precio) + ', ' + hora(p.tocado.t) + '). Se cierra oficialmente al cierre de la vela.</p>';
-  }
+  if (p.tocado) h += '<p class="aviso ' + (p.tocado.por === 'objetivo' ? 'bien' : '') + '" style="margin:10px 0 0">Ya tocó ' + (p.tocado.por === 'stop' ? 'el stop' : 'el objetivo') + ' (' + precio(p.tocado.precio) + ', ' + hora(p.tocado.t) + '). Se cierra oficialmente al cierre de la vela.</p>';
   return h + '</div>';
 }
 
 function pintarVivo() {
+  pintarReal();
   if (!estado || !estado.iniciada) return;
   const cont = document.getElementById('vivo-pos');
   if (cont) {
-    const candidata = estado.filas[0].id;
-    const ps = estado.filas.filter((f) => f.tipo === 'estrategia')
-      .flatMap((f) => f.posiciones.map((p) => ({ ...p, cuenta: f.id, nombreCuenta: f.nombre })))
-      .sort((a, b) => (b.cuenta === candidata) - (a.cuenta === candidata) || b.tEntrada - a.tEntrada);
-    cont.innerHTML = ps.length ? '<div class="posiciones">' + ps.map(tarjetaPosicion).join('') + '</div>'
-      : '<p class="tarjeta meta">No hay operaciones abiertas en este momento. Las estrategias miran las velas cuando cierran (cada 4 horas y cada día).</p>';
+    const f = estado.filas.find((x) => x.id === verPosiciones);
+    const i = f ? estado.filas.indexOf(f) : 0;
+    cont.innerHTML = f && f.posiciones.length ? '<div class="posiciones">' + f.posiciones.map((p) => tarjetaPosicion({ ...p, cuenta: f.id, nombreCuenta: f.nombre }, colorDe(f, i))).join('') + '</div>'
+      : '<p class="tarjeta meta">Ninguna simulación tiene operaciones abiertas en este momento.</p>';
   }
   const cpx = document.getElementById('vivo-px');
   if (cpx) {
@@ -299,8 +398,19 @@ async function cargarPrecios() {
   pintarVivo();
 }
 
+async function cargarReal() {
+  try {
+    const r = await fetch('/api/real/estado');
+    if (r.status === 401) { location.href = '/entrar'; return; }
+    real = await r.json();
+  } catch (e) {
+    real = { error: e.message };
+  }
+  pintarReal();
+}
+
 async function reiniciar() {
-  if (!confirm('¿Empezar la simulación de cero? Se borra todo lo que lleva.')) return;
+  if (!confirm('¿Empezar las simulaciones de cero? Se borra lo que llevan. (El bot con dinero real no se toca.)')) return;
   if (!confirm('Seguro: esto no se puede deshacer.')) return;
   await fetch('/api/reiniciar', { method: 'POST' });
   cargar();
@@ -317,11 +427,11 @@ async function cargar() {
     $('#linea').textContent = 'No se pudo cargar (¿sin conexión?). Se vuelve a intentar en 30 segundos.';
   }
 }
-cargar();
-cargarPrecios();
+function todo() { cargar(); cargarPrecios(); cargarReal(); }
+todo();
 let redimension;
 addEventListener('resize', () => { clearTimeout(redimension); redimension = setTimeout(() => estado && pintar(), 250); });
-setInterval(() => { if (!document.hidden) { cargar(); cargarPrecios(); } }, 30000);
+setInterval(() => { if (!document.hidden) todo(); }, 30000);
 // Al volver a la pestaña, actualiza de una vez en vez de esperar.
-document.addEventListener('visibilitychange', () => { if (!document.hidden) { cargar(); cargarPrecios(); } });
+document.addEventListener('visibilitychange', () => { if (!document.hidden) todo(); });
 `;

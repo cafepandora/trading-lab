@@ -10,7 +10,8 @@
     "deploy": "wrangler deploy",
     "en-vivo": "node scripts/compilar.mjs && node scripts/en-vivo.mjs",
     "sistema": "node scripts/compilar.mjs && node scripts/sistema.mjs",
-    "corto-plazo": "node scripts/compilar.mjs && node scripts/corto-plazo.mjs"
+    "corto-plazo": "node scripts/compilar.mjs && node scripts/corto-plazo.mjs",
+    "traders": "node scripts/traders.mjs"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^5.20261107.1",

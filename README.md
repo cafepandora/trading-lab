@@ -1,17 +1,23 @@
 # Laboratorio de trading
 
-Dos partes, sin dinero real, con precios de **Binance**:
+Tres partes, con precios de **Binance**:
 
 1. **El laboratorio** (`npm run laboratorio`): prueba estrategias de análisis
    técnico con la historia de precios de Binance (desde 2017), con costos
    reales, y las compara con comprar y guardar y con entrar al azar.
-2. **La simulación en vivo** (Cloudflare): opera en papel las estrategias
-   elegidas, vela por vela, a medida que el mercado avanza. El panel muestra
-   cada operación abierta con su **stop (SL)**, su **objetivo (TP)** y el
-   **precio en vivo**, y se recarga cada 30 segundos.
+2. **Las simulaciones en vivo** (Cloudflare, sin dinero real): 38 cuentas en
+   papel operan vela por vela a medida que el mercado avanza: las 35
+   estrategias, una copia exacta del bot real, la copia de un trader que
+   lleva casi 2 años ganando y Bitcoin guardado. El panel muestra cada
+   operación abierta con su **stop (SL)**, su **objetivo (TP)** y el **precio
+   en vivo**, y se recarga cada 30 segundos.
+3. **El bot con dinero real** (Binance spot, 50 USD): **arranca apagado**. Solo
+   opera si pones tus llaves de Binance en Cloudflare y lo activas tú desde el
+   panel escribiendo ACTIVAR. Ver "El bot con dinero real" más abajo.
 
-Nada de esto opera, tiene llaves ni toca una cuenta: solo lee datos públicos
-de mercado de Binance (`data-api.binance.vision`, mercado spot en USDT).
+Las partes 1 y 2 no tienen llaves ni tocan ninguna cuenta: solo leen datos
+públicos de mercado de Binance (`data-api.binance.vision`, spot en USDT) y de
+Hyperliquid (posiciones públicas de los traders que se copian en papel).
 
 ## Qué encontró el laboratorio (Binance, 2017–2026)
 
@@ -126,47 +132,120 @@ sale del rango por abajo queda con monedas compradas más caras, y eso se come
 todo. BTC: entre −7% y +2% al año (guardar BTC: +5%); ETH y SOL: entre −4% y
 −40% al año, con caídas de 45% a 69%.
 
-## La simulación en vivo
+## Las simulaciones en vivo
 
-Cuatro cuentas de 500 USD virtuales, cada una con una estrategia, operando
-las 14 monedas a la vez (velas de 4 horas y diarias):
+38 cuentas virtuales, cada una con su propia plata, operando a la vez:
 
-- **Tres soldados / tres cuervos**, la candidata;
-- triple techo / triple suelo, seguir la tendencia y "todo junto", para comparar;
-- más una referencia: **Bitcoin comprado el primer día y guardado**.
+- **Igual que el bot real** (`espejo-real`): la misma estrategia, las mismas
+  reglas y los mismos 50 USD que el bot con dinero real. Sirve para comparar
+  lo real con lo simulado: si el bot real va peor que esta, el problema está
+  en la ejecución (comisiones, redondeos, órdenes que no se llenan), no en la
+  estrategia.
+- **Las 35 estrategias** del laboratorio, con 500 USD cada una, en las 14
+  monedas, velas de 4 horas y diarias.
+- **La copia de un trader que lleva años ganando** (ver abajo), con 500 USD.
+- **Bitcoin comprado el primer día y guardado**, como referencia.
 
-Usa exactamente las mismas reglas que el laboratorio (`src/posicion.ts`): las
-pruebas comprueban que, procesando las velas de a poco, da las mismas
-operaciones que la prueba con datos pasados. Arriesga el 1% de lo que vale la
-cuenta por operación, nunca pasa de 2x entre todas las posiciones, salta
-órdenes de menos de 10 USD y cobra comisión, deslizamiento y funding.
+Usan exactamente las mismas reglas que el laboratorio (`src/posicion.ts`): las
+pruebas comprueban que, procesando las velas de a poco, dan las mismas
+operaciones que la prueba con datos pasados. Arriesgan el 1% de lo que vale la
+cuenta por operación, nunca pasan de 2x entre todas las posiciones, saltan
+órdenes de menos de 10 USD y cobran comisión, deslizamiento y funding.
 
 **El panel**, que se recarga cada 30 segundos:
 
-- **Operaciones abiertas**: cada una con precio de entrada, **stop (SL)**,
-  **objetivo (TP)**, **precio en vivo**, a qué distancia está de cada uno,
-  una barra de dónde va entre el SL y el TP, y cuánto va ganando o perdiendo.
-- **Precios en vivo** de las 14 monedas en Binance, con el cambio de 24 horas.
-- Cuánto lleva cada cuenta, la gráfica, y la historia de cada operación.
+- Arriba, el estado del **bot con dinero real** (apagado, sin llaves o
+  activo, con lo que tiene abierto y su stop).
+- La tabla de las 38 simulaciones ordenadas por resultado; tocando una se ve
+  su detalle y su historia de operaciones.
+- **Operaciones abiertas** de la simulación que elijas: cada una con precio de
+  entrada, **stop (SL)**, **objetivo (TP)**, **precio en vivo**, a qué
+  distancia está de cada uno y cuánto va ganando o perdiendo.
+- **Precios en vivo** de las 14 monedas en Binance y la gráfica.
 
 El SL y el TP se revisan con el máximo y el mínimo de cada vela cuando cierra
-(igual que en el laboratorio): si el precio los tocó, la operación se cierra a
-ese precio. Si el precio en vivo los toca antes del cierre, la tarjeta lo
-avisa en ese momento.
+(igual que en el laboratorio). Las estrategias que salen con una señal en vez
+de un objetivo fijo dicen "sin fijo (sale con la señal)".
 
-El panel dice cuándo hay suficiente para decidir: 30 operaciones cerradas de
-la candidata (alrededor de un año).
+El panel dice cuándo hay suficiente para decidir: 30 operaciones cerradas.
+
+### Copias de traders (`npm run traders`)
+
+Busca en el ranking público de Hyperliquid cuentas que lleven **años**
+ganando, no solo un buen mes. Filtros, fijados antes de mirar:
+
+- al menos 1,75 años de historia (Hyperliquid solo guarda historia desde
+  finales de 2024: **nadie puede mostrar más de ~1,9 años**);
+- ganó en al menos el 70% de los trimestres y nunca cayó más de 40%;
+- sigue activo en el mercado principal, no es un bot (menos de 2.000 órdenes
+  al mes), cuenta de al menos 10.000 USD y no usa más de 10x.
+
+De 160 cuentas revisadas (el 8 de noviembre de 2026), **solo una pasó**: casi
+1,9 años, 88% de trimestres en verde, caída máxima 29%, opera sobre todo HYPE,
+ZEC, TRUMP y WLFI (`src/vivo/traders.json`). La copia en papel sigue sus
+posiciones en proporción a 500 USD, con tope de 2x, pausa si pierde 5% en un
+día y se detiene si cae 30%. Ojo: entre decenas de miles de cuentas, algunas
+se ven así por pura suerte; y lo que hizo en 2 años no garantiza lo que hará.
+
+La copia es una **guía en papel**, no un respaldo: el bot real **no** pasa a
+copiar al trader ni sube el riesgo cuando va perdiendo. Subir el riesgo para
+recuperar lo perdido es la forma más común de vaciar una cuenta.
 
 ### Cómo está hecho
 
 - `src/vivo/index.ts`: Worker de Cloudflare con el panel (clave `CLAVE_PANEL`),
-  `/api/precios` (precios de Binance en el momento) y un Durable Object con
-  su propia base SQLite (plan gratis).
-- Cada 30 segundos una alarma lee los precios, avisa si alguna operación tocó
-  su SL o TP, y si cerró alguna vela la procesa (hasta 3 series por ciclo).
-  Un cron cada 10 minutos revisa que la alarma siga puesta.
-- `src/vivo/config.ts`: monedas, temporalidades y estrategias que corren.
-- `src/binance.ts`: lectura de Binance (la usan el laboratorio y la simulación).
+  `/api/precios` (precios de Binance en el momento), `/api/real/*` (el bot
+  real) y dos Durable Objects con su propia base SQLite (plan gratis).
+- Las simulaciones: cada 30 segundos una alarma lee los precios, avisa si
+  alguna operación tocó su SL o TP, procesa hasta 2 velas cerradas por ciclo,
+  lee las posiciones de los traders copiados y guarda solo si algo cambió (o
+  cada 10 minutos), para no gastar escrituras.
+- Un cron cada 10 minutos revisa que las dos alarmas sigan puestas.
+- `src/vivo/config.ts`: monedas, simulaciones y las reglas del bot real.
+- `src/vivo/copia/`: el motor de las copias de traders (`pruebas/copia.test.mjs`).
+- `src/vivo/real/`: el bot con dinero real (`pruebas/bot.test.mjs`).
+- `src/binance.ts`: lectura pública de Binance.
+
+## El bot con dinero real
+
+**Arranca apagado.** No hace nada hasta que pones las llaves y lo activas.
+
+Reglas (`BOT_REAL` en `src/vivo/config.ts`):
+
+- **Estrategia**: cruce de medias 20/50 en velas de 4 horas, **solo compras**
+  (spot, sin apalancamiento ni ventas en corto), en las 14 monedas. En el
+  laboratorio, en 4 horas, fue de lo poco que ganó después de costos; pero
+  repitiendo el último mes con el ciclo real perdió entre 6% y 7%. **Puede
+  perder.**
+- **Plata**: usa solo 50 USD, llevados en su propia caja. Nunca vende monedas
+  que no compró él (lo que ya tengas en la cuenta no lo toca).
+- **Riesgo**: 1% de lo que vale (unos 0,50 USD) por operación; entre todo lo
+  abierto, nunca más de lo que tiene.
+- **Stop en Binance**: cada compra deja puesta una orden de stop en Binance,
+  así protege aunque el bot se caiga. Sale cuando toca el stop o cuando la
+  señal se da vuelta.
+- **Piso**: si lo que vale baja de 40 USD, vende todo y se apaga solo.
+- **Detener**: el botón del panel vende todo y lo apaga en el momento.
+- Cada compra lleva un número único: si se cae justo después de comprar, al
+  volver encuentra la orden y no compra dos veces.
+
+### Cómo activarlo
+
+1. En Binance: **Perfil → Gestión de API → Crear API**. Permisos: solo
+   **Habilitar trading spot y de margen** (deja **apagado** el de retiros) y,
+   si puedes, restríngela a una IP. Esa llave no puede sacar plata de la
+   cuenta.
+2. En Cloudflare, en el Worker: **Settings → Variables and Secrets → Add**,
+   tipo *Secret*: `BINANCE_API_KEY` y `BINANCE_API_SECRET`. **Nunca las pegues
+   en un chat, un correo ni en este repositorio.**
+3. Pasa 50 USDT a tu billetera **Spot** de Binance.
+4. En el panel: **Probar conexión** (revisa la firma y el saldo sin operar) y
+   después **Activar** (pide escribir ACTIVAR). Empieza en la siguiente vela de
+   4 horas.
+
+El bot corre en su propio Durable Object, creado en Sudamérica, porque Binance
+bloquea servidores de algunos países (Estados Unidos, entre otros). Si "Probar
+conexión" responde un error 451 o de región, es eso.
 
 ## Publicarlo en Cloudflare
 
@@ -177,8 +256,8 @@ la candidata (alrededor de un año).
    nombre `CLAVE_PANEL`, con una palabra larga que solo tú sepas.
 3. Abre la dirección `…workers.dev` del Worker y entra con esa clave.
 
-La simulación arranca sola y cada push a `main` la vuelve a publicar sin
-borrar lo que lleva. Si se cambia algo de fondo (como la fuente de precios),
+Las simulaciones arrancan solas y cada push a `main` las vuelve a publicar sin
+borrar lo que llevan (el bot real tampoco pierde su estado). Si se cambia algo de fondo (como la fuente de precios),
 `VERSION` en `src/vivo/simulacion.ts` sube y la simulación empieza de cero
 sola. "Empezar de cero" en el panel también la reinicia.
 
@@ -193,7 +272,8 @@ npm run sistema               # 35 estrategias + prueba a ciegas (resultados/sis
 LAB_TOPE=0.5 npm run sistema  # lo mismo con otro tope de exposición total (solo para comparar)
 npm run corto-plazo           # velas de 5 min a 4 h y bot de grilla (resultados/corto-plazo.json)
 npm run referencia            # pasa resultados/binance-15-monedas.json al panel
-npm run pruebas               # que nada mire el futuro y que vivo = laboratorio
+npm run traders               # busca traders que lleven años ganando (src/vivo/traders.json)
+npm run pruebas               # que nada mire el futuro, vivo = laboratorio, copias y bot real
 npm run en-vivo -- 30         # repite los últimos 30 días con el ciclo en vivo real
 npm run tipos                 # revisa los tipos
 ```
@@ -213,4 +293,10 @@ Desde un computador detrás de un proxy, Node necesita `NODE_USE_ENV_PROXY=1`.
   fallan en vivo.
 - Se usan precios del mercado spot de Binance (los de futuros casi no se
   separan, y su servidor está bloqueado en algunos países). Las ventas en
-  corto que hace la simulación, en la vida real necesitarían Binance Futuros.
+  corto que hace la simulación, en la vida real necesitarían Binance Futuros;
+  por eso el bot real solo compra.
+- El bot real se prueba contra un Binance falso (`pruebas/binance-falso.mjs`)
+  que verifica las firmas, ejecuta las órdenes y dispara los stops: compra y
+  stop redondeados a las reglas de Binance, stop ejecutado, salida por señal,
+  que no venda lo tuyo, el piso de 40 USD, recuperarse si se cae a mitad de
+  una compra, "detener" y una llave mala.

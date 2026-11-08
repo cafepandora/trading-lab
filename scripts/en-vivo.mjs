@@ -9,7 +9,11 @@ import { armarEstado, correrCiclo, iniciar } from '../.compilado/simulacion.mjs'
 const dias = Number(process.argv[2]) || 30;
 
 class AlmacenMemoria {
-  config = null; cuentas = new Map(); ops = []; ev = []; puntos = [];
+  config = null; cuentas = new Map(); copias = new Map(); ops = []; opsCopia = []; ev = []; puntos = [];
+  async leerCopias() { return [...this.copias.values()].map((c) => structuredClone(c)); }
+  async guardarCopias(cs) { for (const c of cs) this.copias.set(c.id, structuredClone(c)); }
+  async agregarOperacionesCopia(o) { this.opsCopia.push(...o); }
+  async operacionesCopia(cuenta, n) { return this.opsCopia.filter((o) => o.cuenta === cuenta).slice(-n).reverse(); }
   async leerConfig() { return structuredClone(this.config); }
   async guardarConfig(c) { this.config = structuredClone(c); }
   async leerCuentas() { return [...this.cuentas.values()].map((c) => structuredClone(c)); }
@@ -24,17 +28,18 @@ class AlmacenMemoria {
 }
 
 const a = new AlmacenMemoria();
+const mem = {};
 await iniciar(a);
 for (const s of Object.keys(a.config.ultimaVela)) a.config.ultimaVela[s] -= dias * 86400_000;
 let ciclos = 0;
 for (;;) {
-  const r = await correrCiclo(a);
+  const r = await correrCiclo(a, Date.now(), mem);
   ciclos++;
   if (r.errores.length) console.log('avisos:', r.errores.join(' | '));
-  if (!r.series.length || ciclos > 40) break;
+  if (!r.series.length || ciclos > 60) break;
   console.log(`ciclo ${ciclos}: ${r.series.join(', ')} (${r.ms} ms)`);
 }
-const e = await armarEstado(a);
+const e = await armarEstado(a, Date.now(), mem);
 console.log(`\nRepetición de ${dias} días en ${ciclos} ciclos:`);
 for (const f of e.filas) {
   const r = f.rPromedio == null ? '—' : f.rPromedio.toFixed(2);
