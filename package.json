@@ -13,7 +13,8 @@
     "corto-plazo": "node scripts/compilar.mjs && node scripts/corto-plazo.mjs",
     "traders": "node scripts/traders.mjs",
     "probabilidades": "node scripts/compilar.mjs && node scripts/probabilidades.mjs",
-    "estilos": "node scripts/compilar.mjs && node scripts/estilos.mjs"
+    "estilos": "node scripts/compilar.mjs && node scripts/estilos.mjs",
+    "indices": "node scripts/compilar.mjs && node scripts/indices.mjs"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^5.20261107.1",

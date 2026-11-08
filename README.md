@@ -162,6 +162,39 @@ también con caídas de hasta 42%. Por eso el bot sigue siendo de swing; si
 algún día un estilo corto empieza a pasar los filtros, `npm run estilos` lo
 mostrará.
 
+## ¿Y con el Nasdaq 100 o el S&P 500? (`npm run indices`)
+
+Las mismas estrategias de swing, solo compras, en velas diarias de QQQ
+(Nasdaq 100, desde 1999) y SPY (S&P 500, desde 1993), con dividendos y con
+costos de un bróker internacional (0,05% por orden). "Todo o nada": cuando la
+estrategia compra, todo está en el ETF; si no, en efectivo. Precios de Yahoo
+Finance (`resultados/indices.json`).
+
+| Desde 2010 | Al año | Peor caída |
+|---|---|---|
+| QQQ comprar y guardar | +18,0% | 35% |
+| QQQ con la mejor estrategia (cruce 20/50) | +8,7% | 23% |
+| SPY comprar y guardar | +13,7% | 34% |
+| SPY con la mejor estrategia (Donchian 20/10) | +5,8% | 9% |
+
+En los índices **ninguna estrategia le gana a comprar y guardar**: lo que
+pagan es la subida de largo plazo, no la volatilidad, y cada vez que una
+estrategia sale del mercado se pierde días buenos. Las estrategias sí caen
+menos.
+
+La otra forma de sacarle más es el **apalancamiento** (ETFs 2x y 3x, como
+SSO/UPRO o QLD/TQQQ), simulado día a día con la historia de los índices y
+sus costos:
+
+| | Al año desde 2010 | Al año desde 2021 | Peor caída desde 2000 |
+|---|---|---|---|
+| S&P 500 1x / 2x / 3x | +13,5% / +22,5% / +28,3% | +14,3% / +24,6% / +32,1% | 56% / 86% / 98% |
+| Nasdaq 100 1x / 2x / 3x | +16,9% / +28,2% / +34,4% | +13,6% / +20,1% / +20,6% | 83% / 99% / 100% |
+
+Desde 2010 el apalancado gana muchísimo, pero quien lo compró en 2000 lo vio
+caer 86% a 100%: un 3x del Nasdaq comprado en 2000 hoy valdría 0,3 veces lo
+que se puso, 26 años después.
+
 ## Las simulaciones en vivo
 
 38 cuentas virtuales, cada una con su propia plata, operando a la vez:
@@ -340,6 +373,7 @@ npm run referencia            # pasa resultados/binance-15-monedas.json al panel
 npm run traders               # busca traders que lleven años ganando (src/vivo/traders.json)
 npm run probabilidades        # qué tan seguido gana el bot y con qué riesgo (resultados/probabilidades.json)
 npm run estilos               # scalping, day trading, swing y la fórmula que elige entre ellos (resultados/estilos.json)
+npm run indices               # las estrategias en el Nasdaq 100 y el S&P 500, y apalancados 2x/3x (resultados/indices.json)
 npm run pruebas               # que nada mire el futuro, vivo = laboratorio, copias y bot real
 npm run en-vivo -- 30         # repite los últimos 30 días con el ciclo en vivo real
 npm run tipos                 # revisa los tipos
