@@ -15,7 +15,8 @@
     "probabilidades": "node scripts/compilar.mjs && node scripts/probabilidades.mjs",
     "estilos": "node scripts/compilar.mjs && node scripts/estilos.mjs",
     "indices": "node scripts/compilar.mjs && node scripts/indices.mjs",
-    "nuevas": "node scripts/nuevas.mjs"
+    "nuevas": "node scripts/nuevas.mjs",
+    "funding": "node scripts/funding.mjs"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^5.20261107.1",

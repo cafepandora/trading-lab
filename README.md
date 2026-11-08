@@ -214,6 +214,43 @@ aciertos), pero con solo 13 operaciones, y a ciegas perdió: el patrón típico
 de algo que se vio bueno por suerte. Las otras dos no se distinguen de entrar
 al azar.
 
+## Cobrar el funding (`npm run funding`)
+
+No adivina el precio: compra la moneda en spot y la vende en corto en
+futuros perpetuos, en la misma cantidad. Lo que gana una pata lo pierde la
+otra, y queda el **funding**, que cuando es positivo les pagan los que
+compran con apalancamiento a los que están en corto. Con el corto a 1x (la
+mitad de la plata en spot y la otra mitad de garantía, para que no lo
+liquiden aunque la moneda suba mucho) la cuenta rinde más o menos **la mitad**
+del funding. Reglas fijadas antes de ver resultados ("siempre puesta" y
+"solo cuando paga": abre si los últimos 7 días pagan 8% al año o más, cierra
+si se vuelve negativo), con costos de abrir y cerrar (`resultados/funding.json`).
+
+Hyperliquid, desde mayo de 2023 (el spot comprado en Binance):
+
+| Moneda | Funding al año | La cuenta: siempre puesta / solo cuando paga | Peor caída | Funding 2025 | Funding 2026 |
+|---|---|---|---|---|---|
+| BTC | 13,8% | +8,0% / +7,7% | 1% | 10,6% | 5,6% |
+| ETH | 13,9% | +8,0% / +7,2% | 1% | 8,5% | 6,0% |
+| SOL | 11,9% | +6,7% / +7,4% | 4% / 1% | 5,3% | 0,8% |
+| XRP | 9,2% | +5,0% / +5,9% | 6% / 1% | 8,7% | 2,5% |
+| DOGE | 16,5% | +9,8% / +11,0% | 8% / 1% | 8,8% | 6,4% |
+
+En Binance, en el mismo período, el funding fue más o menos la mitad (de 4,9%
+a 7,9% al año: la cuenta, de +2,4% a +4,2%). Desde 2020 en Binance: BTC 11,6%
+al año (la cuenta +7,2%), pero bajando cada año (2021 30,6% · 2024 11,9% ·
+2025 5,1% · 2026 3,1%). SOL en 2022 pagó −38% al año: "siempre puesta" cayó
+36%; "solo cuando paga" se salió a tiempo y cayó 1%.
+
+- **Sí funciona**, con caídas mínimas: es lo único de este laboratorio que
+  ganó en todos los períodos sin depender de adivinar el precio.
+- Pero **rinde poco y cada vez menos**: hay más gente haciéndolo. En 2026 la
+  cuenta rendiría entre 0% y 3% al año, menos que un ahorro en dólares.
+- Riesgos que la prueba no ve: que quiebre o congele retiros una de las dos
+  plataformas (como FTX en 2022), que una subida muy fuerte obligue a pasar
+  garantía de una plataforma a la otra a tiempo, y la diferencia entre el
+  precio spot y el del futuro al abrir y cerrar.
+
 ## Las simulaciones en vivo
 
 38 cuentas virtuales, cada una con su propia plata, operando a la vez:
@@ -394,6 +431,7 @@ npm run probabilidades        # qué tan seguido gana el bot y con qué riesgo (
 npm run estilos               # scalping, day trading, swing y la fórmula que elige entre ellos (resultados/estilos.json)
 npm run indices               # las estrategias en el Nasdaq 100 y el S&P 500, y apalancados 2x/3x (resultados/indices.json)
 npm run nuevas                # tres estrategias nuevas, con reglas fijadas antes y medidas a ciegas (resultados/nuevas.json)
+npm run funding               # cobrar el funding en Binance y Hyperliquid (resultados/funding.json)
 npm run pruebas               # que nada mire el futuro, vivo = laboratorio, copias y bot real
 npm run en-vivo -- 30         # repite los últimos 30 días con el ciclo en vivo real
 npm run tipos                 # revisa los tipos
